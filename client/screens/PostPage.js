@@ -1,16 +1,9 @@
-import {
-    View,
-    Text,
-    SafeAreaView,
-    ScrollView,
-    Image,
-    TouchableOpacity,
-  } from "react-native";
+import {View,Text,SafeAreaView,ScrollView,Image,TouchableOpacity,} from "react-native";
   import React, { useLayoutEffect } from "react";
   import { useNavigation } from "@react-navigation/native";
   import { FontAwesome, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
   
-  const ItemScreen = ({ route }) => {
+  const PostPage = ({ route }) => {
     const navigation = useNavigation();
   
     const data = route?.params?.param;
@@ -35,10 +28,10 @@ import {
   
             <View className="absolute flex-row inset-x-0 top-5 justify-between px-6">
               <TouchableOpacity
-                onPress={() => navigation.navigate("Discover")}
+                onPress={() => navigation.navigate("Home")}
                 className="w-10 h-10 rounded-md items-center justify-center bg-white"
               >
-                <FontAwesome5 name="chevron-left" size={24} color="#06B2BE" />
+                <FontAwesome5 name="chevron-left" size={300} color="#06B2BE" />
               </TouchableOpacity>
   
               <TouchableOpacity className="w-10 h-10 rounded-md items-center justify-center bg-[#06B2BE]">
@@ -163,5 +156,5 @@ import {
       </SafeAreaView>
     );
   };
-  
-  export default ItemScreen;
+  //back button to Home
+  export default PostPage;
