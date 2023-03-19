@@ -1,17 +1,11 @@
-import {
-    View,
-    Text,
-    SafeAreaView,
-    Image,
-    TouchableOpacity,
-  } from "react-native";
+import {View,Text,SafeAreaView,Image,TouchableOpacity,} from "react-native";
   import React, { useLayoutEffect } from "react";
-  import * as Animatable from "react-native-animatable";
-  
+  import * as Animatable from "react-native-animatable"; 
   import { useNavigation } from "@react-navigation/native";
   import { HeroImage } from "../assets";
+
   
-  const HomeScreen = () => {
+  const Home = () => {
     const navigation = useNavigation();
   
     useLayoutEffect(() => {
@@ -59,7 +53,7 @@ import {
           />
   
           <TouchableOpacity
-            onPress={() => navigation.navigate("Discover")}
+            onPress={() => navigation.navigate("PostPage")}
             className="absolute bottom-20 w-24 h-24 border-l-2 border-r-2 border-t-4 border-[#00BCC9] rounded-full items-center justify-center"
           >
             <Animatable.View
@@ -68,7 +62,7 @@ import {
               iterationCount={"infinite"}
               className="w-20 h-20 items-center justify-center rounded-full bg-[#00BCC9]"
             >
-              <Text className="text-gray-50 text-[36px] font-semibold">Go</Text>
+              <Text className="text-gray-50 text-[36px] font-semibold">PostPage</Text>
             </Animatable.View>
           </TouchableOpacity>
         </View>
@@ -76,4 +70,4 @@ import {
     );
   };
   
-  export default HomeScreen;
+  export default Home;

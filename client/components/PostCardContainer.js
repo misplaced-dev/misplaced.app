@@ -3,7 +3,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
-const ItemCarDontainer = ({ imageSrc, title, location, data }) => {
+const PostCardContainer = ({ imageSrc, title, location, data }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -35,4 +35,4 @@ const ItemCarDontainer = ({ imageSrc, title, location, data }) => {
   );
 };
 
-export default ItemCarDontainer;
+export default PostCardContainer;

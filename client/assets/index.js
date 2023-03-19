@@ -1,6 +1,5 @@
-export { default as HeroImage } from "./hero.png";
-export { default as Avatar } from "./avatar.png";
-export { default as Hotels } from "./hotel.png";
-export { default as Attractions } from "./attraction.png";
-export { default as Restaurants } from "./restaurants.png";
-export { default as NotFound } from "./NotFound.png";
+export { default as HeroImage } from "./m.png";
+export { default as NotFound } from "./NotFound.gif";
+export { default as LogoBanner } from "./misplaced.svg";
+export { default as Logo } from "./m.png";
+
