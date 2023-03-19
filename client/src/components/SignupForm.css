@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+.signup-form-container {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.email,.name, .username, .password, .native-signup, .google-signin {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid  #dadce0;
+    border-radius: 4px;
+    margin: 5px 0 15px;
+}
+
+.signup-form h2 {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.native-signup {
+    margin-top: 20px;
+    border: 1px solid  #e0e1e1;
+    background: #f8fcff;
+    color: #333541;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 600;
+    padding: 15px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.native-signup:hover, .native-signup:focus {
+    background: #f2f8ff;
+    border: 1px solid #d8e6ff;
+}
+
+.signup-form input[type=text]:focus, .signup-form input[type=password]:focus, .signup-form input[type=email]:focus {
+    border: 1px solid #909BDA;
+    border-radius: 4px;
+}
+
+.signup-break {
+    margin: 20px 0 20px;
+    height: 1px;
+    background-color: #dadce0;
+    border: none;
+    width: 100%;
+}
+
+.google-signin {
+    margin-top: 30px;
+    background: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.google-signin:hover {
+    background: #d4d3d3;
+}
+
+input[type=password]:autofill {
+    background: #fff;
+}
+
+
+.login-link-container {
+    font-size: 14px;
+}
+
+.login-link {
+    color: #6a9bfc;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.login-link:hover {
+    color: #5493eb;
+}
