@@ -3,6 +3,7 @@ import {View,Text,SafeAreaView,Image,TouchableOpacity,} from "react-native";
   import * as Animatable from "react-native-animatable"; 
   import { useNavigation } from "@react-navigation/native";
   import { HeroImage } from "../assets";
+ 
 
   
   const Home = () => {
@@ -16,26 +17,24 @@ import {View,Text,SafeAreaView,Image,TouchableOpacity,} from "react-native";
   
     return (
       <SafeAreaView className="bg-white flex-1 relative">
-        {/* First Section */}
+        {/* Header and Title: banner logo and Find Your Misplaced Items */}
   
         <View className="flex-row px-6 mt-8 items-center space-x-2">
           <View className="w-16 h-16 bg-black rounded-full items-center justify-center">
-            <Text className="text-[#00BCC9] text-3xl font-semibold">Go</Text>
+            <Text className="text-[#00BCC9] text-3xl font-semibold">*logo*</Text>
           </View>
   
-          <Text className="text-[#2A2B4B] text-3xl font-semibold">Travel</Text>
+          <Text className="text-[#2A2B4B] text-3xl font-semibold">Find Your Misplaced Items</Text>
         </View>
   
-        {/* Second Section */}
+        {/* Filters: Towson University (check mark), At Location(Ex.Tower C), Within Past 3 Days
+        Sort: Location Distance From You, Most Recent, Price (Low to High), Price (High to Low) */}
         <View className="px-6 mt-8 space-y-3">
-          <Text className="text-[#3C6072] text-[42px]">Enjoy the trip with</Text>
-          <Text className="text-[#00BCC9] text-[38px] font-bold">
-            Good Moments
-          </Text>
+          <Text className="text-[#3C6072] text-[42px]">Filter By:</Text>
+          <Text className="text-[#00BCC9] text-[38px] font-bold">Sort By:</Text>
   
           <Text className="text-[#3C6072] text-base">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti odio
-            quis nostrum
+            Apply Filters
           </Text>
         </View>
   
@@ -59,10 +58,10 @@ import {View,Text,SafeAreaView,Image,TouchableOpacity,} from "react-native";
             <Animatable.View
               animation={"pulse"}
               easing="ease-in-out"
-              iterationCount={"infinite"}
+              iterationCount={"15s"}
               className="w-20 h-20 items-center justify-center rounded-full bg-[#00BCC9]"
             >
-              <Text className="text-gray-50 text-[36px] font-semibold">PostPage</Text>
+              <Text className="text-gray-50 text-[36px] font-semibold">Make a new Post</Text>
             </Animatable.View>
           </TouchableOpacity>
         </View>
