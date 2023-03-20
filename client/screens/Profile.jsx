@@ -9,7 +9,7 @@ const Profile = () => {
     return(
         <SafeAreaView>
             <ScrollView>
-                <SignupForm/>
+                
             </ScrollView>
         </SafeAreaView>
     );
