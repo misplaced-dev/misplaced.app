@@ -13,7 +13,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NativeWindProvider>
+    
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="Home | Misplaced" component={Home} />
@@ -23,6 +23,6 @@ export default function App() {
           <Stack.Screen name="Profile | Misplaced" component={Profile} />
         </Stack.Navigator>
       </NavigationContainer>
-    </NativeWindProvider>
+    
   );
 }
