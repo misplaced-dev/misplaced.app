@@ -1,5 +1,6 @@
 import axios from "axios";
-import { USER_ROUTES } from "../constants/route";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { USER_ROUTES } from "../constants/routes.js";
 
 export class AuthService {
     /**
@@ -42,8 +43,8 @@ export class AuthService {
      * @param {String} name the id of the token to be retrieved
      * @returns {String} the token from the local storage
      */
-    static getToken(name) {
-        return localStorage.getItem(name);
+    static async getToken(name) {
+        return await AsyncStorage.getItem(name);
     }
 
     /**
@@ -52,7 +53,17 @@ export class AuthService {
      * @param {String} name the name of the token to be stored
      * @param {String} token the value token to be stored in the local storage
      */
-    static setToken(name, token) {
-        localStorage.setItem(name, token);
+    static async setToken(name, token) {
+        await AsyncStorage.setItem(name, token);
+    }
+
+    /**
+     * Removes the token from the local storage
+     * 
+     * @param {String} name the name of the token to be removed
+     * @returns {Promise} the response from the server
+     */
+    static async signout(name) {
+        return await AsyncStorage.removeItem(name);
     }
 }
