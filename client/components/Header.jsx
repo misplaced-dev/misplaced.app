@@ -1,6 +1,5 @@
-//import LogoBanner;
-//import Logo
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import LogoBanner from '../assets/misplaced.svg';
+import { View, Text, TouchableOpacity, Image, SafeAreaView } from "react-native";
 import React from "react";
 
 const Header = ({ title, imageSrc, type, setType }) => {
@@ -10,7 +9,9 @@ const Header = ({ title, imageSrc, type, setType }) => {
   return (
     <SafeAreaView>
         <View>
-            <Text>Misplaced</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Home | Misplaced')}> 
+        <Image source={require('../assets/misplaced.svg')} />
+        </TouchableOpacity>          
         </View>
       </SafeAreaView>
   );

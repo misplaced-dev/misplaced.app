@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 
-const MenuContainer = ({ title, imageSrc, type, setType }) => {
+const HomeContainer = ({ title, imageSrc, type, setType }) => {
   const handlePress = () => {
     setType(title.toLowerCase());
   };
@@ -22,4 +22,4 @@ const MenuContainer = ({ title, imageSrc, type, setType }) => {
   );
 };
 
-export default MenuContainer;
+export default HomeContainer;

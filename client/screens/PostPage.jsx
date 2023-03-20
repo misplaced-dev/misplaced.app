@@ -1,4 +1,4 @@
-import {View,Text,SafeAreaView,ScrollView,Image,TouchableOpacity,} from "react-native";
+import {View,Text,SafeAreaView,ScrollView,Image,TouchableOpacity} from "react-native";
   import React, { useLayoutEffect } from "react";
   import { useNavigation } from "@react-navigation/native";
   import { FontAwesome, FontAwesome5, MaterialIcons } from "@expo/vector-icons";

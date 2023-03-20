@@ -16,7 +16,7 @@ export default function App() {
         <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="Home | Misplaced" component={Home} />
           <Stack.Screen name="Login | Misplaced" component={Login} />
-          <Stack.Screen name="SignUp | Misplaced" component={Signup} />
+          <Stack.Screen name="Signup | Misplaced" component={Signup} />
           <Stack.Screen name="PostPage | Misplaced" component={PostPage} />
           <Stack.Screen name="Profile | Misplaced" component={Profile} />
         </Stack.Navigator>

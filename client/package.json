@@ -27,7 +27,8 @@
     "react-native-google-places-autocomplete": "^2.5.1",
     "react-native-safe-area-context": "^4.4.1",
     "react-native-screens": "^3.18.2",
-    "react-native-web": "~0.18.7"
+    "react-native-web": "~0.18.7",
+    "tailwindcss": "^3.2.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
