@@ -15,3 +15,7 @@ const ProfileContainer = ({ title, imageSrc, type, setType }) => {
 };
 
 export default ProfileContainer;
+
+//function handleLogout() {
+    // handle logout
+  //}

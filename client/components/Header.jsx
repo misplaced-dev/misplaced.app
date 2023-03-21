@@ -1,20 +1,38 @@
-import LogoBanner from '../assets/misplaced.svg';
-import { View, Text, TouchableOpacity, Image, SafeAreaView } from "react-native";
-import React from "react";
+import React from 'react';
+import { Image, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const Header = ({ title, imageSrc, type, setType }) => {
+const Header = () => {
+  const navigation = useNavigation();
+
   const handlePress = () => {
-    setType(title.toLowerCase());
+    navigation.navigate('Home | Misplaced');
   };
+
   return (
-    <SafeAreaView>
-        <View>
-        <TouchableOpacity onPress={() => navigation.navigate('Home | Misplaced')}> 
-        <Image source={require('../assets/misplaced.svg')} />
-        </TouchableOpacity>          
-        </View>
-      </SafeAreaView>
+    <View style={styles.container}>
+      <TouchableOpacity onPress={handlePress}>
+        <Image source={require('../assets/misplaced.png')} style={{ width: 330, height: 51 }} />
+      </TouchableOpacity>
+      
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    height: 100, /* adjust as necessary */
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 50,
+    paddingBottom: 120,
+  },
+  logo: {
+    width: '80%',
+    height: '100%',
+    resizeMode: 'contain',
+  },
+});
 
 export default Header;
