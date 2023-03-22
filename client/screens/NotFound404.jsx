@@ -1,19 +1,19 @@
 import { View , Text, SafeAreaView, ScrollView} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import PostPageContainer from "../components/PostPageContainer";
 
-const PostPage = () => {
+
+const NotFound404 = () => {
 
     const navigation = useNavigation();
 
     return (
         <SafeAreaView>
             <ScrollView>   
-                <PostPageContainer/>
+            <Image source={require('../assets/NotFound.gif')} />
             </ScrollView>
         </SafeAreaView>
     );
     }
 
-export default PostPage;
+export default NotFound404;
