@@ -9,7 +9,7 @@ const Profile = () => {
     return(
         <SafeAreaView>
             <ScrollView>
-                
+                <ProfileContainer />
             </ScrollView>
         </SafeAreaView>
     );
