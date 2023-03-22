@@ -77,7 +77,7 @@ const SignUpForm = () => {
           style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10, marginBottom: 10, marginTop: 10, marginRight: 30, marginLeft: 30, borderRadius: 20,}}
 
         />
-        <Text>{error}</Text>
+        <Text style={{textAlign: 'center', fontSize: 20, color: 'red'}}>{error}</Text>
         <TouchableOpacity onPress={handleSubmit} style={{backgroundColor: '#ffffff', padding: 10, borderRadius: 5, marginTop: 10, borderColor: 'black', marginRight: 30, marginLeft: 30, borderRadius: 20, marginBottom: 10,}}>
             <Text style={{textAlign: 'center', fontSize: 17, color: 'black'}}>Signup</Text>
         </TouchableOpacity>
