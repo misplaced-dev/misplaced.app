@@ -10,7 +10,10 @@ const Profile = () => {
     return(
         <SafeAreaView>
             <ScrollView>
+
                 <Header/>
+                <ProfileContainer />
+
             </ScrollView>
         </SafeAreaView>
     );

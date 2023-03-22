@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { POST_ROUTES } from '../constants/routes';
+import { POST_ROUTES } from '../constants/routes.js';
 
 export class PostService {
     /**
@@ -29,7 +29,7 @@ export class PostService {
      * @returns {Promise} the response from the server
      */
     static getPostsByUserId(id) {
-        return axios.get(POST_ROUTES.GET_POST_BY_USER_ID(id));
+        return axios.get(POST_ROUTES.GET_POST(id));
     }
 
     /**
