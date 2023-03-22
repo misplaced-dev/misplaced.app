@@ -56,8 +56,8 @@ const LoginForm = () => {
             <Text>Login</Text>
         </TouchableOpacity>
         <Text>Don't have an account?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Signup | Misplaced')}>
-            <Text>Signup</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Signup | Misplaced')}> 
+            <Text>Sign Up</Text>
         </TouchableOpacity>
       </View>
     );
