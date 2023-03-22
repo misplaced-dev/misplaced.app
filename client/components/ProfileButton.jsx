@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, Text, View } from 'react-native';
+import { TouchableOpacity, Text, View, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 function ProfileButton({ isLoggedIn }) {
@@ -18,15 +18,21 @@ function ProfileButton({ isLoggedIn }) {
     setIsPressed(!isPressed);
   };
 
+  const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
+
   const buttonStyle = {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: isPressed ? '#080001' : '#F5FCFF',
-    borderWidth: 1,
-    borderColor: '#171717',
-    borderRadius: 20,
+    borderBottomWidth: 1,
+  borderBottomColor: '#171717',
+  borderLeftWidth: 1,
+  borderLeftColor: '#171717',
+  borderTopWidth: 0,
+  borderRightWidth: 0,
+  borderRadius: 0,
   };
 
   const textStyle = {
@@ -34,7 +40,7 @@ function ProfileButton({ isLoggedIn }) {
   };
 
   return (
-    <View style={{ position: 'absolute', backgroundColor: '#F5FCFF', height: 50, width: '45%', top: 130, right:10, borderWidth: 1, borderColor: '#171717', borderRadius: 20}}>
+    <View style={{ position: 'absolute', backgroundColor: '#F5FCFF', height: 50, width: isMobile ? '45%' : '50%', top: 130, right:10,  borderColor: '#171717', }}>
       <TouchableOpacity
         onPress={isLoggedIn ? handleProfile : handleLogin}
         onPressIn={handlePress}
@@ -42,7 +48,7 @@ function ProfileButton({ isLoggedIn }) {
         style={buttonStyle}
       >
         <Text style={textStyle}>
-          {isLoggedIn ? 'Welcome Back!' : 'Login'}
+          {isLoggedIn ? 'Welcome Back!' : 'Login / Signup'}
         </Text>
       </TouchableOpacity> 
     </View>

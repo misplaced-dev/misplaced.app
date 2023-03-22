@@ -1,7 +1,7 @@
-import {View,Text,SafeAreaView,Image,TouchableOpacity,} from "react-native";
+import {SafeAreaView,ScrollView} from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import Header from '../components/Header.jsx';
+import HomeHeader from '../components/HomeHeader.jsx';
 import ProfileButton from "../components/ProfileButton.jsx";
 import PostCards from "../components/PostCards.jsx";
 import Filters from "../components/Filters.jsx";
@@ -22,21 +22,18 @@ import ModeToggle from "../components/ModeToggle.jsx";
   
     return (
       <SafeAreaView>
-        <View>
-            {/*<Header/>*/}
-            {/*Filters and Sorts and Apply Filters*/}
-            {/*PostCard Conatiner*/}
-            {/*Top right Profile Button: Login/Signn up button or profile pic if logged in*/}
-
-            <Header />
+        <ScrollView>
+            <HomeHeader />
+            <ModeToggle />
+            <ProfileButton />
             <Sort />
             <Filters />
             <PostCards />
-            <ProfileButton />
-            <ModeToggle />
-        </View>
+        </ScrollView>
       </SafeAreaView>
     );
   };
   
   export default Home;
+
+  
