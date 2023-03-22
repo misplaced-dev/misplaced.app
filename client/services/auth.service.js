@@ -29,7 +29,7 @@ export class AuthService {
      * @returns {Boolean} true if the user is logged in, false otherwise
      */
     static isLoggedIn() {
-        const id = this.getToken("id");
+        const id = this.getToken("userId");
         if (id !== null) {
             return true;
         } else {
