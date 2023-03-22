@@ -40,25 +40,28 @@ const LoginForm = () => {
 
     return (
         <View>
-        <Text> Email</Text>
-        <TextInput
-          value={email}
-          onChangeText={setEmail}
-        />
-        <Text>Password</Text>
-        <TextInput
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry={true}
-        />
-        <Text>{error}</Text>
-        <TouchableOpacity onPress={handleSubmit}>
-            <Text>Login</Text>
-        </TouchableOpacity>
-        <Text>Don't have an account?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Signup | Misplaced')}> 
-            <Text>Sign Up</Text>
-        </TouchableOpacity>
+      <Text style={{textAlign: 'center', fontSize: 20}}>Email</Text>
+      <TextInput
+        value={email}
+        onChangeText={setEmail}
+        style={{textAlign: 'center', fontSize: 20, borderWidth: 1, borderColor: 'black', borderRadius: 20, padding: 10, marginBottom: 10, marginTop: 10, marginRight: 30, marginLeft: 30,}}
+      />
+      <Text style={{textAlign: 'center', fontSize: 20}}>Password</Text>
+      <TextInput
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry={true}
+        style={{textAlign: 'center', fontSize: 20, borderWidth: 1, borderColor: 'black', borderRadius: 20, padding: 10, marginTop: 10, marginBottom: 10, marginRight: 30, marginLeft: 30,}}
+      />
+      <Text style={{textAlign: 'center', fontSize: 20, color: 'red'}}>{error}</Text>
+      <TouchableOpacity onPress={handleSubmit} style={{backgroundColor: '#ffffff', padding: 10, borderRadius: 20, marginTop: 10, borderColor: 'black', marginRight: 30, marginLeft: 30, marginBottom: 10,}}>
+        <Text style={{textAlign: 'center', fontSize: 20, color: 'black'}}>Login</Text>
+      </TouchableOpacity>
+      <Text style={{textAlign: 'center', fontSize: 20, fontStyle: 'italic', marginTop: 10}}>Don't have an account?</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Signup | Misplaced')} style={{marginTop: 10}}>
+        <Text style={{textAlign: 'center', fontSize: 20, color: 'black'}}>Sign Up</Text>
+      </TouchableOpacity>
+
       </View>
     );
 };
