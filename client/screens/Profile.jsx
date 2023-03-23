@@ -13,10 +13,6 @@ const Profile = () => {
 
                 <Header/>
                 <ProfileContainer />
-<<<<<<< HEAD
-=======
-
->>>>>>> 5f7c412b0807e70ef876dd860ba77fe94076bded
             </ScrollView>
         </SafeAreaView>
     );
