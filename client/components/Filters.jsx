@@ -1,53 +1,107 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { TouchableOpacity, Text, View, Animated, Platform } from 'react-native';
 
-function Filters({ onPress }) {
- 
-  const [isPressed, setIsPressed] = useState(false);
 
-  function SortMenu() {
-    //dopdown menu for Sort By: Nearest, Recent, Price Low to High 
-  } 
-  
-  function FilterMenu() {
-   //dopdown menu for Filter By: Within 1 Mile, Within 5 Miles, Off Campus
-  }
+function SortMenu() {
+  const menuOptions = [    { text: 'Within 1 mile', value: 'Within1mile' },    { text: 'Within 3 miles', value: 'Within3miles' },    { text: 'Off Campus', value: 'OffCampus' },  ];
 
-  
+  const handleSelectOption = (value) => {
+    console.log('Selected option:', value); // Replace with sorted data
+  };
+
+  return (
+    <View style={{ marginTop: 10 }}>
+      {menuOptions.map((option) => (
+        <TouchableOpacity
+          key={option.value}
+          onPress={() => {
+            handleSelectOption(option.value);
+            setShowMenu(false);
+          }}
+          style={{
+            paddingVertical: 10,
+            paddingHorizontal: 20,
+            borderTopWidth: 1,
+            borderTopColor: '#ccc',
+            alignItems: 'center',
+            alignContent: 'center',
+          }}
+        >
+          <Text>{option.text}</Text>
+        </TouchableOpacity>
+      ))}
+    </View>
+  );
+}
+
+function Filters(props) {
+  const [showMenu, setShowMenu] = useState(false);
+  const [isPressed, setIsPressed] = useState(props.isPressed);
+  const paddingAnim = React.useRef(new Animated.Value(0)).current;
 
   const handlePress = () => {
     setIsPressed(!isPressed);
+    setShowMenu(!showMenu);
+    Animated.timing(paddingAnim, {
+      toValue: showMenu ? 0 : 0,
+      duration: 250,
+      useNativeDriver: false,
+    }).start();
   };
+
+  const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
 
   const buttonStyle = {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: 0,
+    paddingBottom: 0,
     backgroundColor: isPressed ? '#080001' : '#F5FCFF',
-    borderWidth: 1,
-    borderColor: '#171717',
-    borderRadius: 20,
+    borderBottomWidth: 0,
+    borderBottomColor: '#171717',
+    borderLeftWidth: 1,
+    borderLeftColor: '#171717',
+    borderTopWidth:  1 ,
+    borderRightWidth: 0,
+    borderRadius: 0,
   };
 
-  const textStyle = {
-    color: isPressed ? 'white' : 'black',
-  };
+
+//FIX BLACK OVERLAP FOR WEB maybe media query?
 
   return (
-    <View style={{ position: 'absolute', backgroundColor: '#F5FCFF', height: 50, width: '45%', top: 190, right:10, borderWidth: 1, borderColor: '#171717', borderRadius: 20}}>
-      <TouchableOpacity
-        onPressIn={handlePress}
-        onPressOut={handlePress}
-        style={buttonStyle}
-      >
-        <Text style={textStyle}>
-          Filters
-        </Text>
-      </TouchableOpacity> 
+    <View
+      style={{
+        position: 'absolute',
+        backgroundColor: '#F5FCFF',
+        height: showMenu ? 185 : 50,
+        width: isMobile ? '45%' : '50%',
+        top: 181,
+        right: 10,
+       
+        borderColor: '#171717',
+       
+        marginBottom: showMenu ? 150 : 0,
+        zIndex: isPressed ? 2 : 0,
+      }}
+    >
+      <TouchableOpacity onPress={handlePress} style={buttonStyle}>
+        <Text style={{ color: isPressed ? 'white' : 'black' }}>Filters</Text>
+      </TouchableOpacity>
+      {showMenu && (
+        <Animated.View
+          style={{
+            paddingTop: paddingAnim,
+            paddingBottom: 10,
+            overflow: 'hidden',
+          }}
+        >
+          <SortMenu />
+        </Animated.View>
+      )}
     </View>
-    
   );
 }
 

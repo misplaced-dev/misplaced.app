@@ -86,7 +86,6 @@ const ProfileContainer = () => {
 };
 
 export default ProfileContainer;
-
 //function handleLogout() {
     // handle logout
   //}
