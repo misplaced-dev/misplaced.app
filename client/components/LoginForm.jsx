@@ -32,6 +32,7 @@ const LoginForm = () => {
             if (res.status === 200) {
                 AuthService.setToken('userId', res.data._id);
                 navigation.navigate('Home | Misplaced');
+                window.location.reload();
             } else {
                 setError('Error: Try different username or email');
             }

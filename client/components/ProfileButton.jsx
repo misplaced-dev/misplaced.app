@@ -1,10 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, Text, View, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import {AuthService} from '../services/auth.service';
 
-function ProfileButton({ isLoggedIn }) {
+function ProfileButton() {
   const navigation = useNavigation();
   const [isPressed, setIsPressed] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    checkLoginStatus();
+}, []);
+
+const checkLoginStatus = async () => {
+    try {
+      const storedUserId = await AuthService.getToken('userId').then((res) => {
+        return res;
+        });
+      if (storedUserId !== null) {
+        setIsLoggedIn(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+};
 
   function handleLogin() {
     navigation.navigate('Login | Misplaced');
@@ -48,7 +67,7 @@ function ProfileButton({ isLoggedIn }) {
         style={buttonStyle}
       >
         <Text style={textStyle}>
-          {isLoggedIn ? 'Welcome Back!' : 'Login / Signup'}
+          {isLoggedIn ? 'Profile' : 'Login / Signup'}
         </Text>
       </TouchableOpacity> 
     </View>
