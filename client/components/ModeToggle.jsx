@@ -8,7 +8,7 @@ function ModeToggle({ isLoggedIn }) {
   const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
 
   function handleLogin() {
-    navigation.navigate('Login | Misplaced');
+    navigation.navigate('Profile | Misplaced');
   }
 
   function handleProfile() {

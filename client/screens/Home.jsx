@@ -25,7 +25,7 @@ import ModeToggle from "../components/ModeToggle.jsx";
         <ScrollView>
             <HomeHeader />
             <ModeToggle />
-            <ProfileButton />
+            <ProfileButton  />
             <Sort />
             <Filters />
             <PostCards />

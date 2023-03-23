@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { USER_ROUTES } from '../constants/route';
+import { USER_ROUTES } from '../constants/routes.js';
 
 export class UserService {
     /**

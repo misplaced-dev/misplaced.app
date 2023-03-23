@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MEDIA_ROUTES } from '../constants/routes';
+import { MEDIA_ROUTES } from '../constants/routes.js';
 
 export class MediaService {
     /**

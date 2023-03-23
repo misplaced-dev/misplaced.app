@@ -34,16 +34,26 @@ const SignUpForm = () => {
             email,
             username,
             password
-        };
+          };
+
+        const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (!pattern.test(email)) {  
+          setError('Error: Try different username or email');
+          return;
+        }
+
         AuthService.register(user).then((res) => {
             console.log(res);
             if (res.status === 201) {
                 AuthService.setToken('userId', res.data._id);
                 navigation.navigate('Home | Misplaced');
+                window.location.reload();
             } else {
                 setError('Error: Try different username or email');
+                
             }
-        }).catch((err) => setError('Error: Try different username or email'));
+        }).catch((err) => {console.log(error); setError('Error: Try different username or email')});
     };
 
     return (
@@ -52,21 +62,21 @@ const SignUpForm = () => {
         <TextInput
           value={name}
           onChangeText={setName}
-          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10, marginBottom: 10, marginTop: 10, marginRight: 30, marginLeft: 30, borderRadius: 20,}}
+          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 10, marginRight: 30, marginLeft: 30, borderRadius: 20,}}
 
         />
         <Text style={{textAlign: 'center', fontSize: 17}}>Email</Text>
         <TextInput
           value={email}
           onChangeText={setEmail}
-          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10, marginBottom: 10, marginTop: 10, marginRight: 30, marginLeft: 30, borderRadius: 20,}}
+          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 10, marginRight: 30, marginLeft: 30, borderRadius: 20,}}
 
         />
         <Text style={{textAlign: 'center', fontSize: 17}}>Username</Text>
         <TextInput
           value={username}
           onChangeText={setUsername}
-          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10, marginBottom: 10, marginTop: 10, marginRight: 30, marginLeft: 30, borderRadius: 20,}}
+          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 10, marginRight: 30, marginLeft: 30, borderRadius: 20,}}
 
         />
         <Text  style={{textAlign: 'center', fontSize: 17}}>Password</Text>
@@ -74,11 +84,11 @@ const SignUpForm = () => {
           value={password}
           onChangeText={setPassword}
           secureTextEntry={true}
-          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10, marginBottom: 10, marginTop: 10, marginRight: 30, marginLeft: 30, borderRadius: 20,}}
+          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 10, marginRight: 30, marginLeft: 30, borderRadius: 20,}}
 
         />
         <Text style={{textAlign: 'center', fontSize: 20, color: 'red'}}>{error}</Text>
-        <TouchableOpacity onPress={handleSubmit} style={{backgroundColor: '#ffffff', padding: 10, borderRadius: 5, marginTop: 10, borderColor: 'black', marginRight: 30, marginLeft: 30, borderRadius: 20, marginBottom: 10,}}>
+        <TouchableOpacity onPress={handleSubmit} style={{backgroundColor: '#ffffff', padding: 10, marginTop: 10, borderColor: 'black', marginRight: 30, marginLeft: 30, borderRadius: 20, marginBottom: 10,}}>
             <Text style={{textAlign: 'center', fontSize: 17, color: 'black'}}>Signup</Text>
         </TouchableOpacity>
         <Text style={{textAlign: 'center', fontSize: 17, fontStyle: 'italic', marginTop: 10}}>Already have an account?</Text>
@@ -90,3 +100,4 @@ const SignUpForm = () => {
 };
 
 export default SignUpForm;
+//when button is clicked, refresh the page
