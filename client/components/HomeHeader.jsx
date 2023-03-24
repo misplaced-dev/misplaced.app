@@ -3,6 +3,7 @@ import { Image, TouchableOpacity, View, StyleSheet, Dimensions } from 'react-nat
 import { useNavigation } from '@react-navigation/native';
 
 
+
 const HomeHeader = () => {
   const navigation = useNavigation();
  
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: 50,
     paddingBottom: 120,
-    
+    backgroundColor: '#f2f2f2',
   },
   logo: {
     width: '80%',

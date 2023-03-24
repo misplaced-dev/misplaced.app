@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {AuthService} from '../services/auth.service';
 
+
 const SignUpForm = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');

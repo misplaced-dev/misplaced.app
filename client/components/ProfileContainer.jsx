@@ -7,6 +7,7 @@ import { PostService } from "../services/post.service";
 import { MediaService } from "../services/media.service";
 
 
+
 const Postcard = ({ image, price, title, location, onPress }) => {
   return (
     <TouchableOpacity style={styles.postcard} onPress={onPress}>
@@ -144,11 +145,10 @@ const ProfileContainer = () => {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
        <Image source={require('../assets/profile.png') }style={{ alignSelf: 'center', width: 100, height: 100 }}/>
-       <Text style={{textAlign: 'center', fontSize: 25, paddingTop: 15,}}>Welcome Back!</Text>
-        <Text style={{textAlign: 'center', fontSize: 20, padding: 10,}}>{name}</Text>
-        <Text style={{textAlign: 'center', fontSize: 15, fontStyle:'italic', padding: 10,}}>{username}</Text>
+       <Text style={{textAlign: 'center', fontSize: 25, paddingTop: 15,}}>Welcome Back {name}!</Text>
+        <Text style={{textAlign: 'center', fontSize: 20, fontStyle:'italic', padding: 10,}}>{username}</Text>
         
-        <TouchableOpacity onPress={handleLogout} style={{textAlign: 'center', fontSize: 20, padding: 10, borderWidth: 1, backgroundColor: '#ffffff',  marginTop: 10, borderColor: 'black', marginRight: 30, marginLeft: 30, borderRadius: 20, marginBottom: 30,}}>
+        <TouchableOpacity onPress={handleLogout} style={{textAlign: 'center', fontSize: 20, padding: 10, borderWidth: 1, backgroundColor: '#ffffff',  marginTop: 20, borderColor: 'black', marginRight: 30, marginLeft: 30, borderRadius: 20, marginBottom: 30,}}>
             <Text style={{textAlign: 'center', fontSize: 17, color: 'black'}}>Logout</Text>
         </TouchableOpacity>
 

@@ -1,4 +1,4 @@
-import {SafeAreaView,ScrollView} from "react-native";
+import {SafeAreaView , ScrollView} from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import HomeHeader from '../components/HomeHeader.jsx';
@@ -6,8 +6,8 @@ import ProfileButton from "../components/ProfileButton.jsx";
 import PostCards from "../components/PostCards.jsx";
 import Filters from "../components/Filters.jsx";
 import Sort from "../components/Sort.jsx";
-import ModeToggle from "../components/ModeToggle.jsx";
-
+import PostButton from "../components/PostButton.jsx";
+import ScrollViewIndicator from 'react-native-scroll-indicator';
  
 
   
@@ -22,18 +22,21 @@ import ModeToggle from "../components/ModeToggle.jsx";
   
     return (
       <SafeAreaView>
-        <ScrollView>
+      <ScrollViewIndicator style={{ scrollbarColor: 'black', scrollbarWidth: 2 }}>
             <HomeHeader />
-            <ModeToggle />
             <ProfileButton  />
             <Sort />
             <Filters />
             <PostCards />
-        </ScrollView>
+            <PostButton />
+        </ScrollViewIndicator>
       </SafeAreaView>
     );
   };
   
+
+
   export default Home;
 
-  
+  //aktiv-grotesk font?
+  //scroll bar css

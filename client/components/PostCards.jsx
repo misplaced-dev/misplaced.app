@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
 
+
 const Postcard = ({ image, price, title, location, onPress }) => {
   return (
     <TouchableOpacity style={styles.postcard} onPress={onPress}>
@@ -16,9 +17,13 @@ const Postcard = ({ image, price, title, location, onPress }) => {
 
 const Postcards = ({ navigation }) => {
   const posts = [
-    { id: 1, image: 'https://picsum.photos/200', price: '$100', title: 'Product 1', location: 'San Francisco' },
-    { id: 2, image: 'https://picsum.photos/200', price: '$200', title: 'Product 2', location: 'New York' },
-    { id: 3, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Los Angeles' },
+    { id: 1, image: 'https://picsum.photos/200', price: '$100', title: 'Product 1', location: 'Millennium Hall' },
+    { id: 2, image: 'https://picsum.photos/200', price: '$200', title: 'Product 2', location: 'University Union' },
+    { id: 3, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C',},
+    { id: 4, image: 'https://picsum.photos/200', price: '$100', title: 'Product 1', location: 'Millennium Hall' },
+    { id: 5, image: 'https://picsum.photos/200', price: '$200', title: 'Product 2', location: 'University Union' },
+    { id: 6, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C' },
+    { id: 7, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C' },
   ];
 
   return (
@@ -44,7 +49,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#f2f2f2',
     padding: 10,
     marginTop: '20%',
   },
@@ -55,14 +60,16 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 8,
     margin: 10,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#f2f2f2',
     overflow: 'hidden',
   },
   imageContainer: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#f2f2f2',
     justifyContent: 'center',
     alignItems: 'center',
+    borderBottomWidth: 1,
+    borderColor: 'gray',
   },
   image: {
     width: '100%',

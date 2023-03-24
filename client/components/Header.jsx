@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+
 const Header = () => {
   const navigation = useNavigation();
 

@@ -58,7 +58,7 @@ function Filters(props) {
     alignItems: 'center',
     paddingTop: 0,
     paddingBottom: 0,
-    backgroundColor: isPressed ? '#080001' : '#F5FCFF',
+    backgroundColor: isPressed ? '#080001' : '#f2f2f2',
     borderBottomWidth: 0,
     borderBottomColor: '#171717',
     borderLeftWidth: 1,
@@ -66,20 +66,19 @@ function Filters(props) {
     borderTopWidth:  1 ,
     borderRightWidth: 0,
     borderRadius: 0,
+    
   };
 
-
-//FIX BLACK OVERLAP FOR WEB maybe media query?
 
   return (
     <View
       style={{
         position: 'absolute',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#f2f2f2',
         height: showMenu ? 185 : 50,
-        width: isMobile ? '45%' : '50%',
+        width:  '50%',
         top: 181,
-        right: 10,
+        right:  0,
        
         borderColor: '#171717',
        

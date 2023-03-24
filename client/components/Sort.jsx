@@ -2,6 +2,7 @@ import React, { useState  } from 'react';
 import { TouchableOpacity, Text, View, Animated, Platform } from 'react-native';
 
 
+
 function SortMenu() {
   const menuOptions = [    { text: 'Nearest', value: 'nearest' },    { text: 'Recent', value: 'recent' },    { text: '$ Low to High', value: 'lowToHigh' },  ];
 
@@ -60,7 +61,7 @@ function Sort(props) {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: isPressed ? '#080001' : '#F5FCFF',
+    backgroundColor: isPressed ? '#080001' : '#f2f2f2',
     borderBottomWidth: 0,
     borderBottomColor: '#171717',
     borderLeftWidth: 0,
@@ -78,11 +79,11 @@ function Sort(props) {
     <View
       style={{
         position: 'absolute',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#f2f2f2',
         height: showMenu ? 185 : 50,
         width: '50%',
         top: 181,
-        left: 10,
+        left:  0,
         
         borderColor: '#171717',
         

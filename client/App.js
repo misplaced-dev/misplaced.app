@@ -9,13 +9,14 @@ import Profile from "./screens/Profile";
 import NotFound404 from "./screens/NotFound404";
 import NewPost from "./screens/NewPost";
 
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     
-      <NavigationContainer screenOptions={{  headerShown: false  }}>
-        <Stack.Navigator>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Home | Misplaced" component={Home} />
           <Stack.Screen name="Login | Misplaced" component={Login} />
           <Stack.Screen name="Signup | Misplaced" component={Signup} />
