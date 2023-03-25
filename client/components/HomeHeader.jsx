@@ -1,12 +1,19 @@
-import React from 'react';
-import { Image, TouchableOpacity, View, StyleSheet, Dimensions } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Image, TouchableOpacity, View, StyleSheet, Animated, Animation } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
-
 
 const HomeHeader = () => {
   const navigation = useNavigation();
- 
+  const [animation] = useState(new Animated.Value(0));
+
+  useEffect(() => {
+    Animated.timing(animation, {
+      toValue: 1,
+      duration: 2000,
+      useNativeDriver: true,
+    }).start();
+  }, []);
+  
 
   const handlePress = () => {
     navigation.navigate('Home | Misplaced');
@@ -18,7 +25,10 @@ const HomeHeader = () => {
   return (
     <View style={containerStyles}>
       <TouchableOpacity onPress={handlePress}>
-        <Image source={require('../assets/misplaced.png')} style={{ width: 330, height: 51 }} />
+      <Animated.Image
+        source={require('../assets/misplaced.png')}
+        style={[styles.image, { opacity: animation }]}
+        />
       </TouchableOpacity>
     </View>
   );
@@ -34,10 +44,10 @@ const styles = StyleSheet.create({
     paddingBottom: 120,
     backgroundColor: '#f2f2f2',
   },
-  logo: {
-    width: '80%',
-    height: '100%',
-    resizeMode: 'contain',
+  image: {
+    width: 330,
+    height: 51,
+    opacity: 0,
   },
   smallScreen: {
     paddingBottom: 260,
@@ -47,6 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-
 export default HomeHeader;
-

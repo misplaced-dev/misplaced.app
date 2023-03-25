@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TouchableOpacity, Text, View, Animated, Platform } from 'react-native';
 
 
-function SortMenu() {
+function FiltersMenu() {
   const menuOptions = [    { text: 'Within 1 mile', value: 'Within1mile' },    { text: 'Within 3 miles', value: 'Within3miles' },    { text: 'Off Campus', value: 'OffCampus' },  ];
 
   const handleSelectOption = (value) => {
@@ -37,16 +37,12 @@ function SortMenu() {
 function Filters(props) {
   const [showMenu, setShowMenu] = useState(false);
   const [isPressed, setIsPressed] = useState(props.isPressed);
-  const paddingAnim = React.useRef(new Animated.Value(0)).current;
+  
 
   const handlePress = () => {
     setIsPressed(!isPressed);
     setShowMenu(!showMenu);
-    Animated.timing(paddingAnim, {
-      toValue: showMenu ? 0 : 0,
-      duration: 250,
-      useNativeDriver: false,
-    }).start();
+   
   };
 
   const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
@@ -90,15 +86,9 @@ function Filters(props) {
         <Text style={{ color: isPressed ? 'white' : 'black' }}>Filters</Text>
       </TouchableOpacity>
       {showMenu && (
-        <Animated.View
-          style={{
-            paddingTop: paddingAnim,
-            paddingBottom: 10,
-            overflow: 'hidden',
-          }}
-        >
-          <SortMenu />
-        </Animated.View>
+
+          <FiltersMenu />
+       
       )}
     </View>
   );

@@ -37,6 +37,3 @@ import ScrollViewIndicator from 'react-native-scroll-indicator';
 
 
   export default Home;
-
-  //aktiv-grotesk font?
-  //scroll bar css

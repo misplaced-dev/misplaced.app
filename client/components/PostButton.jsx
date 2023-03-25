@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     position: 'sticky',
     bottom: 2,
     right: 2,
+    backgroundColor: '#f2f2f2',
   },
   image: {
    width: 80,
@@ -41,5 +42,3 @@ const styles = StyleSheet.create({
 });
 
 export default PostButton;
-
-{/*hover over it say"add post"*/}

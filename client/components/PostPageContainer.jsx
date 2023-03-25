@@ -1,100 +1,156 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image, Text , Dimensions } from 'react-native';
 
-
-const Postcard = ({ image, price, title, location, onPress }) => {
-  return (
-    <TouchableOpacity style={styles.postcard} onPress={onPress}>
-      <View style={styles.imageContainer}>
-        <Image source={{ uri: image }} style={styles.image} />
-      </View>
+const Post = ({ price, title, location, description, contact, time}) => {
+  return (  
+      <View style={styles.Post} >
+      <View style={styles.box}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.price}>{price}</Text>
       <Text style={styles.location}>{location}</Text>
-    </TouchableOpacity>
+      <Text style={styles.description}>{description}</Text>
+      <Text style={styles.contact}>{contact}</Text>
+      <Text style={styles.time}>{time}</Text>
+      </View>
+      </View>
+    
   );
 };
+const Picture = ({ image }) => { 
+  return (
+    <View>
+    <View style={styles.Post} >
+      <View style={styles.box}>
+        <Image source={image} style={styles.image} />
+      </View>
+      </View>
+      </View>
+  );};
 
-const Postcards = ({ navigation }) => {
+  const bigScreen = Dimensions.get('window').width > 660;
+
+const PostPageContainer = () => {
+
+  const images = [ { id: 1, image: 'https://picsum.photos/200', }, ];
+  
+
   const posts = [
-    { id: 1, image: 'https://picsum.photos/200', price: '$100', title: 'Product 1', location: 'Millennium Hall' },
-    { id: 2, image: 'https://picsum.photos/200', price: '$200', title: 'Product 2', location: 'University Union' },
-    { id: 3, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C',},
-    { id: 4, image: 'https://picsum.photos/200', price: '$100', title: 'Product 1', location: 'Millennium Hall' },
-    { id: 5, image: 'https://picsum.photos/200', price: '$200', title: 'Product 2', location: 'University Union' },
-    { id: 6, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C' },
-    { id: 7, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C' },
-  ];
+  { id:1, price: '$100', title: 'Product 1', location: 'Millennium Hall', description: 'This is my hat, I think I lost it while on the way to Panda Express, please contact me!!!', contact:'301-123-4567', time:'3 hours ago' }];
 
   return (
+    <View style={ {backgroundColor: '#f2f2f2',}}>
+      <Text style={styles.header}>Post Page</Text>
     <View style={styles.container}>
+    {images.map(image => (
+        <Picture
+          key={image.id}
+          image={image.image}
+        />
+      ))}
       {posts.map(post => (
-        <Postcard
+        <Post
           key={post.id}
-          image={post.image}
+          
           price={post.price}
           title={post.title}
           location={post.location}
-          onPress={() => navigation.navigate('PostPage | Misplaced')}
-        />
+          description={post.description}
+          contact={post.contact}
+          time={post.time}
+        />  
       ))}
+    </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: bigScreen ? 0 : 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f2f2f2',
     padding: 10,
-    marginTop: '20%',
+    width: '100%',
   },
-  postcard: {
-    width: 280,
-    height: 280,
+  header: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#000',
+    marginBottom: 30,
+    top: 0,
+    marginTop: 0,
+    backgroundColor: '#f2f2f2',
+ },
+  Post: {
+    width: bigScreen ? 385 : 280,
+    height: bigScreen ? 385 : 280,
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: '#f2f2f2',
     borderRadius: 8,
-    margin: 10,
+    margin: bigScreen ? 70 : 20,
+    marginTop: bigScreen ? 50 : 10,
     backgroundColor: '#f2f2f2',
     overflow: 'hidden',
   },
-  imageContainer: {
+  box: {
     flex: 1,
     backgroundColor: '#f2f2f2',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderColor: 'gray',
+    justifyContent: 'left',
+    alignItems: 'left',
+    backgroundColor: '#f2f2f2',
   },
+
   image: {
     width: '100%',
     height: '100%',
     aspectRatio: 1,
     resizeMode: 'cover',
+    backgroundColor: '#f2f2f2',
   },
   title: {
     margin: 8,
     fontSize: 18,
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
   },
   price: {
     marginHorizontal: 8,
     fontSize: 16,
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
   },
   location: {
     margin: 8,
     fontSize: 14,
     color: 'gray',
-    textAlign: 'center',
+    textAlign: 'left',
+  },
+  description: {
+    margin: 8,
+  fontSize: 17,
+  color: 'black',
+  textAlign: 'left',
+  overflowWrap: 'break-word',
+  maxWidth: '100%',
+  },
+  contact: {
+    margin: 8,
+    fontSize: 14,
+    color: 'gray',
+    textAlign: 'left',
+  },
+  time: {
+    margin: 8,
+    fontSize: 10,
+    color: 'gray',
+    textAlign: 'left',
   },
 });
 
-export default Postcards;
+{/*Make image and text bigger as page width gets bigger*/}
+
+export default PostPageContainer;

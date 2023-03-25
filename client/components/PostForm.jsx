@@ -1,31 +1,40 @@
 import React ,{ useState }  from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity, TextInput, Button } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity, TextInput, Platform } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 
 
-const Postcard = ({ image, price, title, location, onPress }) => {
+const Postcard = ({ image, price, title, location, description, contact, onPress }) => {
   return (
+    <View>
     <TouchableOpacity style={styles.postcard} onPress={onPress}>
       <View style={styles.imageContainer}>
         <Image source={{ uri: image }} style={styles.image} />
       </View>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.price}>{price}</Text>
-      <Text style={styles.location}>{location}</Text>
+      <Text style={styles.title}>Towson Hat{title}</Text>
+      <Text style={styles.price}>$5{price}</Text>
+      <Text style={styles.location}>University Union{location}</Text>
     </TouchableOpacity>
+    <View>
+    <Text style={styles.texts}>Description: {description}</Text>
+    <Text style={styles.texts}>Contact: {contact}</Text>
+    </View>
+    </View>
   );
 };
 
-const Postcards = ({ navigation }) => {
+const Postcards = () => {
   const posts = [
-    { id: 1, image: 'https://picsum.photos/200', price: '$100', title: 'Product 1', location: 'Millennium Hall' },
+    { id: 1, image: require('../assets/Hat.png') , price: [setPrice], title: [setTitle], location: [setLocation], description: [setDescription], contact:[setContact] },
      ];
+
+{/*[setSelectedImage]}*/}
 
      const [selectedImage, setSelectedImage] = useState(false);
      const [Price, setPrice] = useState('');
      const [Title, setTitle] = useState('');
      const [Location, setLocation] = useState('');
      const [Description, setDescription] = useState('');
+     const [Contact, setContact] = useState('');
 
      const openImagePicker = () => {
         ImagePicker.showImagePicker(options, response => {
@@ -37,45 +46,51 @@ const Postcards = ({ navigation }) => {
       
 
   return (
-    <View>
-        <Text style={styles.text}>Create New Post</Text>
-        <TouchableOpacity onPress={openImagePicker} style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 4, paddingBottom: 1, paddingTop: 7, marginBottom: 10, marginTop: 10, marginRight: 90, marginLeft: 90, borderRadius: 20,}}
+    <View style={ {backgroundColor: '#f2f2f2',}}>
+        <Text style={styles.header}>Create New Post</Text>
+        <TouchableOpacity onPress={openImagePicker} style={{textAlign: 'center', fontSize: 12, borderWidth: 1, borderColor: 'black', paddingLeft: 2, paddingRight: 2, paddingBottom: 1, paddingTop: 7, marginBottom: 10, marginTop: 10, marginRight: '40%', marginLeft: '40%', borderRadius: 20,}}
 >
     {selectedImage ? (
       <Image source={{ uri: selectedImage }} style={styles.image} />
     ) : (
-      <Text style={styles.texts}>Upload Image</Text>
+      <Text style={styles.upload}> Upload Image</Text>
     )}
   </TouchableOpacity>
   <Text style={styles.texts}>Title</Text>
         <TextInput
           value={Title}
           onChangeText={setTitle}
-          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 0, marginRight: 30, marginLeft: 30, borderRadius: 20,}}
+          style={{textAlign: 'center', fontSize: 12, borderWidth: 1, borderColor: 'black', padding: 12, marginBottom: 10, marginTop: 0, marginRight: '15%', marginLeft: '15%', borderRadius: 20,}}
 
         />
         <Text style={styles.texts}>Price</Text>
         <TextInput
           value={Price}
           onChangeText={setPrice}
-          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 0, marginRight: 30, marginLeft: 30, borderRadius: 20,}}
+          style={{textAlign: 'center', fontSize: 12, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 0, marginRight: '30%', marginLeft: '30%', borderRadius: 20,}}
 
         /> 
         <Text style={styles.texts}>Location</Text>
         <TextInput
           value={Location}
           onChangeText={setLocation}
-          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 0, marginRight: 30, marginLeft: 30, borderRadius: 20,}}
+          style={{textAlign: 'center', fontSize: 12, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 0, marginRight: '20%', marginLeft: '20%', borderRadius: 20,}}
 
         />
         <Text style={styles.texts}>Description</Text>
         <TextInput
           value={Description}
           onChangeText={setDescription}
-          style={{textAlign: 'center', fontSize: 17, borderWidth: 1,  borderColor: 'black', padding: 10, paddingTop: 20, marginBottom: 0, marginTop: 10, marginRight: 30, marginLeft: 30, borderRadius: 20,}}
+          style={{textAlign: 'center', fontSize: 12, borderWidth: 1,  borderColor: 'black', padding: 10, paddingTop: 10, marginBottom: 10, marginTop: 0, marginRight: '5%', marginLeft: '5%', borderRadius: 20,}}
 
         />
-    
+    <Text style={styles.texts}>Contact</Text>
+        <TextInput
+          value={Contact}
+          onChangeText={setContact}
+          style={{textAlign: 'center', fontSize: 12, borderWidth: 1,  borderColor: 'black', padding: 10, paddingTop: 10, marginBottom: 10, marginTop: 0, marginRight: '15%', marginLeft: '15%', borderRadius: 20,}}
+
+        />
     <View style={styles.container}>
       {posts.map(post => (
         <Postcard
@@ -84,13 +99,16 @@ const Postcards = ({ navigation }) => {
           price={post.price}
           title={post.title}
           location={post.location}
-          onPress={() => navigation.navigate('PostPage | Misplaced')}
         />
       ))}
     </View>
+    <TouchableOpacity style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: '#ffbd03', paddingLeft: 2, paddingRight: 2, paddingBottom: 1, paddingTop: 7, marginBottom: 40, marginTop: 10, marginRight: '30%', marginLeft: '30%', borderRadius: 20,}}>
+      <Text style={styles.texts}>Create Post</Text>
+      </TouchableOpacity>
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
@@ -101,7 +119,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f2f2f2',
     padding: 10,
-    marginTop: '20%',
+    marginTop: 0,
   },
   postcard: {
     width: 280,
@@ -131,38 +149,46 @@ const styles = StyleSheet.create({
     margin: 8,
     fontSize: 18,
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
   },
   price: {
     marginHorizontal: 8,
     fontSize: 16,
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
   },
   location: {
     margin: 8,
     fontSize: 14,
     color: 'gray',
-    textAlign: 'center',
+    textAlign: 'left',
   },
-    text: {
+    header: {
     fontSize: 25,
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#000',
     marginBottom: 30,
     top: 0,
+    marginTop: 0,
  },
     texts: {
-    fontSize: 20,
+    fontSize: 15,
     textAlign: 'center',
     color: '#000',
     marginBottom: 10,
     top: 0,
+    backgroundColor: '#f2f2f2',
+  },
+    upload: {
+      fontSize: 15,
+      textAlign: 'center',
+      color: '#000',
+      marginBottom: 10,
+      top: 0,
  },
 
   
 });
 
 export default Postcards;
-//click on each thing to get edit textbox and preview of postcard

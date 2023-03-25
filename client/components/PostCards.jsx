@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 
 const Postcard = ({ image, price, title, location, onPress }) => {
   return (
@@ -15,7 +15,10 @@ const Postcard = ({ image, price, title, location, onPress }) => {
   );
 };
 
-const Postcards = ({ navigation }) => {
+const Postcards = () => {
+
+  const navigation = useNavigation();
+  
   const posts = [
     { id: 1, image: 'https://picsum.photos/200', price: '$100', title: 'Product 1', location: 'Millennium Hall' },
     { id: 2, image: 'https://picsum.photos/200', price: '$200', title: 'Product 2', location: 'University Union' },
@@ -35,7 +38,7 @@ const Postcards = ({ navigation }) => {
           price={post.price}
           title={post.title}
           location={post.location}
-          onPress={() => navigation.navigate('PostPage | Misplaced')}
+          onPress={() => navigation.navigate('Post Page | Misplaced')}
         />
       ))}
     </View>
@@ -51,7 +54,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f2f2f2',
     padding: 10,
-    marginTop: '20%',
+    marginTop: 100,
   },
   postcard: {
     width: 280,
@@ -81,19 +84,19 @@ const styles = StyleSheet.create({
     margin: 8,
     fontSize: 18,
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
   },
   price: {
     marginHorizontal: 8,
     fontSize: 16,
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
   },
   location: {
     margin: 8,
     fontSize: 14,
     color: 'gray',
-    textAlign: 'center',
+    textAlign: 'left',
   },
 });
 
