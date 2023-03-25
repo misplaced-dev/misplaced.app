@@ -27,7 +27,7 @@ const Postcards = () => {
     { id: 1, image: require('../assets/Hat.png') , price: [setPrice], title: [setTitle], location: [setLocation], description: [setDescription], contact:[setContact] },
      ];
 
-{/*[setSelectedImage]}*/}
+{/*[setSelectedImage]} for image:*/}
 
      const [selectedImage, setSelectedImage] = useState(false);
      const [Price, setPrice] = useState('');
