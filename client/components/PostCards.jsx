@@ -20,7 +20,7 @@ const Postcards = () => {
   const navigation = useNavigation();
   
   const posts = [
-    { id: 1, image: 'https://picsum.photos/200', price: '$100', title: 'Product 1', location: 'Millennium Hall' },
+    { id: 1, image: 'https://hmp.me/d29u', price: '$5', title: 'Towson Hat', location: 'Millennium Hall' },
     { id: 2, image: 'https://picsum.photos/200', price: '$200', title: 'Product 2', location: 'University Union' },
     { id: 3, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C',},
     { id: 4, image: 'https://picsum.photos/200', price: '$100', title: 'Product 1', location: 'Millennium Hall' },
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     margin: 10,
     backgroundColor: '#f2f2f2',
-    overflow: 'hidden',
+    overflow: 'auto',
   },
   imageContainer: {
     flex: 1,
@@ -77,8 +77,10 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '100%',
+    resizeMode: 'contain',
     aspectRatio: 1,
-    resizeMode: 'cover',
+    objectFit: 'cover',
+  objectPosition: 'center',
   },
   title: {
     margin: 8,

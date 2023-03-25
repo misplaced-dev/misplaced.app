@@ -20,7 +20,8 @@ const LoginForm = () => {
                 return res;
                 });
                 if (storedUserId !== null) {
-                navigation.navigate('Home | Misplaced');
+                  navigation.navigate('Home | Misplaced');
+                  window.location.reload();
                 }
         } catch (error) {
             console.log(error);
@@ -30,7 +31,7 @@ const LoginForm = () => {
     const handleSubmit = () => {
         const user = {email, password};
         AuthService.login(user).then((res) => {
-            if (res.status === 200) {
+            if (res.status === 20) {
                 AuthService.setToken('userId', res.data._id);
                 navigation.navigate('Home | Misplaced');
                 window.location.reload();

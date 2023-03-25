@@ -7,7 +7,6 @@ import PostCards from "../components/PostCards.jsx";
 import Filters from "../components/Filters.jsx";
 import Sort from "../components/Sort.jsx";
 import PostButton from "../components/PostButton.jsx";
-import ScrollViewIndicator from 'react-native-scroll-indicator';
  
 
   
@@ -22,14 +21,14 @@ import ScrollViewIndicator from 'react-native-scroll-indicator';
   
     return (
       <SafeAreaView>
-      <ScrollViewIndicator style={{ scrollbarColor: 'black', scrollbarWidth: 2 }}>
+      <ScrollView>
             <HomeHeader />
             <ProfileButton  />
             <Sort />
             <Filters />
             <PostCards />
-            <PostButton />
-        </ScrollViewIndicator>
+            <PostButton style={{position: 'sticky',}}/>
+        </ScrollView>
       </SafeAreaView>
     );
   };

@@ -24,7 +24,7 @@ const Postcard = ({ image, price, title, location, description, contact, onPress
 
 const Postcards = () => {
   const posts = [
-    { id: 1, image: require('../assets/Hat.png') , price: [setPrice], title: [setTitle], location: [setLocation], description: [setDescription], contact:[setContact] },
+    { id: 1, image: 'https://hmp.me/d29u', price: [setPrice], title: [setTitle], location: [setLocation], description: [setDescription], contact:[setContact] },
      ];
 
 {/*[setSelectedImage]} for image:*/}
@@ -53,7 +53,7 @@ const Postcards = () => {
     {selectedImage ? (
       <Image source={{ uri: selectedImage }} style={styles.image} />
     ) : (
-      <Text style={styles.upload}> Upload Image</Text>
+      <Text style={styles.upload}>Upload Image</Text>
     )}
   </TouchableOpacity>
   <Text style={styles.texts}>Title</Text>
@@ -102,13 +102,17 @@ const Postcards = () => {
         />
       ))}
     </View>
-    <TouchableOpacity style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: '#ffbd03', paddingLeft: 2, paddingRight: 2, paddingBottom: 1, paddingTop: 7, marginBottom: 40, marginTop: 10, marginRight: '30%', marginLeft: '30%', borderRadius: 20,}}>
+    <TouchableOpacity onPress = {handleSubmit} style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: '#ffbd03', paddingLeft: 2, paddingRight: 2, paddingBottom: 1, paddingTop: 7, marginBottom: 40, marginTop: 10, marginRight: '30%', marginLeft: '30%', borderRadius: 20,}}>
       <Text style={styles.texts}>Create Post</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
+const handleSubmit = () => {
+  navigation.navigate('Home | Misplaced');
+  window.location.reload();
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -129,7 +133,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     margin: 10,
     backgroundColor: '#f2f2f2',
-    overflow: 'hidden',
+    overflow: 'auto',
   },
   imageContainer: {
     flex: 1,
@@ -143,7 +147,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     aspectRatio: 1,
-    resizeMode: 'cover',
+    resizeMode: 'contain',
+    objectFit: 'cover',
+  objectPosition: 'center',
   },
   title: {
     margin: 8,
