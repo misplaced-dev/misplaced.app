@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {AuthService} from '../services/auth.service';
+import ScrollViewIndicator from 'react-native-scroll-indicator';
 
 const SignUpForm = () => {
     const [name, setName] = useState('');
@@ -56,27 +57,28 @@ const SignUpForm = () => {
         }).catch((err) => {console.log(error); setError('Error: Try different username or email')});
     };
 
+    
     return (
-        <View>
-        <Text style={{textAlign: 'center', fontSize: 17}}>Name</Text>
+      <ScrollViewIndicator>
+        <Text style={{textAlign: 'center', fontSize: 17, marginTop: 70,}}>Name</Text>
         <TextInput
           value={name}
           onChangeText={setName}
-          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 10, marginRight: 30, marginLeft: 30, borderRadius: 20,}}
+          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 10, marginRight: '10%', marginLeft: '10%', borderRadius: 20,}}
 
         />
         <Text style={{textAlign: 'center', fontSize: 17}}>Email</Text>
         <TextInput
           value={email}
           onChangeText={setEmail}
-          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 10, marginRight: 30, marginLeft: 30, borderRadius: 20,}}
+          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 10, marginRight: '10%', marginLeft: '10%', borderRadius: 20,}}
 
         />
         <Text style={{textAlign: 'center', fontSize: 17}}>Username</Text>
         <TextInput
           value={username}
           onChangeText={setUsername}
-          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 10, marginRight: 30, marginLeft: 30, borderRadius: 20,}}
+          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 10, marginRight: '10%', marginLeft: '10%', borderRadius: 20,}}
 
         />
         <Text  style={{textAlign: 'center', fontSize: 17}}>Password</Text>
@@ -84,20 +86,19 @@ const SignUpForm = () => {
           value={password}
           onChangeText={setPassword}
           secureTextEntry={true}
-          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 10, marginRight: 30, marginLeft: 30, borderRadius: 20,}}
+          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 10, marginRight: '10%', marginLeft: '10%', borderRadius: 20,}}
 
         />
-        <Text style={{textAlign: 'center', fontSize: 20, color: 'red'}}>{error}</Text>
-        <TouchableOpacity onPress={handleSubmit} style={{backgroundColor: '#ffffff', padding: 10, marginTop: 10, borderColor: 'black', marginRight: 30, marginLeft: 30, borderRadius: 20, marginBottom: 10,}}>
-            <Text style={{textAlign: 'center', fontSize: 17, color: 'black'}}>Signup</Text>
+        <Text style={{textAlign: 'center', fontSize: 17, color: 'red'}}>{error}</Text>
+        <TouchableOpacity onPress={handleSubmit} style={{backgroundColor: '#f2f2f2', padding: 10, paddingBottom: 12, borderWidth: 1, borderColor: '#ffbd03',  marginTop: 15, marginRight: '20%', marginLeft: '20%', borderRadius: 20, marginBottom: 10,}}>
+        <Text style={{textAlign: 'center', fontSize: 20, color: 'black'}}>Signup</Text>
         </TouchableOpacity>
         <Text style={{textAlign: 'center', fontSize: 17, fontStyle: 'italic', marginTop: 10}}>Already have an account?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Login | Misplaced')} style={{marginTop: 10}}>
-            <Text style={{textAlign: 'center', fontSize: 17, color: 'black'}}>Login</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Login | Misplaced')} style={{backgroundColor: '#f2f2f2', paddingTop: 8, paddingBottom: 9, paddingLeft: 8, paddingRight: 8, borderWidth: 1, borderColor: '#ffbd03',  marginTop: 15, marginRight: 99, marginLeft: 99, borderRadius: 20, marginBottom: 10, width: 100, alignItems: 'center', alignContent:'center', alignSelf:'center',}}>
+        <Text style={{textAlign: 'center', fontSize: 17, color: 'black'}}>Login</Text>
         </TouchableOpacity>
-      </View>
+        </ScrollViewIndicator>
     );
 };
 
 export default SignUpForm;
-//when button is clicked, refresh the page

@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import PostForm from "../components/PostForm";
 import Header from "../components/Header";
+import ScrollViewIndicator from 'react-native-scroll-indicator';
 
 const NewPost = () => {
 
@@ -10,10 +11,10 @@ const NewPost = () => {
 
     return (
         <SafeAreaView>
-            <ScrollView>   
+            <ScrollViewIndicator>   
                 <Header/>
                 <PostForm/>
-            </ScrollView>
+            </ScrollViewIndicator>
         </SafeAreaView>
     );
     }
