@@ -9,7 +9,7 @@ const Post = ({ price, title, location, description, contact, time}) => {
       <Text style={styles.price}>{price}</Text>
       <Text style={styles.location}>{location}</Text>
       <Text style={styles.description}>{description}</Text>
-      <Text style={styles.contact}>{contact}</Text>
+      <Text style={styles.contact} href={`tel:${contact}`}>{contact}</Text>
       <Text style={styles.time}>{time}</Text>
       </View>
       </View>

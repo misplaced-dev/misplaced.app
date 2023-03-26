@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, TouchableOpacity, View, StyleSheet,} from 'react-native';
+import { Image, TouchableOpacity, View, StyleSheet, } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -13,15 +13,19 @@ const PostButton = () => {
   };
 
   return ( 
-    <View style={{position: 'sticky'}}>
+    <View>
+   
     <View style={styles.container}>
       <TouchableOpacity onPress={handlePress}>
         <Image source={require('../assets/NewPostButton.png')} style={styles.image} />
       </TouchableOpacity>
+      
       </View> 
-      </View> 
+     
+      </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {

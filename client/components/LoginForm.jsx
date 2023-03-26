@@ -31,7 +31,7 @@ const LoginForm = () => {
     const handleSubmit = () => {
         const user = {email, password};
         AuthService.login(user).then((res) => {
-            if (res.status === 20) {
+            if (res.status === 200) {
                 AuthService.setToken('userId', res.data._id);
                 navigation.navigate('Home | Misplaced');
                 window.location.reload();
