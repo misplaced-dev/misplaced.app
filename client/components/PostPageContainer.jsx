@@ -9,7 +9,7 @@ const Post = ({ price, title, location, description, contact, time}) => {
       <Text style={styles.price}>{price}</Text>
       <Text style={styles.location}>{location}</Text>
       <Text style={styles.description}>{description}</Text>
-      <Text style={styles.contact}>{contact}</Text>
+      <Text style={styles.contact} href={`tel:${contact}`}>{contact}</Text>
       <Text style={styles.time}>{time}</Text>
       </View>
       </View>
@@ -21,7 +21,7 @@ const Picture = ({ image }) => {
     <View>
     <View style={styles.Post} >
       <View style={styles.box}>
-        <Image source={image} style={styles.image} />
+        <Image source={{ uri : image }} style={styles.image} />
       </View>
       </View>
       </View>
@@ -31,11 +31,11 @@ const Picture = ({ image }) => {
 
 const PostPageContainer = () => {
 
-  const images = [ { id: 1, image: 'https://picsum.photos/200', }, ];
+  const images = [ { id: 1, image: 'https://hmp.me/d29u', }, ];
   
 
   const posts = [
-  { id:1, price: '$100', title: 'Product 1', location: 'Millennium Hall', description: 'This is my hat, I think I lost it while on the way to Panda Express, please contact me!!!', contact:'301-123-4567', time:'3 hours ago' }];
+  { id:1, price: '$5', title: 'Towson Hat', location: 'Millennium Hall', description: 'This is my hat, I think I lost it while on the way to Panda Express, please contact me!!!', contact:'301-123-4567', time:'3 hours ago' }];
 
   return (
     <View style={ {backgroundColor: '#f2f2f2',}}>
@@ -101,14 +101,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
     justifyContent: 'left',
     alignItems: 'left',
-    backgroundColor: '#f2f2f2',
   },
 
   image: {
     width: '100%',
     height: '100%',
     aspectRatio: 1,
-    resizeMode: 'cover',
+    resizeMode: 'contain',
     backgroundColor: '#f2f2f2',
   },
   title: {

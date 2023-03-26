@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { ScrollView, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {AuthService} from '../services/auth.service';
-import ScrollViewIndicator from 'react-native-scroll-indicator';
 
 const SignUpForm = () => {
     const [name, setName] = useState('');
@@ -23,6 +22,7 @@ const SignUpForm = () => {
             });
           if (storedUserId !== null) {
             navigation.navigate('Home | Misplaced');
+            window.location.reload();
           }
         } catch (error) {
           console.log(error);
@@ -59,7 +59,7 @@ const SignUpForm = () => {
 
     
     return (
-      <ScrollViewIndicator>
+      <ScrollView>
         <Text style={{textAlign: 'center', fontSize: 17, marginTop: 70,}}>Name</Text>
         <TextInput
           value={name}
@@ -97,7 +97,7 @@ const SignUpForm = () => {
         <TouchableOpacity onPress={() => navigation.navigate('Login | Misplaced')} style={{backgroundColor: '#f2f2f2', paddingTop: 8, paddingBottom: 9, paddingLeft: 8, paddingRight: 8, borderWidth: 1, borderColor: '#ffbd03',  marginTop: 15, marginRight: 99, marginLeft: 99, borderRadius: 20, marginBottom: 10, width: 100, alignItems: 'center', alignContent:'center', alignSelf:'center',}}>
         <Text style={{textAlign: 'center', fontSize: 17, color: 'black'}}>Login</Text>
         </TouchableOpacity>
-        </ScrollViewIndicator>
+        </ScrollView>
     );
 };
 

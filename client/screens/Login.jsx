@@ -3,7 +3,6 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import LoginForm from "../components/LoginForm";
 import Header from "../components/Header";
-import ScrollViewIndicator from 'react-native-scroll-indicator';
 
 const Login = () => {
 
@@ -11,10 +10,10 @@ const Login = () => {
 
     return (
         <SafeAreaView>
-            <ScrollViewIndicator>
+            <ScrollView keyboardDismissMode = 'interactive'>
                 <Header/>   
                 <LoginForm/>
-            </ScrollViewIndicator>
+            </ScrollView>
         </SafeAreaView>
     );
     }

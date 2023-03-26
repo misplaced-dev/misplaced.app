@@ -3,17 +3,16 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import ProfileContainer from "../components/ProfileContainer";
 import Header from "../components/Header";
-import ScrollViewIndicator from 'react-native-scroll-indicator';
 
 const Profile = () => {
     const navigation = useNavigation();
 
     return(
         <SafeAreaView>
-            <ScrollViewIndicator>
+            <ScrollView>
                 <Header/>
                 <ProfileContainer />
-            </ScrollViewIndicator>
+            </ScrollView>
         </SafeAreaView>
     );
 };

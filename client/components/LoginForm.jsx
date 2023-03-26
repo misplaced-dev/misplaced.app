@@ -20,7 +20,8 @@ const LoginForm = () => {
                 return res;
                 });
                 if (storedUserId !== null) {
-                navigation.navigate('Home | Misplaced');
+                  navigation.navigate('Home | Misplaced');
+                  window.location.reload();
                 }
         } catch (error) {
             console.log(error);

@@ -44,7 +44,7 @@ const ProfileContainer = () => {
                 }
         } catch (error) {
             console.log(error);
-            navigation.navigate('NotFound404 | Misplaced');
+            navigation.navigate('Not Found | Misplaced');
         }
       };
 
@@ -91,18 +91,18 @@ const ProfileContainer = () => {
     }
 
     const posted = [
-      { id: 1, image: require('../assets/Hat.png'), price: '$5', title: 'Towson Hat', location: 'Millennium Hall' },
+      { id: 1, image: 'https://hmp.me/d29u', price: '$5', title: 'Towson Hat', location: 'Millennium Hall' },
     ];
 
        
 
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-       <Image source={require('../assets/profile.png') }style={{ alignSelf: 'center', width: 100, height: 100 }}/>
+       <Image source={require('../assets/profile.png') }style={{ alignSelf: 'center', width: 100, height: 100, marginTop: 30, }}/>
        <Text style={{textAlign: 'center', fontSize: 25, paddingTop: 15,}}>Welcome Back {name}!</Text>
         <Text style={{textAlign: 'center', fontSize: 20, fontStyle:'italic', padding: 10,}}>{username}</Text>
         
-        <TouchableOpacity onPress={handleLogout} style={{textAlign: 'center', fontSize: 20, padding: 10, borderWidth: 1, backgroundColor: '#ffffff',  marginTop: 20, borderColor: 'black', marginRight: 30, marginLeft: 30, borderRadius: 20, marginBottom: 30,}}>
+        <TouchableOpacity onPress={handleLogout} style={{textAlign: 'center', fontSize: 20, padding: 10, borderWidth: 1, backgroundColor: '#f2f2f2',  marginTop: 20, borderColor: 'black', marginRight: 30, marginLeft: 30, borderRadius: 20, marginBottom: 30,}}>
             <Text style={{textAlign: 'center', fontSize: 17, color: 'black'}}>Logout</Text>
         </TouchableOpacity>
 
@@ -117,7 +117,7 @@ const ProfileContainer = () => {
           price={post.price}
           title={post.title}
           location={post.location}
-          onPress={() => navigation.navigate('PostPage | Misplaced')}
+          onPress={() => navigation.navigate('Post Page | Misplaced')}
          />
 
 
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f2f2f2',
     padding: 10,
-    marginTop: 50,
+    marginTop: 20,
   },
   postcard: {
     width: 280,
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     aspectRatio: 1,
-    resizeMode: 'cover',
+    resizeMode: 'contain',
   },
   title: {
     margin: 8,
@@ -192,8 +192,3 @@ const styles = StyleSheet.create({
 });
 
 export default ProfileContainer;
-//function handleLogout() {
-    // handle logout
-    //navigation.navigate('Home | Misplaced');
-    // window.location.reload();
-  //}
