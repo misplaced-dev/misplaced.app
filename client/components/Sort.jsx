@@ -2,6 +2,7 @@ import React, { useState  } from 'react';
 import { TouchableOpacity, Text, View, Animated, Platform } from 'react-native';
 
 
+
 function SortMenu() {
   const menuOptions = [    { text: 'Nearest', value: 'nearest' },    { text: 'Recent', value: 'recent' },    { text: '$ Low to High', value: 'lowToHigh' },  ];
 
@@ -39,16 +40,12 @@ function SortMenu() {
 function Sort(props) {
   const [showMenu, setShowMenu] = useState(false);
   const [isPressed, setIsPressed] = useState(props.isPressed);
-  const paddingAnim = React.useRef(new Animated.Value(0)).current;
+  
 
   const handlePress = () => {
     setIsPressed(!isPressed);
     setShowMenu(!showMenu);
-    Animated.timing(paddingAnim, {
-      toValue: showMenu ? 0 : 0,
-      duration: 250,
-      useNativeDriver: false,
-    }).start();
+    
   };
 
 
@@ -60,7 +57,7 @@ function Sort(props) {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: isPressed ? '#080001' : '#F5FCFF',
+    backgroundColor: isPressed ? '#080001' : '#f2f2f2',
     borderBottomWidth: 0,
     borderBottomColor: '#171717',
     borderLeftWidth: 0,
@@ -78,11 +75,11 @@ function Sort(props) {
     <View
       style={{
         position: 'absolute',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#f2f2f2',
         height: showMenu ? 185 : 50,
         width: '50%',
         top: 181,
-        left: 10,
+        left:  0,
         
         borderColor: '#171717',
         
@@ -96,15 +93,8 @@ function Sort(props) {
         <Text style={{ color: isPressed ? 'white' : 'black' }}>Sort By</Text>
       </TouchableOpacity>
       {showMenu && (
-        <Animated.View
-          style={{
-            paddingTop: paddingAnim,
-            paddingBottom: 10,
-            overflow: 'hidden',
-          }}
-        >
           <SortMenu />
-        </Animated.View>
+       
       )}
     </View>
   );

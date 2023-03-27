@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const Postcard = ({ image, price, title, location, onPress }) => {
   return (
@@ -14,11 +15,18 @@ const Postcard = ({ image, price, title, location, onPress }) => {
   );
 };
 
-const Postcards = ({ navigation }) => {
+const Postcards = () => {
+
+  const navigation = useNavigation();
+  
   const posts = [
-    { id: 1, image: 'https://picsum.photos/200', price: '$100', title: 'Product 1', location: 'San Francisco' },
-    { id: 2, image: 'https://picsum.photos/200', price: '$200', title: 'Product 2', location: 'New York' },
-    { id: 3, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Los Angeles' },
+    { id: 1, image: 'https://hmp.me/d29u', price: '$5', title: 'Towson Hat', location: 'Millennium Hall' },
+    { id: 2, image: 'https://picsum.photos/200', price: '$200', title: 'Product 2', location: 'University Union' },
+    { id: 3, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C',},
+    { id: 4, image: 'https://picsum.photos/200', price: '$100', title: 'Product 1', location: 'Millennium Hall' },
+    { id: 5, image: 'https://picsum.photos/200', price: '$200', title: 'Product 2', location: 'University Union' },
+    { id: 6, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C' },
+    { id: 7, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C' },
   ];
 
   return (
@@ -30,7 +38,7 @@ const Postcards = ({ navigation }) => {
           price={post.price}
           title={post.title}
           location={post.location}
-          onPress={() => navigation.navigate('PostPage | Misplaced')}
+          onPress={() => navigation.navigate('Post Page | Misplaced')}
         />
       ))}
     </View>
@@ -44,49 +52,53 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#f2f2f2',
     padding: 10,
-    marginTop: '20%',
+    marginTop: 100,
   },
   postcard: {
-    width: 280,
-    height: 280,
+    width: 330,
+    height: 330,
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 8,
-    margin: 10,
-    backgroundColor: '#F5FCFF',
-    overflow: 'hidden',
+    margin: 5,
+    backgroundColor: '#f2f2f2',
+    overflow: 'auto',
   },
   imageContainer: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#f2f2f2',
     justifyContent: 'center',
     alignItems: 'center',
+    borderBottomWidth: 1,
+    borderColor: 'gray',
   },
   image: {
     width: '100%',
     height: '100%',
+    resizeMode: 'contain',
     aspectRatio: 1,
-    resizeMode: 'cover',
+    objectFit: 'cover',
+  objectPosition: 'center',
   },
   title: {
     margin: 8,
     fontSize: 18,
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
   },
   price: {
     marginHorizontal: 8,
     fontSize: 16,
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
   },
   location: {
     margin: 8,
     fontSize: 14,
     color: 'gray',
-    textAlign: 'center',
+    textAlign: 'left',
   },
 });
 

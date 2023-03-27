@@ -1,4 +1,4 @@
-import {SafeAreaView,ScrollView} from "react-native";
+import {SafeAreaView , ScrollView} from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import HomeHeader from '../components/HomeHeader.jsx';
@@ -6,8 +6,7 @@ import ProfileButton from "../components/ProfileButton.jsx";
 import PostCards from "../components/PostCards.jsx";
 import Filters from "../components/Filters.jsx";
 import Sort from "../components/Sort.jsx";
-import ModeToggle from "../components/ModeToggle.jsx";
-
+import PostButton from "../components/PostButton.jsx";
  
 
   
@@ -22,18 +21,18 @@ import ModeToggle from "../components/ModeToggle.jsx";
   
     return (
       <SafeAreaView>
-        <ScrollView>
+      <ScrollView>
             <HomeHeader />
-            <ModeToggle />
-            <ProfileButton />
+            <ProfileButton  />
             <Sort />
             <Filters />
             <PostCards />
+            <PostButton style={{position: 'sticky',}}/>
         </ScrollView>
       </SafeAreaView>
     );
   };
   
-  export default Home;
 
-  
+
+  export default Home;

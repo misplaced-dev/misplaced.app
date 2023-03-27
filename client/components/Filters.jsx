@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TouchableOpacity, Text, View, Animated, Platform } from 'react-native';
 
 
-function SortMenu() {
+function FiltersMenu() {
   const menuOptions = [    { text: 'Within 1 mile', value: 'Within1mile' },    { text: 'Within 3 miles', value: 'Within3miles' },    { text: 'Off Campus', value: 'OffCampus' },  ];
 
   const handleSelectOption = (value) => {
@@ -37,16 +37,12 @@ function SortMenu() {
 function Filters(props) {
   const [showMenu, setShowMenu] = useState(false);
   const [isPressed, setIsPressed] = useState(props.isPressed);
-  const paddingAnim = React.useRef(new Animated.Value(0)).current;
+  
 
   const handlePress = () => {
     setIsPressed(!isPressed);
     setShowMenu(!showMenu);
-    Animated.timing(paddingAnim, {
-      toValue: showMenu ? 0 : 0,
-      duration: 250,
-      useNativeDriver: false,
-    }).start();
+   
   };
 
   const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
@@ -58,7 +54,7 @@ function Filters(props) {
     alignItems: 'center',
     paddingTop: 0,
     paddingBottom: 0,
-    backgroundColor: isPressed ? '#080001' : '#F5FCFF',
+    backgroundColor: isPressed ? '#080001' : '#f2f2f2',
     borderBottomWidth: 0,
     borderBottomColor: '#171717',
     borderLeftWidth: 1,
@@ -66,20 +62,19 @@ function Filters(props) {
     borderTopWidth:  1 ,
     borderRightWidth: 0,
     borderRadius: 0,
+    
   };
 
-
-//FIX BLACK OVERLAP FOR WEB maybe media query?
 
   return (
     <View
       style={{
         position: 'absolute',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#f2f2f2',
         height: showMenu ? 185 : 50,
-        width: isMobile ? '45%' : '50%',
+        width:  '50%',
         top: 181,
-        right: 10,
+        right:  0,
        
         borderColor: '#171717',
        
@@ -91,15 +86,9 @@ function Filters(props) {
         <Text style={{ color: isPressed ? 'white' : 'black' }}>Filters</Text>
       </TouchableOpacity>
       {showMenu && (
-        <Animated.View
-          style={{
-            paddingTop: paddingAnim,
-            paddingBottom: 10,
-            overflow: 'hidden',
-          }}
-        >
-          <SortMenu />
-        </Animated.View>
+
+          <FiltersMenu />
+       
       )}
     </View>
   );

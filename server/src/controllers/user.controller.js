@@ -14,6 +14,9 @@ export class UserController {
      */
     static async register(req, res) {
         try {
+            if (!req.body.email || !req.body.name || !req.body.username || !req.body.password) {
+                return res.status(400).json({ message: "Please fill in all fields" });
+            }
             const salt = bcrypt.genSaltSync(10);
             const hashedPassword = bcrypt.hashSync(req.body.password, salt);
             const user = new User({

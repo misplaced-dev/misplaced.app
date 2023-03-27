@@ -9,7 +9,7 @@ const Signup = () => {
 
     return(
         <SafeAreaView>
-            <ScrollView>
+            <ScrollView keyboardDismissMode = 'interactive'>
                 <Header/>
                 <SignupForm/>
             </ScrollView>

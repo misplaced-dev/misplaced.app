@@ -1,10 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, Text, View, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import {AuthService} from '../services/auth.service';
 
-function ProfileButton({ isLoggedIn }) {
+
+function ProfileButton() {
   const navigation = useNavigation();
   const [isPressed, setIsPressed] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    checkLoginStatus();
+}, []);
+
+const checkLoginStatus = async () => {
+    try {
+      const storedUserId = await AuthService.getToken('userId').then((res) => {
+        return res;
+        });
+      if (storedUserId !== null) {
+        setIsLoggedIn(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+};
 
   function handleLogin() {
     navigation.navigate('Login | Misplaced');
@@ -25,11 +45,11 @@ function ProfileButton({ isLoggedIn }) {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: isPressed ? '#080001' : '#F5FCFF',
+    backgroundColor: isPressed ? '#080001' : '#f2f2f2',
     borderBottomWidth: 1,
   borderBottomColor: '#171717',
-  borderLeftWidth: 1,
-  borderLeftColor: '#171717',
+  borderLeftWidth: 0,
+ 
   borderTopWidth: 0,
   borderRightWidth: 0,
   borderRadius: 0,
@@ -40,7 +60,7 @@ function ProfileButton({ isLoggedIn }) {
   };
 
   return (
-    <View style={{ position: 'absolute', backgroundColor: '#F5FCFF', height: 50, width: isMobile ? '45%' : '50%', top: 130, right:10,  borderColor: '#171717', }}>
+    <View style={{ position: 'absolute', backgroundColor: '#f2f2f2', height: 50, width: '100%', top: 130, left: 0, right: 0,  borderColor: '#171717', }}>
       <TouchableOpacity
         onPress={isLoggedIn ? handleProfile : handleLogin}
         onPressIn={handlePress}
@@ -48,7 +68,7 @@ function ProfileButton({ isLoggedIn }) {
         style={buttonStyle}
       >
         <Text style={textStyle}>
-          {isLoggedIn ? 'Welcome Back!' : 'Login / Signup'}
+          {isLoggedIn ? 'Profile' : '   Login / Signup'}
         </Text>
       </TouchableOpacity> 
     </View>

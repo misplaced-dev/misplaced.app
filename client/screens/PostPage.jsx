@@ -10,7 +10,7 @@ const PostPage = () => {
 
     return (
         <SafeAreaView>
-            <ScrollView>   
+            <ScrollView keyboardDismissMode = 'interactive'>   
                 <Header/>
                 <PostPageContainer/>
             </ScrollView>

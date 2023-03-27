@@ -10,7 +10,7 @@ const Login = () => {
 
     return (
         <SafeAreaView>
-            <ScrollView>
+            <ScrollView keyboardDismissMode = 'interactive'>
                 <Header/>   
                 <LoginForm/>
             </ScrollView>
