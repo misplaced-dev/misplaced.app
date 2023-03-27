@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { Image, TouchableOpacity, View, StyleSheet, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -20,14 +20,16 @@ const Header = () => {
   );
 };
 
+const isMobile = Platform.OS === 'ios' || Platform.OS === 'android';
+
 const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: 100, /* adjust as necessary */
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 50,
-    paddingBottom: 80,
+    paddingTop: isMobile ? 36 : 70,
+    paddingBottom: isMobile ? 80 : 70,
     
   },
   logo: {

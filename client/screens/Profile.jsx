@@ -1,19 +1,19 @@
-import {SafeAreaView, ScrollView} from "react-native";
+import {View, ScrollView} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import ProfileContainer from "../components/ProfileContainer";
-import Header from "../components/Header";
+import HomeHeader from "../components/HomeHeader";
 
 const Profile = () => {
     const navigation = useNavigation();
 
     return(
-        <SafeAreaView>
+        <View>
             <ScrollView>
-                <Header/>
+                <HomeHeader/>
                 <ProfileContainer />
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
 };
 

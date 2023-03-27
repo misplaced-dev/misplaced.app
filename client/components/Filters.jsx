@@ -9,8 +9,9 @@ function FiltersMenu() {
     console.log('Selected option:', value); // Replace with sorted data
   };
 
+
   return (
-    <View style={{ marginTop: 10 }}>
+    <View >
       {menuOptions.map((option) => (
         <TouchableOpacity
           key={option.value}
@@ -19,10 +20,10 @@ function FiltersMenu() {
             setShowMenu(false);
           }}
           style={{
-            paddingVertical: 10,
+            paddingVertical: 12,
             paddingHorizontal: 20,
-            borderTopWidth: 1,
-            borderTopColor: '#ccc',
+            borderWidth: 1,
+            borderColor: '#ccc',
             alignItems: 'center',
             alignContent: 'center',
           }}
@@ -73,7 +74,7 @@ function Filters(props) {
         backgroundColor: '#f2f2f2',
         height: showMenu ? 185 : 50,
         width:  '50%',
-        top: 181,
+        top: isMobile ? 210 : 180,
         right:  0,
        
         borderColor: '#171717',

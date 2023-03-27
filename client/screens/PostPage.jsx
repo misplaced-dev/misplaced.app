@@ -2,19 +2,19 @@ import { View , Text, SafeAreaView, ScrollView} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import PostPageContainer from "../components/PostPageContainer";
-import Header from "../components/Header";
+import HomeHeader from "../components/HomeHeader";
 
 const PostPage = () => {
 
     const navigation = useNavigation();
 
     return (
-        <SafeAreaView>
+        <View>
             <ScrollView keyboardDismissMode = 'interactive'>   
-                <Header/>
+                <HomeHeader/>
                 <PostPageContainer/>
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
     }
 

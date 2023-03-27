@@ -102,7 +102,7 @@ const ProfileContainer = () => {
        <Text style={{textAlign: 'center', fontSize: 25, paddingTop: 15,}}>Welcome Back {name}!</Text>
         <Text style={{textAlign: 'center', fontSize: 20, fontStyle:'italic', padding: 10,}}>{username}</Text>
         
-        <TouchableOpacity onPress={handleLogout} style={{textAlign: 'center', fontSize: 20, padding: 10, borderWidth: 1, backgroundColor: '#f2f2f2',  marginTop: 20, borderColor: 'black', marginRight: 30, marginLeft: 30, borderRadius: 20, marginBottom: 30,}}>
+        <TouchableOpacity onPress={handleLogout} style={{textAlign: 'center', fontSize: 20, padding: 10, borderWidth: 2, backgroundColor: '#f2f2f2',  marginTop: 20, borderColor: 'black', marginRight: 30, marginLeft: 30, borderRadius: 20, marginBottom: 30,}}>
             <Text style={{textAlign: 'center', fontSize: 17, color: 'black'}}>Logout</Text>
         </TouchableOpacity>
 

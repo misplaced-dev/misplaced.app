@@ -1,4 +1,4 @@
-import {SafeAreaView , ScrollView} from "react-native";
+import {View , ScrollView} from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import HomeHeader from '../components/HomeHeader.jsx';
@@ -7,6 +7,7 @@ import PostCards from "../components/PostCards.jsx";
 import Filters from "../components/Filters.jsx";
 import Sort from "../components/Sort.jsx";
 import PostButton from "../components/PostButton.jsx";
+
  
 
   
@@ -20,16 +21,16 @@ import PostButton from "../components/PostButton.jsx";
     }, []);
   
     return (
-      <SafeAreaView>
+      <View >
       <ScrollView>
             <HomeHeader />
             <ProfileButton  />
             <Sort />
             <Filters />
             <PostCards />
-            <PostButton style={{position: 'sticky',}}/>
         </ScrollView>
-      </SafeAreaView>
+        <PostButton />
+      </View>
     );
   };
   
