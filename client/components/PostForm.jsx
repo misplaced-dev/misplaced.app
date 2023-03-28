@@ -1,5 +1,5 @@
 import React ,{ useState }  from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity, TextInput, Platform } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity, TextInput, Platform, Dimensions } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 
 
@@ -35,6 +35,18 @@ const Postcards = () => {
      const [Location, setLocation] = useState('');
      const [Description, setDescription] = useState('');
      const [Contact, setContact] = useState('');
+     const [numberOfLines, setNumberOfLines] = useState(1);
+
+  const handleContentSizeChange = (event) => {
+    const { width } = event.nativeEvent.contentSize;
+    const containerWidth = Dimensions.get('window').width * 0.9;
+
+    if (width > containerWidth * 0.9) {
+      setNumberOfLines(2);
+    } else {
+      setNumberOfLines(1);
+    }
+  };
 
      const openImagePicker = () => {
         ImagePicker.showImagePicker(options, response => {
@@ -56,7 +68,7 @@ const Postcards = () => {
       <Text style={styles.upload}>Upload Image</Text>
     )}
   </TouchableOpacity>
-  <Text style={styles.texts}>Title</Text>
+  <Text style={styles.texttitle}>Title</Text>
         <TextInput
           value={Title}
           onChangeText={setTitle}
@@ -67,28 +79,31 @@ const Postcards = () => {
         <TextInput
           value={Price}
           onChangeText={setPrice}
-          style={{textAlign: 'center', fontSize: 12, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 0, marginRight: '30%', marginLeft: '30%', borderRadius: 20,}}
+          style={{textAlign: 'center', fontSize: 12, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 0, marginRight: isMobile ? '30%' : '40%', marginLeft: isMobile ? '30%' : '40%', borderRadius: 20,}}
 
         /> 
         <Text style={styles.texts}>Location</Text>
         <TextInput
           value={Location}
           onChangeText={setLocation}
-          style={{textAlign: 'center', fontSize: 12, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 0, marginRight: '20%', marginLeft: '20%', borderRadius: 20,}}
+          style={{textAlign: 'center', fontSize: 12, borderWidth: 1, borderColor: 'black', padding: 10,  marginBottom: 10, marginTop: 0, marginRight: isMobile ? '20%' : '30%', marginLeft: isMobile ? '20%' : '30%', borderRadius: 20,}}
 
         />
         <Text style={styles.texts}>Description</Text>
         <TextInput
-          value={Description}
-          onChangeText={setDescription}
-          style={{textAlign: 'center', fontSize: 12, borderWidth: 1,  borderColor: 'black', padding: 10, paddingTop: 10, marginBottom: 10, marginTop: 0, marginRight: '5%', marginLeft: '5%', borderRadius: 20,}}
+           value={Description}
+           onChangeText={setDescription}
+           multiline={true}
+           numberOfLines={numberOfLines}
+           onContentSizeChange={handleContentSizeChange}
+          style={{textAlign: 'center', fontSize: 12, borderWidth: 1,  borderColor: 'black', padding: 10, paddingBottom: 35, paddingTop: 10, marginBottom: 10, marginTop: 0, marginRight: '5%', marginLeft: '5%', borderRadius: 20,}}
 
         />
     <Text style={styles.texts}>Contact</Text>
         <TextInput
           value={Contact}
           onChangeText={setContact}
-          style={{textAlign: 'center', fontSize: 12, borderWidth: 1,  borderColor: 'black', padding: 10, paddingTop: 10, marginBottom: 10, marginTop: 0, marginRight: '15%', marginLeft: '15%', borderRadius: 20,}}
+          style={{textAlign: 'center', fontSize: 12, borderWidth: 1,  borderColor: 'black', padding: 10, paddingTop: 10, marginBottom: 10, marginTop: 0, marginRight: isMobile ? '15%' : '30%', marginLeft: isMobile ? '15%' : '30%', borderRadius: 20,}}
 
         />
     <View style={styles.container}>
@@ -102,12 +117,15 @@ const Postcards = () => {
         />
       ))}
     </View>
-    <TouchableOpacity onPress = {handleSubmit} style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: '#ffbd03', paddingLeft: 2, paddingRight: 2, paddingBottom: 1, paddingTop: 7, marginBottom: 40, marginTop: 10, marginRight: '30%', marginLeft: '30%', borderRadius: 20,}}>
+    <TouchableOpacity onPress = {handleSubmit} style={{textAlign: 'center', fontSize: 17, borderWidth: 2, borderColor: '#ffbd03', paddingLeft: 2, paddingRight: 2, paddingBottom: 1, paddingTop: 11, marginBottom: 40, marginTop: 10, marginRight: '30%', marginLeft: '30%', borderRadius: 20,}}>
       <Text style={styles.texts}>Create Post</Text>
       </TouchableOpacity>
     </View>
   );
 };
+
+
+const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
 
 const handleSubmit = () => {
   navigation.navigate('Home | Misplaced');
@@ -174,7 +192,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#000',
-    marginBottom: 30,
+    marginBottom: 50,
     top: 0,
     marginTop: 0,
  },
@@ -193,7 +211,15 @@ const styles = StyleSheet.create({
       marginBottom: 10,
       top: 0,
  },
-
+texttitle:{
+  fontSize: 15,
+    textAlign: 'center',
+    color: '#000',
+    marginTop: 10,
+    marginBottom: 10,
+    top: 0,
+    backgroundColor: '#f2f2f2',
+}
   
 });
 

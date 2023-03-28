@@ -30,20 +30,19 @@ const PostButton = () => {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    bottom: '1%',
-    right: '2%',
-    backgroundColor: '#f2f2f2',
+    bottom: 10,
+    right: 10,
     zindex: 10,
-    borderRadius: 50,
-    width: 83,
-    height: 84,
-    borderWidth: 3,
-    borderColor: 'red',
+
   },
   image: {
    width: 80,
     height: 80,
     zIndex: 11,
+    borderWidth: 9,
+    borderColor: 'black',
+    borderRadius: 50, 
+    backgroundColor: 'black',
   },
 
 });

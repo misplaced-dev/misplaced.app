@@ -60,7 +60,7 @@ const checkLoginStatus = async () => {
   };
 
   return (
-    <View style={{ position: 'absolute', backgroundColor: '#f2f2f2', height: 50, width: '100%', top: 130, left: 0, right: 0,  borderColor: '#171717', }}>
+    <View style={{ position: 'absolute', backgroundColor: '#f2f2f2', height: 50, width: '100%', top: isMobile ? 160 : 130, left: 0, right: 0,  borderColor: '#171717', }}>
       <TouchableOpacity
         onPress={isLoggedIn ? handleProfile : handleLogin}
         onPressIn={handlePress}
