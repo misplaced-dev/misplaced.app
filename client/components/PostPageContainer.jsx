@@ -1,8 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text , Dimensions } from 'react-native';
+import {GOOGLE_MAPS_API_KEY} from "@env";
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 const Post = ({ price, title, location, description, contact, time}) => {
   return (  
+   <View>
       <View style={styles.Post} >
       <View style={styles.box}>
       <Text style={styles.title}>{title}</Text>
@@ -13,9 +16,22 @@ const Post = ({ price, title, location, description, contact, time}) => {
       <Text style={styles.time}>{time}</Text>
       </View>
       </View>
+      <MapView
+         style={{ flex: 1, marginBottom: 400 }}
+         provider={PROVIDER_GOOGLE}
+         showsUserLocation
+         initialRegion={{
+         latitude: 37.78825,
+         longitude: -122.4324,
+         latitudeDelta: 0.0922,
+         longitudeDelta: 0.0421}}
+      />
     
+
+      </View   >
   );
 };
+ 
 const Picture = ({ image }) => { 
   return (
     <View>

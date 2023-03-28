@@ -12,7 +12,7 @@ const NotFound404 = () => {
         <SafeAreaView>
             <ScrollView>   
                 <Header/>
-            <Image source={require('../assets/NotFound.gif')} />
+            <Image source={require('../assets/NotFound.gif')} style={{height:'80%', width:'80%', resizeMode: 'contain'}}/>
             </ScrollView>
         </SafeAreaView>
     );
