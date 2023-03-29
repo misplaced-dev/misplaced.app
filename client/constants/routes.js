@@ -44,7 +44,7 @@ export const LOCATION_ROUTES = {
         return `${API_URL}/location/locations`;
     },
     GET_LOCATION(id) {
-        return `${API_URL}/location/${id}`;
+        return `${API_URL}/location/location/${id}`;
     },
     UPDATE_LOCATION(id) {
         return `${API_URL}/location/${id}`;
