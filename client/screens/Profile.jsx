@@ -1,4 +1,4 @@
-import {View, ScrollView} from "react-native";
+import {View, ScrollView, StatusBar} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import ProfileContainer from "../components/ProfileContainer";
@@ -9,6 +9,7 @@ const Profile = () => {
 
     return(
         <View>
+             <StatusBar barStyle="dark-content" />
             <ScrollView>
                 <HomeHeader/>
                 <ProfileContainer />
