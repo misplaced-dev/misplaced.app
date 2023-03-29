@@ -1,7 +1,13 @@
-import React from 'react';
-import { ImageBackground, View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React, {useState,useEffect} from 'react';
+import { ImageBackground, View, Image, Text, TouchableOpacity, StyleSheet, Button, FlatList, TextInput, Platform, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { BlurView } from 'expo-blur'; // Import the BlurView component from Expo
+import { BlurView } from 'expo-blur'; 
+import { PostService } from '../services/post.service';
+import { MediaService } from '../services/media.service';
+import {HERE_API_KEY} from "@env"
+import axios from 'axios';
+import reverse from 'reverse-geocode';
+
 
 const Postcard = ({ image, price, title, location, onPress }) => {
   const [imageWidth, setImageWidth] = React.useState(0);
@@ -27,38 +33,95 @@ const Postcard = ({ image, price, title, location, onPress }) => {
              </ImageBackground>
       </View>
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.price}>{price}</Text>
-      <Text style={styles.location}>{location}</Text>
+      <Text style={styles.price}>${price}</Text>
+      <Text style={styles.location}>{Math.round(location * 10) / 10} miles away</Text>
     </TouchableOpacity>
   );
 };
 
 const Postcards = () => {
+    const [posts, setPosts] = useState([]);
+    const [loading , setLoading] = useState(true);
 
   const navigation = useNavigation();
-  
-  const posts = [
-    { id: 1, image: 'https://hmp.me/d29u', price: '$5', title: 'Towson Hat', location: 'Millennium Hall' },
-    { id: 2, image: 'https://picsum.photos/200', price: '$200', title: 'Product 2', location: 'University Union' },
-    { id: 3, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C',},
-    { id: 4, image: 'https://picsum.photos/200', price: '$100', title: 'Product 1', location: 'Millennium Hall' },
-    { id: 5, image: 'https://picsum.photos/200', price: '$200', title: 'Product 2', location: 'University Union' },
-    { id: 6, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C' },
-    { id: 7, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C' },
-  ];
 
-  return (
-    <View style={styles.container}>
-      {posts.map(post => (
-        <Postcard
-          key={post.id}
-          image={post.image}
-          price={post.price}
-          title={post.title}
-          location={post.location}
-          onPress={() => navigation.navigate('Post Page | Misplaced')}
-        />
-      ))}
+    useEffect(() => {
+        setLoading(true);
+        fetchPosts();
+        setLoading(false);
+    }, []);
+
+    /**
+     * Fetches all posts from the database and adds the image url to each post
+     *
+     */
+    const fetchPosts = async () => {
+        try {
+            // get all posts
+            const posts = await PostService.getPostsInDistance(2000).then((res) => {
+                return res.data;
+            });
+            // for each post, get the image url from media service
+            for (let i = 0; i < posts.length; i++) {
+                const media = await MediaService.getMediaByPostId(posts[i]._id).then((res) => {
+                    return res.data[0].url;
+                });
+                posts[i].image = media;
+            }
+            // add location label to each post
+            for (let i = 0; i < posts.length; i++) {
+                const lat = posts[i].location.latitude;
+                const lng = posts[i].location.longitude;
+                const res = reverse.lookup(lat,lng, 'us')
+                console.log(res)
+                const location = await axios.get(`https://revgeocode.search.hereapi.com/v1/revgeocode?at=${lat}%2C${lng}&lang=en-US&apiKey=${HERE_API_KEY}`)
+                .then((res) => {
+                    console.log(res.data)
+                    return res.data.items[0].address.street + ', ' + res.data.items[0].address.city + ', ' + res.data.items[0].address.stateCode;
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+                posts[i].locationLabel = location;
+            }
+            setPosts(posts);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+// ------------------ TODO: ADD MOCK DATA TO DB------------------
+//   const posts = [
+//     { id: 1, image: 'https://hmp.me/d29u', price: '$5', title: 'Towson Hat', location: 'Millennium Hall' },
+//     { id: 2, image: 'https://picsum.photos/200', price: '$200', title: 'Product 2', location: 'University Union' },
+//     { id: 3, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C',},
+//     { id: 4, image: 'https://picsum.photos/200', price: '$100', title: 'Product 1', location: 'Millennium Hall' },
+//     { id: 5, image: 'https://picsum.photos/200', price: '$200', title: 'Product 2', location: 'University Union' },
+//     { id: 6, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C' },
+//     { id: 7, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C' },
+//   ];
+
+return (
+    <View >
+      {loading ? (
+        <View>
+          <Text>Loading...</Text>
+        </View>
+      ) : (
+        <View style={styles.container}>
+          {posts &&
+            posts.map(post => (
+              <Postcard
+                key={post._id}
+                image={post.image}
+                price={post.compensation}
+                title={post.title}
+                location={post.distance}
+                onPress={() => navigation.navigate('Post Page | Misplaced')}
+              />
+            ))}
+        </View>
+      )}
     </View>
   );
 };
