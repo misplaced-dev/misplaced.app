@@ -3,6 +3,7 @@ import { StyleSheet, View, Image, Text , Dimensions, Platform } from 'react-nati
 import {GOOGLE_MAPS_API_KEY} from "@env";
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 
+
 const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
 
 
@@ -37,7 +38,7 @@ const Post = ({ price, title, location, description, contact, time}) => {
       </View>
       </View>
       <MapView
-         style={{ flex: 1, marginBottom: isMobile ? 400 : 0 , display: isMobile ? 'flex' : 'none'}} //fix web
+         style={{ flex: 1, marginBottom: isMobile ? 400 : 0 , display: isMobile ? 'flex' : 'none'}} 
          provider={PROVIDER_GOOGLE}
          ref={mapRef}
          showsUserLocation
