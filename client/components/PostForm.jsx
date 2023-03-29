@@ -48,14 +48,39 @@ const Postcards = () => {
     }
   };
 
-     const openImagePicker = () => {
-        ImagePicker.showImagePicker(options, response => {
-          if (response.uri) {
-            setSelectedImage(response.uri);
-          }
-        });
+
+//do isMobile for the image
+
+     const openImagePicker = async () => {
+     
+     
+      const options = {
+        title: 'Select Photo',
+        storageOptions: {
+          skipBackup: true,
+          path: 'images',
+        },
       };
       
+      ImagePicker.showImagePicker(options, (response) => {
+        console.log('Response = ', response);
+      
+        if (response.didCancel) {
+          console.log('User cancelled image picker');
+        } else if (response.error) {
+          console.log('ImagePicker Error: ', response.error);
+        } else if (response.customButton) {
+          console.log('User tapped custom button: ', response.customButton);
+        } else {
+          // You can now use the response.uri to display the selected image
+          console.log(response.uri);
+        }
+      });}
+
+      
+      
+
+
 
   return (
     <View style={ {backgroundColor: '#f2f2f2',}}>

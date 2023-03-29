@@ -1,12 +1,32 @@
-import React from 'react';
-import { StyleSheet, View, Image, Text , Dimensions } from 'react-native';
+import React, {useRef,useEffect} from 'react';
+import { StyleSheet, View, Image, Text , Dimensions, Platform } from 'react-native';
 import {GOOGLE_MAPS_API_KEY} from "@env";
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+
+const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
+
 
 const Post = ({ price, title, location, description, contact, time}) => {
+  
+  const mapRef = useRef(null);
+
+  useEffect(() => {
+    if (mapRef.current) {
+      mapRef.current.setCamera({
+        center: {
+          latitude: 39.3941,
+          longitude: -76.610,
+        },
+        heading: 270,
+        pitch: 0,
+        zoom: 15,
+      });
+    }
+  }, []);
+
   return (  
    <View>
-      <View style={styles.Post} >
+      <View style={styles.Post}>
       <View style={styles.box}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.price}>{price}</Text>
@@ -17,15 +37,30 @@ const Post = ({ price, title, location, description, contact, time}) => {
       </View>
       </View>
       <MapView
-         style={{ flex: 1, marginBottom: 400 }}
+         style={{ flex: 1, marginBottom: isMobile ? 400 : 0 , display: isMobile ? 'flex' : 'none'}} //fix web
          provider={PROVIDER_GOOGLE}
+         ref={mapRef}
          showsUserLocation
+         showsPointsOfInterest={false}
+         showsMarkers={false}
+         showsIndoorLevelPicker={false}
          initialRegion={{
-         latitude: 37.78825,
-         longitude: -122.4324,
-         latitudeDelta: 0.0922,
-         longitudeDelta: 0.0421}}
-      />
+          latitude: 39.3939,
+          longitude: -76.6086,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01,
+          heading: 90,}}
+          
+      >
+         <Marker
+    coordinate={{
+      latitude: 39.3939,
+      longitude: -76.6095,
+    }}
+    title="Towson University"
+    description="This is where Towson University is located"
+  />
+</MapView>
     
 
       </View   >

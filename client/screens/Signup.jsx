@@ -1,4 +1,4 @@
-import {SafeAreaView, ScrollView} from "react-native";
+import {SafeAreaView, ScrollView, StatusBar} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import SignupForm from "../components/SignupForm";
@@ -9,6 +9,7 @@ const Signup = () => {
 
     return(
         <SafeAreaView>
+             <StatusBar barStyle="dark-content" />
             <ScrollView keyboardDismissMode = 'interactive'>
                 <Header/>
                 <SignupForm/>
