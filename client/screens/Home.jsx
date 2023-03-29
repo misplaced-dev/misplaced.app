@@ -1,4 +1,4 @@
-import {View , ScrollView} from "react-native";
+import {View , ScrollView , StatusBar} from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import HomeHeader from '../components/HomeHeader.jsx';
@@ -22,6 +22,7 @@ import PostButton from "../components/PostButton.jsx";
   
     return (
       <View >
+        <StatusBar barStyle="dark-content" />
       <ScrollView>
             <HomeHeader />
             <ProfileButton  />

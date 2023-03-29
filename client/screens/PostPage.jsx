@@ -1,4 +1,4 @@
-import { View , Text, SafeAreaView, ScrollView} from "react-native";
+import { View , Text, SafeAreaView, ScrollView, StatusBar} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import PostPageContainer from "../components/PostPageContainer";
@@ -10,6 +10,7 @@ const PostPage = () => {
 
     return (
         <View>
+             <StatusBar barStyle="dark-content" />
             <ScrollView keyboardDismissMode = 'interactive'>   
                 <HomeHeader/>
                 <PostPageContainer/>
