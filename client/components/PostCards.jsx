@@ -1,64 +1,97 @@
-import React from 'react';
-import { ImageBackground, View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React, {useState,useEffect} from 'react';
+import { ImageBackground, View, Image, Text, TouchableOpacity, StyleSheet, Button, FlatList, TextInput, Platform, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { BlurView } from 'expo-blur'; // Import the BlurView component from Expo
+import { BlurView } from 'expo-blur'; 
+import { PostService } from '../services/post.service';
+import { MediaService } from '../services/media.service';
+import {HERE_API_KEY} from "@env"
+import axios from 'axios';
+import reverse from 'reverse-geocode';
 
-const Postcard = ({ image, price, title, location, onPress }) => {
+const Postcard = ({ image, price, title, location, onPress,  }) => {
   const [imageWidth, setImageWidth] = React.useState(0);
 
-  const onImageLoad = ({nativeEvent}) => {
-    const { width } = nativeEvent.source;
-    setImageWidth(width);
-  }
+  
 
   return (
+
     <TouchableOpacity style={styles.postcard} onPress={onPress} >
       <View style={styles.imageContainer}>
           <ImageBackground
           source={{ uri: image }}
-          onLoad={onImageLoad}
+         
           style={{ width: '100%', height: '100%' , zIndex: 0, justifyContent: 'center', alignItems: 'center'}}
-          imageStyle={{ resizeMode: 'cover' }}
+          imageStyle={{ resizeMode: 'cover', transform: [{ scale: 1.75 }] }}
         >
           <View style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
             <BlurView style={{ flex: 1 }} intensity={200} />
           </View>
-          <Image source={{ uri: image }} onLoad={onImageLoad} style={styles.image}/>
+          <Image source={{ uri: image }} style={styles.image}/>
              </ImageBackground>
       </View>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.price}>{price}</Text>
       <Text style={styles.location}>{location}</Text>
     </TouchableOpacity>
+  
   );
 };
 
 const Postcards = () => {
+  const [posts, setPosts] = useState([]);
+  const [loading , setLoading] = useState(true);
 
-  const navigation = useNavigation();
+const navigation = useNavigation();
+
+useEffect(() => {
+  setLoading(true);
+  fetchPosts();
+  setLoading(false);
+}, []);
   
-  const posts = [
-    { id: 1, image: 'https://hmp.me/d29u', price: '$5', title: 'Towson Hat', location: 'Millennium Hall' },
-    { id: 2, image: 'https://picsum.photos/200', price: '$200', title: 'Product 2', location: 'University Union' },
-    { id: 3, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C',},
-    { id: 4, image: 'https://picsum.photos/200', price: '$100', title: 'Product 1', location: 'Millennium Hall' },
-    { id: 5, image: 'https://picsum.photos/200', price: '$200', title: 'Product 2', location: 'University Union' },
-    { id: 6, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C' },
-    { id: 7, image: 'https://picsum.photos/200', price: '$300', title: 'Product 3', location: 'Tower C' },
-  ];
+const fetchPosts = async () => {
+  try {
+      // get all posts
+      const posts = await PostService.getPostsInDistance(2000).then((res) => {
+        console.log(res)
+          return res.data;
+      });
+      // for each post, get the image url from media service
+      for (let i = 0; i < posts.length; i++) {
+          const media = await MediaService.getMediaByPostId(posts[i]._id).then((res) => {
+              return res.data[0].url;
+          });
+          posts[i].image = media;
+      }
+  
+      console.log(posts);
+        setPosts(posts);
+  } catch (error) {
+      console.log(error);
+  }
+};
 
+      
   return (
+    <View >
+    {loading ? (
+      <View>
+       <Image source={require('../assets/buffer.gif')} style={{ width: 280, height: 51 }} />
+      </View>
+    ) : (
     <View style={styles.container}>
       {posts.map(post => (
         <Postcard
-          key={post.id}
+          key={post._id}
           image={post.image}
-          price={post.price}
+          price={post.compensation}
           title={post.title}
-          location={post.location}
-          onPress={() => navigation.navigate('Post Page | Misplaced')}
+     location={post.location}
+          onPress={() => navigation.navigate('Post Page | Misplaced',{ key: post._id })}
         />
       ))}
+    </View>
+    )}
     </View>
   );
 };
@@ -91,6 +124,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomWidth: 1,
     borderColor: 'gray',
+    overflow: 'hidden',
   },
   image: {
     width: '100%',

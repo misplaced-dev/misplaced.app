@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, Text, View, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import {AuthService} from '../services/auth.service';import RNRestart from 'react-native-restart';
-
+import {AuthService} from '../services/auth.service';
 function ProfileButton() {
   const navigation = useNavigation();
   const [isPressed, setIsPressed] = useState(false);
