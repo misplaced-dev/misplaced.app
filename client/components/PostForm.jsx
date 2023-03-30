@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import { ScrollView, KeyboardAvoidingView, ImageBackground, View, Image, Text, TouchableOpacity, StyleSheet, Button, FlatList, TextInput, Platform, Dimensions } from 'react-native';
+import { ScrollView, KeyboardAvoidingView, ImageBackground, SafeAreaView, View, Image, Text, TouchableOpacity, StyleSheet, Button, FlatList, TextInput, Platform, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { BlurView } from 'expo-blur'; 
 import ImagePicker from 'react-native-image-picker';
-
 
 const Postcard = ({ image, price, title, location, onPress, description, contact, }) => {
  
@@ -82,9 +81,8 @@ if (width > containerWidth * 0.9) {
 };
 
 
-const handleImageUpload = () => {
-  if (Platform.OS === 'web') {
-    // Handle file upload for web
+const handleImageUpload = async () => {
+if(Platform.OS === 'web'){
     const input = document.createElement('input');
     input.setAttribute('type', 'file');
     input.setAttribute('accept', 'image/*');
@@ -97,42 +95,54 @@ const handleImageUpload = () => {
       reader.readAsDataURL(file);
     });
     input.click();
-  } else {
-    // Handle image picker for mobile
-    const options = {
-      title: 'Select Photo',
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
-    };
-    ImagePicker.launchImageLibrary(options, (response) => {
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else {
-        setSelectedImage({ uri: response.uri });
-      }
-    });
   }
-};
+    else{
+      const options = {
+        title: 'Select Photo',
+        mediaType: 'photo',
+        storageOptions: {
+          skipBackup: true,
+          path: 'images',
+        },
+      };
+      ImagePicker.launchImageLibrary(options, response => {
+        if (response.didCancel) {
+          console.log('User cancelled image picker');
+        } else if (response.error) {
+          console.log('ImagePicker Error: ', response.error);
+        } else {
+          setSelectedImage({ uri: response.uri });
+        }
+      });
+    };
+    }
+  
 
 const handleImageDelete = () => {
   setSelectedImage(null);
 };
 
 
+const [isPressed, setIsPressed] = useState(false);
+const handlePress = () => {
+  setIsPressed(true);
+};
+const scroll = useState(handlePress);
+const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
+
+const handleSubmit = () => {
+  navigation.navigate('Home | Misplaced');
+ if(!isMobile) {window.location.reload();}
+}
 
 
   return (
    
-    <View style={ {backgroundColor: '#f2f2f2',}}>
-       <KeyboardAvoidingView behavior='position'>
-     
-        
-  
+    <SafeAreaView style={ {backgroundColor: '#f2f2f2',}}> 
+    <ScrollView>    
+  <KeyboardAvoidingView  >
 <TextInput
+  onPress={handlePress}
   style={styles.input}
   multiline={true}
   numberOfLines={numberOfLines}
@@ -143,6 +153,7 @@ const handleImageDelete = () => {
   scrollEnabled={false}
 />
 <TextInput
+  onPress={handlePress}
   style={styles.input}
   multiline={true}
   numberOfLines={numberOfLines}
@@ -157,6 +168,7 @@ const handleImageDelete = () => {
   scrollEnabled={false}
 />
 <TextInput
+  onPress={handlePress}
   style={styles.input}
   multiline={true}
   numberOfLines={numberOfLines}
@@ -167,6 +179,7 @@ const handleImageDelete = () => {
   scrollEnabled={false}
 />
 <TextInput
+  onPress={handlePress}
   style={styles.input}
   multiline={true}
   numberOfLines={numberOfLines}
@@ -177,6 +190,7 @@ const handleImageDelete = () => {
   scrollEnabled={false}
 />
 <TextInput
+  onPress={handlePress}
   style={styles.input}
   multiline={true}
   numberOfLines={numberOfLines}
@@ -186,8 +200,7 @@ const handleImageDelete = () => {
   onContentSizeChange={handleContentSizeChange}
   scrollEnabled={false}
 />
-<TouchableOpacity onPress={selectedImage ? handleImageDelete : handleImageUpload} style={{textAlign: 'center', fontSize: 12, borderWidth: 1, borderColor: 'black', paddingLeft: 2, paddingRight: 2, paddingBottom: 1, paddingTop: 10, marginBottom: 10, marginTop: 10, marginRight: '30%', marginLeft: '30%', borderRadius: 20,}}
->
+<TouchableOpacity onPress={selectedImage ? handleImageDelete : handleImageUpload} style={{textAlign: 'center', fontSize: 12, borderWidth: 1, borderColor: 'black', paddingLeft: 2, paddingRight: 2, paddingBottom: 1, paddingTop: 10, marginBottom: 10, marginTop: 10, marginRight: '30%', marginLeft: '30%', borderRadius: 20,}}>
     {selectedImage ? (
        <View style={styles.imageContainer}>
        <ImageBackground
@@ -222,19 +235,14 @@ const handleImageDelete = () => {
       <Text style={styles.texts}>Create Post</Text>
       </TouchableOpacity>
       </KeyboardAvoidingView>
-    </View>
+      </ScrollView>
+    </SafeAreaView>
    
    
   );
 };
 
 
-const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
-
-const handleSubmit = () => {
-  navigation.navigate('Home | Misplaced');
-  window.location.reload();
-}
 
 const styles = StyleSheet.create({
   container: {

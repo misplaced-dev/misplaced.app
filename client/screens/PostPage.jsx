@@ -2,7 +2,7 @@ import { View ,  ScrollView, StatusBar} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import PostPageContainer from "../components/PostPageContainer";
-import HomeHeader from "../components/HomeHeader";
+import Header from "../components/Header";
 
 const PostPage = () => {
 
@@ -12,7 +12,7 @@ const PostPage = () => {
         <View>
              <StatusBar barStyle="dark-content" />
             <ScrollView keyboardDismissMode = 'interactive'>   
-                <HomeHeader/>
+                <Header/>
                 <PostPageContainer/>
             </ScrollView>
         </View>

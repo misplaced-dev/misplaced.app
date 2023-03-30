@@ -6,7 +6,6 @@ import { PostService } from '../services/post.service';
 import { MediaService } from '../services/media.service';
 import {HERE_API_KEY} from "@env"
 import axios from 'axios';
-import reverse from 'reverse-geocode';
 
 const Postcard = ({ image, price, title, location, onPress,  }) => {
   const [imageWidth, setImageWidth] = React.useState(0);
