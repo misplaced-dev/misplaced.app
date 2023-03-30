@@ -1,10 +1,11 @@
-import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet, AppState } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { AuthService } from "../services/auth.service";
 import { UserService } from "../services/user.service";
 import { PostService } from "../services/post.service";
 import { MediaService } from "../services/media.service";
+
 
 
 
@@ -79,15 +80,13 @@ const ProfileContainer = () => {
     };
 
     const handleLogout  = async () => {
-      try {
+     
         console.log('logging out');
         await AuthService.signout("userId");
         navigation.navigate('Home | Misplaced');
         window.location.reload();
-      } catch (error) {
-        console.log(error);
-        navigation.navigate('Not Found | Misplaced');
-      }
+        AppState.restart();
+     
     }
 
     const posted = [
@@ -97,7 +96,7 @@ const ProfileContainer = () => {
        
 
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center',  backgroundColor: '#f2f2f2',}}>
        <Image source={require('../assets/profile.png') }style={{ alignSelf: 'center', width: 100, height: 100, marginTop: 30, }}/>
        <Text style={{textAlign: 'center', fontSize: 25, paddingTop: 15,}}>Welcome Back {name}!</Text>
         <Text style={{textAlign: 'center', fontSize: 20, fontStyle:'italic', padding: 10,}}>{username}</Text>

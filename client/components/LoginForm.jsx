@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity , AppState} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {AuthService} from '../services/auth.service';
 
@@ -20,8 +20,10 @@ const LoginForm = () => {
                 return res;
                 });
                 if (storedUserId !== null) {
+                
                   navigation.navigate('Home | Misplaced');
                   window.location.reload();
+                  AppState.restart();
                 }
         } catch (error) {
             console.log(error);
@@ -33,8 +35,10 @@ const LoginForm = () => {
         AuthService.login(user).then((res) => {
             if (res.status === 200) {
                 AuthService.setToken('userId', res.data._id);
+               
                 navigation.navigate('Home | Misplaced');
                 window.location.reload();
+                AppState.restart();
             } else {
                 setError('Error: Try different username or email');
             }

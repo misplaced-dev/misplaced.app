@@ -1,5 +1,5 @@
 import React ,{ useState }  from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity, TextInput, Platform, Dimensions } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity, TextInput, Platform, Dimensions , AppState} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 
 
@@ -155,6 +155,7 @@ const isMobile = Platform.OS === 'ios' || Platform.OS === 'android';
 const handleSubmit = () => {
   navigation.navigate('Home | Misplaced');
   window.location.reload();
+  AppState.restart();
 }
 
 const styles = StyleSheet.create({

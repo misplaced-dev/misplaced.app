@@ -1,18 +1,36 @@
-import React from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
+import React, {useState,useEffect} from 'react';
+import { ImageBackground, View, Image, Text, TouchableOpacity, StyleSheet, Button, FlatList, TextInput, Platform, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { BlurView } from 'expo-blur'; 
 import { PostService } from '../services/post.service';
 import { MediaService } from '../services/media.service';
-import { useState, useEffect } from 'react';
 import {HERE_API_KEY} from "@env"
 import axios from 'axios';
 import reverse from 'reverse-geocode';
 
+
 const Postcard = ({ image, price, title, location, onPress }) => {
+  const [imageWidth, setImageWidth] = React.useState(0);
+
+  const onImageLoad = ({nativeEvent}) => {
+    const { width } = nativeEvent.source;
+    setImageWidth(width);
+  }
+
   return (
-    <TouchableOpacity style={styles.postcard} onPress={onPress}>
+    <TouchableOpacity style={styles.postcard} onPress={onPress} >
       <View style={styles.imageContainer}>
-        <Image source={{ uri: image }} style={styles.image} />
+          <ImageBackground
+          source={{ uri: image }}
+          onLoad={onImageLoad}
+          style={{ width: '100%', height: '100%' , zIndex: 0, justifyContent: 'center', alignItems: 'center'}}
+          imageStyle={{ resizeMode: 'cover' }}
+        >
+          <View style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
+            <BlurView style={{ flex: 1 }} intensity={200} />
+          </View>
+          <Image source={{ uri: image }} onLoad={onImageLoad} style={styles.image}/>
+             </ImageBackground>
       </View>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.price}>${price}</Text>
@@ -142,13 +160,12 @@ const styles = StyleSheet.create({
     height: '100%',
     resizeMode: 'contain',
     aspectRatio: 1,
-    borderRightWidth: 1,
-    borderLeftWidth: 1,
-    borderTopWidth: 0,
-    borderBottomWidth: 0,
-    borderColor: 'gray',
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
     objectFit: 'cover',
   objectPosition: 'center',
+  zIndex: 2,
   },
   title: {
     margin: 8,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, Text, TextInput, TouchableOpacity } from 'react-native';
+import { ScrollView, Text, TextInput, TouchableOpacity, AppState } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {AuthService} from '../services/auth.service';
 
@@ -23,6 +23,7 @@ const SignUpForm = () => {
           if (storedUserId !== null) {
             navigation.navigate('Home | Misplaced');
             window.location.reload();
+            AppState.restart();
           }
         } catch (error) {
           console.log(error);
@@ -50,6 +51,7 @@ const SignUpForm = () => {
                 AuthService.setToken('userId', res.data._id);
                 navigation.navigate('Home | Misplaced');
                 window.location.reload();
+                AppState.restart();
             } else {
                 setError('Error: Try different username or email');
                 

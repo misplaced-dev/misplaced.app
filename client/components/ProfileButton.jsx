@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, Text, View, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import {AuthService} from '../services/auth.service';
-
+import {AuthService} from '../services/auth.service';import RNRestart from 'react-native-restart';
 
 function ProfileButton() {
   const navigation = useNavigation();
@@ -20,6 +19,7 @@ const checkLoginStatus = async () => {
         });
       if (storedUserId !== null) {
         setIsLoggedIn(true);
+
       }
     } catch (error) {
       console.log(error);
