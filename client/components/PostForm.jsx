@@ -98,23 +98,23 @@ const handleImageUpload = () => {
     });
     input.click();
   } else {
-    // Handle image picker for mobile
-    const options = {
-      title: 'Select Photo',
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
-    };
-    ImagePicker.launchImageLibrary(options, (response) => {
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else {
-        setSelectedImage({ uri: response.uri });
-      }
-    });
+  const options = {
+        title: 'Select Photo',
+        mediaType: 'photo',
+        storageOptions: {
+          skipBackup: true,
+          path: 'images',
+        },
+      };
+      ImagePicker.launchImageLibrary(options, response => {
+        if (response.didCancel) {
+          console.log('User cancelled image picker');
+        } else if (response.error) {
+          console.log('ImagePicker Error: ', response.error);
+        } else {
+          setSelectedImage({ uri: response.uri });
+        }
+      });
   }
 };
 
