@@ -1,21 +1,21 @@
-import { View , Text, SafeAreaView, ScrollView, StatusBar} from "react-native";
+import { View ,  SafeAreaView, ScrollView, StatusBar} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import PostForm from "../components/PostForm";
-import HomeHeader from "../components/HomeHeader";
+import Header from "../components/Header";
 
 const NewPost = () => {
 
     const navigation = useNavigation();
 
     return (
-        <View>
+        <SafeAreaView>
              <StatusBar barStyle="dark-content" />
             <ScrollView keyboardDismissMode = 'interactive'>   
-                <HomeHeader/>
+                <Header/>
                 <PostForm/>
             </ScrollView>
-        </View>
+        </SafeAreaView>
     );
     }
 

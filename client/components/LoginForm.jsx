@@ -23,7 +23,7 @@ const LoginForm = () => {
                 
                   navigation.navigate('Home | Misplaced');
                   window.location.reload();
-                  AppState.restart();
+                
                 }
         } catch (error) {
             console.log(error);
@@ -38,7 +38,7 @@ const LoginForm = () => {
                
                 navigation.navigate('Home | Misplaced');
                 window.location.reload();
-                AppState.restart();
+              
             } else {
                 setError('Error: Try different username or email');
             }

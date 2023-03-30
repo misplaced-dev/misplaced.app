@@ -101,3 +101,39 @@ function Sort(props) {
 }
 
 export default Sort;
+
+{/* const fetchPosts = async () => {
+  try {
+      // get all posts
+      const posts = await PostService.getPostsInDistance(2000).then((res) => {
+          return res.data;
+      });
+      // for each post, get the image url from media service
+      for (let i = 0; i < posts.length; i++) {
+          const media = await MediaService.getMediaByPostId(posts[i]._id).then((res) => {
+              return res.data[0].url;
+          });
+          posts[i].image = media;
+      }
+      // add location label to each post
+      for (let i = 0; i < posts.length; i++) {
+          const lat = posts[i].location.latitude;
+          const lng = posts[i].location.longitude;
+          const res = reverse.lookup(lat,lng, 'us')
+          console.log(res)
+          const location = await axios.get(`https://revgeocode.search.hereapi.com/v1/revgeocode?at=${lat}%2C${lng}&lang=en-US&apiKey=${HERE_API_KEY}`)
+          .then((res) => {
+              console.log(res.data)
+              return res.data.items[0].address.street + ', ' + res.data.items[0].address.city + ', ' + res.data.items[0].address.stateCode;
+          })
+          .catch((err) => {
+              console.log(err)
+          })
+          posts[i].locationLabel = location;
+        }
+      console.log(posts);
+        setPosts(posts);
+  } catch (error) {
+      console.log(error);
+  }
+};*/}

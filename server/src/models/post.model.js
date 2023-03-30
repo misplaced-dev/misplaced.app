@@ -18,7 +18,7 @@ const PostSchema = new mongoose.Schema({
         required: true,
     },
     location: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: 'Location',
         required: true,
     },

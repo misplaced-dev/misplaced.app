@@ -48,47 +48,27 @@ export class PostController {
      * @returns {Error} error object
      */
     static async getPostsInDistance(req, res) {
-    // get ip address of the user
-    const ip = LocationService.getIp(req);
-    const clientCoordinates = await LocationService.getLatLongFromIP(ip).then((data) => {return data;});
-    // get all locations within the distance
-    Location.find({}).then((locations) => {
-        if (!locations) {
-            res.status(404).json({ message: 'Locations not found' });
+
+    try {   
+        // get all posts model
+        const posts = await Post.find({})
+            .populate('author')
+            .exec();
+        if (!posts) {
+        
+            res.status(404).json({ message: 'Posts not found' });
+            
             return;
         }
-        const locationIdToDistance = new Map();
-        locations.forEach(location => {
-            let distance = LocationService.getDistance(clientCoordinates.lat, clientCoordinates.lon, location.latitude, location.longitude);
-            if (distance <= req.params.distance) {
-                locationIdToDistance.set(location._id.toString(), distance);
-            }
-        });
-        // get all posts where the location id is in the array
-        Post.find({ location: { $in: [ ...locationIdToDistance.keys() ] } })
-            .populate('author')
-            .populate('location')
-            .exec()
-            .then((posts) => {
-                if (!posts) {
-                    res.status(404).json({ message: 'Posts not found' });
-                    return;
-                }
-                // add the distance to each post
-                posts = posts.map(post => ({
-                    ...post.toObject(),
-                    distance: locationIdToDistance.get(post.location._id.toString())
-                }));
-                res.status(200).json(posts);
-            })
-            .catch((err) => {
-                res.status(500).json({ message: err.message });
-            });
-        })
-        .catch((err) => {
-            res.status(500).json({ message: err.message });
-        });
+        else{
+            res.status(200).json(posts);
+        }
     }
+    catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+    }
+
 
     /**
      * A function to get a post by id

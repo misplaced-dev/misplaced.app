@@ -80,7 +80,7 @@ function Filters(props) {
         borderColor: '#171717',
        
         marginBottom: showMenu ? 150 : 0,
-        zIndex: isPressed ? 2 : 0,
+        zIndex: (isMobile && isPressed) || !isMobile ? 2 : 1,
       }}
     >
       <TouchableOpacity onPress={handlePress} style={buttonStyle}>
