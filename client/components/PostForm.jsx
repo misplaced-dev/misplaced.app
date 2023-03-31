@@ -3,6 +3,7 @@ import { ScrollView, KeyboardAvoidingView, ImageBackground, SafeAreaView, View, 
 import { useNavigation } from '@react-navigation/native';
 import { BlurView } from 'expo-blur'; 
 import ImagePicker from 'react-native-image-picker';
+import { PostService } from '../services/post.service';
 
 const Postcard = ({ image, price, title, location, onPress, description, contact, }) => {
  
@@ -26,10 +27,12 @@ const PostForm = () => {
  
   const navigation = useNavigation();
 
+  const image = {
+    image: selectedImage ? selectedImage.uri : '',
+  }
   const posts = [
     {
-      id: 1,
-      image: selectedImage ? selectedImage.uri : '',
+
       price: Price,
       title: Title,
       location: Location,
@@ -90,6 +93,9 @@ if(Platform.OS === 'web'){
       const file = e.target.files[0];
       const reader = new FileReader();
       reader.onload = () => {
+        const decoded = window.atob(decodeURIComponent(reader.result));
+        const shortened = window.btoa(decoded);
+        console.log(shortened);
         setSelectedImage({ uri: reader.result });
       };
       reader.readAsDataURL(file);
@@ -98,20 +104,33 @@ if(Platform.OS === 'web'){
   }
     else{
       const options = {
-        title: 'Select Photo',
+        quality: 0.5,
         mediaType: 'photo',
         storageOptions: {
           skipBackup: true,
           path: 'images',
         },
       };
-      ImagePicker.launchImageLibrary(options, response => {
+      ImagePicker.launchImageLibrary(options, (response) => {
         if (response.didCancel) {
           console.log('User cancelled image picker');
         } else if (response.error) {
           console.log('ImagePicker Error: ', response.error);
         } else {
-          setSelectedImage({ uri: response.uri });
+          const path = response.uri;
+          const fileName = path.split('/').pop();
+          const extension = fileName.split('.').pop();
+          const newPath = `${RNFS.TemporaryDirectoryPath}${Date.now()}.${extension}`;
+          RNFS.copyFile(path, newPath)
+            .then(() => {
+              RNFS.readFile(newPath, 'base64')
+                .then((data) => {
+                  const uri = `data:image/${extension};base64,${data}`;
+                  console.log(uri);
+                })
+                .catch((err) => console.log(err));
+            })
+            .catch((err) => console.log(err));
         }
       });
     };
@@ -131,7 +150,12 @@ const scroll = useState(handlePress);
 const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
 
 const handleSubmit = () => {
-  navigation.navigate('Home | Misplaced');
+  // create post object 
+
+
+   PostService.createPost(Title, Price, Location, Description, Contact, selectedImage.uri);
+  
+  navigation.navigate('Home | Misplaced', );
  if(!isMobile) {window.location.reload();}
 }
 

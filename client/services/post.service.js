@@ -32,6 +32,16 @@ export class PostService {
         return axios.get(POST_ROUTES.GET_POST(id));
     }
 
+      /**
+     * Gets a post by  id
+     * 
+     * @param {String} id the id of the user to search for posts
+     * @returns {Promise} the response from the server
+     */
+      static getPostById(id) {
+        return axios.get(POST_ROUTES.GET_POST_BY_ID(id));
+    }
+
     /**
      * Updates a post
      * 

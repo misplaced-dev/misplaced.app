@@ -28,6 +28,9 @@ export const POST_ROUTES = {
     GET_POST(userId) {
         return `${API_URL}/post/user/${userId}`;
     },
+    GET_POST_BY_ID(postId) {
+        return `${API_URL}/post/${postId}`;
+    },
     UPDATE_POST(postId, userId) {
         return `${API_URL}/post/${postId}/${userId}`;
     },
