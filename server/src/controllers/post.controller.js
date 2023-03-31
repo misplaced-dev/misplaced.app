@@ -2,6 +2,7 @@ import Post from '../models/post.model.js';
 import Location from '../models/location.model.js';
 import Media from '../models/media.model.js';
 import { LocationService } from '../utils/location.service.js';
+import User from '../models/user.model.js';
 
 export class PostController {
     /**
@@ -14,12 +15,27 @@ export class PostController {
      */
     static async createPost(req, res) {
         try { 
+            const contactInfo = req.body.contactInfo;
+            if (!contactInfo) {
+                res.status(400).json({ message: 'Contact info is required' });
+                return;
+            }
+            User.updateOne({ _id: req.body.author }, { $set: { contactInfo: contactInfo } }, (err, user) => {
+                if (err) {
+                    res.status(500).json({ message: err.message });
+                    return;
+                } else if (!user) {
+                    res.status(404).json({ message: 'User not found' });
+                    return;
+                }
+            });
             const post = new Post({
                 title: req.body.title,
                 description: req.body.description,
                 author: req.body.author,
                 location: req.body.location,
-                compensation: req.body.compensation
+                compensation: req.body.compensation,
+                contact: req.body.contact
             });
             post.save()
                 .then((post) => {

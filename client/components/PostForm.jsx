@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import { ScrollView, KeyboardAvoidingView, ImageBackground, SafeAreaView, View, Image, Text, TouchableOpacity, StyleSheet, Button, FlatList, TextInput, Platform, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { BlurView } from 'expo-blur'; 
 import ImagePicker from 'react-native-image-picker';
 import { PostService } from '../services/post.service';
+import axios from 'axios';
+import { MediaService } from '../services/media.service';
+import { AuthService } from '../services/auth.service';
 
 const Postcard = ({ image, price, title, location, onPress, description, contact, }) => {
  
@@ -30,16 +33,17 @@ const PostForm = () => {
   const image = {
     image: selectedImage ? selectedImage.uri : '',
   }
-  const posts = [
+  const posts = [ 
     {
-
-      price: Price,
+      media: selectedImage,
+      compensation: Price,
       title: Title,
       location: Location,
       description: Description,
-      contact: Contact
-    }
-  ];
+      contact: Contact,
+      author: Author
+    }];
+  
   
 
 const [selectedImage, setSelectedImage] = useState(false);
@@ -48,7 +52,15 @@ const [Title, setTitle] = useState('');
 const [Location, setLocation] = useState('');
 const [Description, setDescription] = useState('');
 const [Contact, setContact] = useState('');
+const [Author, setAuthor] = useState('');
 const [numberOfLines, setNumberOfLines] = useState(1);
+
+useEffect(() => {
+  
+  
+
+}, []);
+
 
  
 const handlePriceChange = (text) => {
@@ -92,11 +104,22 @@ if(Platform.OS === 'web'){
     input.addEventListener('change', (e) => {
       const file = e.target.files[0];
       const reader = new FileReader();
-      reader.onload = () => {
-        const decoded = window.atob(decodeURIComponent(reader.result));
-        const shortened = window.btoa(decoded);
-        console.log(shortened);
-        setSelectedImage({ uri: reader.result });
+      reader.onload = async () => {
+        const image = reader.result;
+        const uploadCloudinary = async (image) => {
+          const formData = new FormData();
+          formData.append("file", image);
+          formData.append("upload_preset", "vweauohf");
+          const response = await axios.post(
+              "https://api.cloudinary.com/v1_1/dxihhuhvk/image/upload",
+              formData
+          );
+          return response.data.secure_url;
+        };
+        
+        const imgUrl = await uploadCloudinary(image);
+        
+        setSelectedImage({ uri: imgUrl});
       };
       reader.readAsDataURL(file);
     });
@@ -149,11 +172,27 @@ const handlePress = () => {
 const scroll = useState(handlePress);
 const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
 
-const handleSubmit = () => {
-  // create post object 
+const handleSubmit = async () => {
+  
+  const storedUserId = await AuthService.getToken('userId').then((res) => {
+    return res;
+    });
+    if (storedUserId !== null) {
+    setAuthor(storedUserId);
+    }
 
+    const post = 
+    {
+      media: selectedImage.uri,
+      compensation: Price,
+      title: Title,
+      location: Location,
+      description: Description,
+      contact: Contact,
+      author: Author
+    }
 
-   PostService.createPost(Title, Price, Location, Description, Contact, selectedImage.uri);
+   PostService.createPost(post);
   
   navigation.navigate('Home | Misplaced', );
  if(!isMobile) {window.location.reload();}
