@@ -82,7 +82,6 @@ export class PostController {
         try {
             const post = await Post.findById(req.params.id)
                 .populate('author')
-                .populate('location')
                 .exec();
             if (!post) {
                 res.status(404).json({ message: 'Post not found' });
