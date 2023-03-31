@@ -23,7 +23,7 @@ const PostSchema = new mongoose.Schema({
         required: true,
     },
     compensation: {
-        type: Number,
+        type: String,
         required: true,
     },
     createdAt: {

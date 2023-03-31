@@ -1,9 +1,10 @@
 import React, {useRef,useEffect, useState} from 'react';
 import { StyleSheet, View, Image, Text , Dimensions, Platform, ImageBackground} from 'react-native';
 import {GOOGLE_MAPS_API_KEY} from "@env";
-import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
 import { BlurView } from 'expo-blur';
 import { PostService } from '../services/post.service';
+import { MediaService } from '../services/media.service';
 import Postcards, {id} from './PostCards';
 
 
@@ -149,19 +150,25 @@ const Picture = ({ image }) => {
 
   const bigScreen = Dimensions.get('window').width > 660;
 
-const PostPageContainer = () => {
+const PostPageContainer = ({postid}) => {
 
   const [post,setPost] = useState({});
-  const images = [ { id: 1, image: 'https://hmp.me/d29u', }, ];
+  const images = [ { id: 1, image: post.image, }, ];
   
   const fetchById = async () => {
     try {
-      const post = await PostService.getPostById(post._id).then((res) => {
+      const post = await PostService.getPostById(postid).then((res) => {
         console.log(res)
         return res.data;
       });
-      setPost(post);
-    } catch (error) {
+      const media = await MediaService.getMediaByPostId(postid).then((res) => {
+        //    console.log(res);
+                  return res.data[0].url;
+              });
+              post.image = media;
+        
+      setPost(post);}
+     catch (error) {
       console.log(error);
     }
   };

@@ -57,13 +57,15 @@ const fetchPosts = async () => {
       });
       // for each post, get the image url from media service
       for (let i = 0; i < posts.length; i++) {
-          const media = await MediaService.getMediaByPostId(posts[i]._id).then((res) => {
+      //  console.log(posts[i]);  
+        const media = await MediaService.getMediaByPostId(posts[i]._id).then((res) => {
+    //    console.log(res);
               return res.data[0].url;
           });
           posts[i].image = media;
       }
   
-      console.log(posts);
+    //  console.log(posts);
         setPosts(posts);
   } catch (error) {
       console.log(error);

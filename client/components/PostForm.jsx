@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
-import { ScrollView, KeyboardAvoidingView, ImageBackground, View, Image, Text, TouchableOpacity, StyleSheet, Button, FlatList, TextInput, Platform, Dimensions } from 'react-native';
+import React, {useState,useEffect} from 'react';
+import { ScrollView, KeyboardAvoidingView, ImageBackground, SafeAreaView, View, Image, Text, TouchableOpacity, StyleSheet, Button, FlatList, TextInput, Platform, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { BlurView } from 'expo-blur'; 
 import ImagePicker from 'react-native-image-picker';
-
+import { PostService } from '../services/post.service';
+import axios from 'axios';
+import { MediaService } from '../services/media.service';
+import { AuthService } from '../services/auth.service';
 
 const Postcard = ({ image, price, title, location, onPress, description, contact, }) => {
  
@@ -27,17 +30,20 @@ const PostForm = () => {
  
   const navigation = useNavigation();
 
-  const posts = [
+  const image = {
+    image: selectedImage ? selectedImage.uri : '',
+  }
+  const posts = [ 
     {
-      id: 1,
-      image: selectedImage ? selectedImage.uri : '',
-      price: Price,
+      media: selectedImage,
+      compensation: Price,
       title: Title,
       location: Location,
       description: Description,
-      contact: Contact
-    }
-  ];
+      contact: Contact,
+      author: Author
+    }];
+  
   
 
 const [selectedImage, setSelectedImage] = useState(false);
@@ -46,7 +52,15 @@ const [Title, setTitle] = useState('');
 const [Location, setLocation] = useState('');
 const [Description, setDescription] = useState('');
 const [Contact, setContact] = useState('');
+const [Author, setAuthor] = useState('');
 const [numberOfLines, setNumberOfLines] = useState(1);
+
+useEffect(() => {
+  
+  
+
+}, []);
+
 
  
 const handlePriceChange = (text) => {
@@ -82,57 +96,116 @@ if (width > containerWidth * 0.9) {
 };
 
 
-const handleImageUpload = () => {
-  if (Platform.OS === 'web') {
-    // Handle file upload for web
+const handleImageUpload = async () => {
+if(Platform.OS === 'web'){
     const input = document.createElement('input');
     input.setAttribute('type', 'file');
     input.setAttribute('accept', 'image/*');
     input.addEventListener('change', (e) => {
       const file = e.target.files[0];
       const reader = new FileReader();
-      reader.onload = () => {
-        setSelectedImage({ uri: reader.result });
+      reader.onload = async () => {
+        const image = reader.result;
+        const uploadCloudinary = async (image) => {
+          const formData = new FormData();
+          formData.append("file", image);
+          formData.append("upload_preset", "vweauohf");
+          const response = await axios.post(
+              "https://api.cloudinary.com/v1_1/dxihhuhvk/image/upload",
+              formData
+          );
+          return response.data.secure_url;
+        };
+        
+        const imgUrl = await uploadCloudinary(image);
+        
+        setSelectedImage({ uri: imgUrl});
       };
       reader.readAsDataURL(file);
     });
     input.click();
-  } else {
-  const options = {
-        title: 'Select Photo',
+  }
+    else{
+      const options = {
+        quality: 0.5,
         mediaType: 'photo',
         storageOptions: {
           skipBackup: true,
           path: 'images',
         },
       };
-      ImagePicker.launchImageLibrary(options, response => {
+      ImagePicker.launchImageLibrary(options, (response) => {
         if (response.didCancel) {
           console.log('User cancelled image picker');
         } else if (response.error) {
           console.log('ImagePicker Error: ', response.error);
         } else {
-          setSelectedImage({ uri: response.uri });
+          const path = response.uri;
+          const fileName = path.split('/').pop();
+          const extension = fileName.split('.').pop();
+          const newPath = `${RNFS.TemporaryDirectoryPath}${Date.now()}.${extension}`;
+          RNFS.copyFile(path, newPath)
+            .then(() => {
+              RNFS.readFile(newPath, 'base64')
+                .then((data) => {
+                  const uri = `data:image/${extension};base64,${data}`;
+                  console.log(uri);
+                })
+                .catch((err) => console.log(err));
+            })
+            .catch((err) => console.log(err));
         }
       });
-  }
-};
+    };
+    }
+  
 
 const handleImageDelete = () => {
   setSelectedImage(null);
 };
 
 
+const [isPressed, setIsPressed] = useState(false);
+const handlePress = () => {
+  setIsPressed(true);
+};
+const scroll = useState(handlePress);
+const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
+
+const handleSubmit = async () => {
+  
+  const storedUserId = await AuthService.getToken('userId').then((res) => {
+    return res;
+    });
+    if (storedUserId !== null) {
+    setAuthor(storedUserId);
+    }
+
+    const post = 
+    {
+      media: selectedImage.uri,
+      compensation: Price,
+      title: Title,
+      location: Location,
+      description: Description,
+      contact: Contact,
+      author: Author
+    }
+
+   PostService.createPost(post);
+  
+  navigation.navigate('Home | Misplaced', );
+ if(!isMobile) {window.location.reload();}
+}
 
 
   return (
    
-    <View style={ {backgroundColor: '#f2f2f2',}}>
-       <KeyboardAvoidingView behavior='position'>
-     
-        
-  
+    <SafeAreaView style={ {backgroundColor: '#f2f2f2',}}> 
+    <ScrollView>    
+  <KeyboardAvoidingView  >
 <TextInput
+  onPress={handlePress}
   style={styles.input}
   multiline={true}
   numberOfLines={numberOfLines}
@@ -143,6 +216,7 @@ const handleImageDelete = () => {
   scrollEnabled={false}
 />
 <TextInput
+  onPress={handlePress}
   style={styles.input}
   multiline={true}
   numberOfLines={numberOfLines}
@@ -157,6 +231,7 @@ const handleImageDelete = () => {
   scrollEnabled={false}
 />
 <TextInput
+  onPress={handlePress}
   style={styles.input}
   multiline={true}
   numberOfLines={numberOfLines}
@@ -167,6 +242,7 @@ const handleImageDelete = () => {
   scrollEnabled={false}
 />
 <TextInput
+  onPress={handlePress}
   style={styles.input}
   multiline={true}
   numberOfLines={numberOfLines}
@@ -177,6 +253,7 @@ const handleImageDelete = () => {
   scrollEnabled={false}
 />
 <TextInput
+  onPress={handlePress}
   style={styles.input}
   multiline={true}
   numberOfLines={numberOfLines}
@@ -186,8 +263,7 @@ const handleImageDelete = () => {
   onContentSizeChange={handleContentSizeChange}
   scrollEnabled={false}
 />
-<TouchableOpacity onPress={selectedImage ? handleImageDelete : handleImageUpload} style={{textAlign: 'center', fontSize: 12, borderWidth: 1, borderColor: 'black', paddingLeft: 2, paddingRight: 2, paddingBottom: 1, paddingTop: 10, marginBottom: 10, marginTop: 10, marginRight: '30%', marginLeft: '30%', borderRadius: 20,}}
->
+<TouchableOpacity onPress={selectedImage ? handleImageDelete : handleImageUpload} style={{textAlign: 'center', fontSize: 12, borderWidth: 1, borderColor: 'black', paddingLeft: 2, paddingRight: 2, paddingBottom: 1, paddingTop: 10, marginBottom: 10, marginTop: 10, marginRight: '30%', marginLeft: '30%', borderRadius: 20,}}>
     {selectedImage ? (
        <View style={styles.imageContainer}>
        <ImageBackground
@@ -222,19 +298,14 @@ const handleImageDelete = () => {
       <Text style={styles.texts}>Create Post</Text>
       </TouchableOpacity>
       </KeyboardAvoidingView>
-    </View>
+      </ScrollView>
+    </SafeAreaView>
    
    
   );
 };
 
 
-const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
-
-const handleSubmit = () => {
-  navigation.navigate('Home | Misplaced');
-  window.location.reload();
-}
 
 const styles = StyleSheet.create({
   container: {
