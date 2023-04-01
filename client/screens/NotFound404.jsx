@@ -9,7 +9,7 @@ const NotFound404 = () => {
     const navigation = useNavigation();
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{backgroundColor:'#FFFEFB'}}>
              <StatusBar barStyle="dark-content" />
             <ScrollView>   
                 <Header/>

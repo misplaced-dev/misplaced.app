@@ -21,7 +21,7 @@ import PostButton from "../components/PostButton.jsx";
     }, []);
   
     return (
-      <View >
+      <View style={{backgroundColor: '#FFFEFB',}}>
         <StatusBar barStyle="dark-content" />
       <ScrollView>
             <HomeHeader />
@@ -31,7 +31,7 @@ import PostButton from "../components/PostButton.jsx";
             <PostCards />
         </ScrollView>
         <PostButton />
-      </View>
+      </View >
     );
   };
   

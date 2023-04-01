@@ -180,7 +180,7 @@ const PostPageContainer = ({postid}) => {
 
  
   return (
-    <View style={ {backgroundColor: '#f2f2f2',}}>
+    <View style={ {backgroundColor: '#FFFEFB',}}>
      
    <View style={styles.container}>
     {images.map(image => (
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#FFFEFB',
     padding: 10,
     width: '100%',
   },
@@ -222,22 +222,22 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     top: 0,
     marginTop: 0,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#FFFEFB',
  },
   Post: {
     width: bigScreen ? 385 : 280,
     height: bigScreen ? 385 : 280,
     borderWidth: 1,
-    borderColor: '#f2f2f2',
+    borderColor: '#FFFEFB',
     borderRadius: 8,
     margin: bigScreen ? 70 : 20,
     marginTop: bigScreen ? 50 : 10,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#FFFEFB',
     overflow: 'hidden',
   },
   box: {
     flex: 1,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#FFFEFB',
     justifyContent: 'left',
     alignItems: 'left',
   },
@@ -247,7 +247,7 @@ const styles = StyleSheet.create({
     height: '100%',
     aspectRatio: 1,
     resizeMode: 'contain',
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#FFFEFB',
     zIndex: 2,
   },
   title: {

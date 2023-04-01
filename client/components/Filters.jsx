@@ -55,7 +55,7 @@ function Filters(props) {
     alignItems: 'center',
     paddingTop: 0,
     paddingBottom: 0,
-    backgroundColor: isPressed ? '#080001' : '#f2f2f2',
+    backgroundColor: isPressed ? '#080001' : '#FFFEFB',
     borderBottomWidth: 0,
     borderBottomColor: '#171717',
     borderLeftWidth: 1,
@@ -71,7 +71,7 @@ function Filters(props) {
     <View
       style={{
         position: 'absolute',
-        backgroundColor: '#f2f2f2',
+        backgroundColor: '#FFFEFB',
         height: showMenu ? 185 : 50,
         width:  '50%',
         top: isMobile ? 210 : 180,

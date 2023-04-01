@@ -107,12 +107,12 @@ const ProfileContainer = () => {
        
 
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center',  backgroundColor: '#f2f2f2',}}>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center',  backgroundColor: '#FFFEFB',}}>
        <Image source={require('../assets/profile.png') }style={{ alignSelf: 'center', width: 100, height: 100, marginTop: 30, }}/>
        <Text style={{textAlign: 'center', fontSize: 25, paddingTop: 15,}}>Welcome Back {name}!</Text>
         <Text style={{textAlign: 'center', fontSize: 20, color:'grey', padding: 10,}}>{username}</Text>
         
-        <TouchableOpacity onPress={handleLogout} style={{textAlign: 'center', fontSize: 20, padding: 10, borderWidth: 2, backgroundColor: '#f2f2f2',  marginTop: 20, borderColor: 'black', marginRight: 30, marginLeft: 30, borderRadius: 20, marginBottom: 30,}}>
+        <TouchableOpacity onPress={handleLogout} style={{textAlign: 'center', fontSize: 20, padding: 10, borderWidth: 2, backgroundColor: '#FFFEFB',  marginTop: 20, borderColor: 'black', marginRight: 30, marginLeft: 30, borderRadius: 20, marginBottom: 30,}}>
             <Text style={{textAlign: 'center', fontSize: 17, color: 'black'}}>Logout</Text>
         </TouchableOpacity>
 
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#FFFEFB',
     padding: 10,
     marginTop: 20,
   },
@@ -164,12 +164,12 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 8,
     margin: 10,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#FFFEFB',
     overflow: 'hidden',
   },
   imageContainer: {
     flex: 1,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#FFFEFB',
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,
