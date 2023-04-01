@@ -8,7 +8,7 @@ const Profile = () => {
     const navigation = useNavigation();
 
     return(
-        <View>
+        <View style={{backgroundColor:'#FFFEFB'}}>
              <StatusBar barStyle="dark-content" />
             <ScrollView>
                 <HomeHeader/>

@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: isMobile ? 95 : 70,
     paddingBottom: 120,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#FFFEFB',
   },
   image: {
     width: 330,

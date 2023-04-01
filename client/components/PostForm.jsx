@@ -12,12 +12,12 @@ const Postcard = ({ image, price, title, location, onPress, description, contact
  
   return (
     <View>
-     <TouchableOpacity style={styles.postcard} onPress={onPress} >
+     <View style={styles.postcard} onPress={onPress} >
   
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.price}>{price}</Text>
       <Text style={styles.location}>{location}</Text>
-    </TouchableOpacity>
+    </View>
     <View>
     <Text style={styles.texts}>Description: {description}</Text>
     <Text style={styles.texts}>Contact: {contact}</Text>
@@ -201,8 +201,8 @@ const handleSubmit = async () => {
 
   return (
    
-    <SafeAreaView style={ {backgroundColor: '#f2f2f2',}}> 
-    <ScrollView>    
+    <SafeAreaView style={ {backgroundColor: '#FFFEFB',}}> 
+    <ScrollView style={{backgroundColor:'#FFFEFB'}}>    
   <KeyboardAvoidingView  >
 <TextInput
   onPress={handlePress}
@@ -263,14 +263,28 @@ const handleSubmit = async () => {
   onContentSizeChange={handleContentSizeChange}
   scrollEnabled={false}
 />
-<TouchableOpacity onPress={selectedImage ? handleImageDelete : handleImageUpload} style={{textAlign: 'center', fontSize: 12, borderWidth: 1, borderColor: 'black', paddingLeft: 2, paddingRight: 2, paddingBottom: 1, paddingTop: 10, marginBottom: 10, marginTop: 10, marginRight: '30%', marginLeft: '30%', borderRadius: 20,}}>
+<View style={{alignItems: 'center', justifyContent: 'center'}}>
+<TouchableOpacity onPress={selectedImage ? handleImageDelete : handleImageUpload} style={{
+ alignItems: 'center',
+ width: selectedImage ? 300 : 120,
+ height: selectedImage ? 200 : 70,
+fontSize: 12, 
+borderWidth: 1, 
+borderColor: 'black', 
+ marginTop: 10, 
+alignContent: 'center',
+  justifyContent: 'center',
+ borderRadius: 20,
+ zIndex:0,
+ paddingTop: selectedImage ? 0 : 10,
+ overflow: 'hidden',}}>
     {selectedImage ? (
        <View style={styles.imageContainer}>
        <ImageBackground
        source={{ uri: selectedImage.uri }}
      
-       style={{ width: '100%', height: '100%' , zIndex: 0, justifyContent: 'center', alignItems: 'center'}}
-       imageStyle={{ resizeMode: 'cover' }}
+       style={{ width: '100%', height: '100%' , zIndex: 0, overflow: 'hidden', }}
+       imageStyle={{ resizeMode: 'cover', transform: [{ scale: 1.75 }] }}
      >
        <View style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
          <BlurView style={{ flex: 1 }} intensity={200} />
@@ -282,6 +296,7 @@ const handleSubmit = async () => {
       <Text style={styles.upload}>Upload Image</Text>
     )}
   </TouchableOpacity>
+  </View>
 
     <View style={styles.container}>
       {posts.map(post => (
@@ -314,7 +329,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#FFFEFB',
     padding: 10,
     marginTop: 0,
   },
@@ -325,13 +340,13 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 8,
     margin: 10,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#FFFEFB',
     overflow: 'auto',
   },
   imageContainer: {
     flex: 1,
-    backgroundColor: '#f2f2f2',
-    justifyContent: 'center',
+    backgroundColor: '#FFFEFB',
+    width: '130%',
     alignItems: 'center',
     borderBottomWidth: 1,
     borderColor: 'gray',
@@ -340,8 +355,11 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '100%',
-    aspectRatio: 1,
     resizeMode: 'contain',
+    aspectRatio: 1,
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
     objectFit: 'cover',
   objectPosition: 'center',
   zIndex: 2,
@@ -379,7 +397,7 @@ const styles = StyleSheet.create({
     color: '#000',
     marginBottom: 10,
     top: 0,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#FFFEFB',
   },
     upload: {
       fontSize: 15,
@@ -395,7 +413,7 @@ texttitle:{
     marginTop: 10,
     marginBottom: 10,
     top: 0,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#FFFEFB',
 },
 input:{
   textAlign: 'center', fontSize: 12, borderWidth: 1, borderColor: 'black', paddingLeft: 2, paddingRight: 2, paddingBottom: 10, paddingTop: 10, marginBottom: 10, marginTop: 5, marginRight: '15%', marginLeft: '15%', borderRadius: 20,
