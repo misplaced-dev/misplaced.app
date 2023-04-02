@@ -5,8 +5,8 @@ import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
 import { BlurView } from 'expo-blur';
 import { PostService } from '../services/post.service';
 import { MediaService } from '../services/media.service';
-import Postcards, {id} from './PostCards';
-
+import { UserService } from '../services/user.service';
+import moment from 'moment';
 
 const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
 
@@ -164,9 +164,20 @@ const PostPageContainer = ({postid}) => {
       const media = await MediaService.getMediaByPostId(postid).then((res) => {
         //    console.log(res);
                   return res.data[0].url;
-              });
-              post.image = media;
-        
+    });
+    // get contact info from user id
+    const user = await UserService.getUser(post.author._id).then((res) => {
+        console.log(res);
+        return res.data;
+        });
+        // assign contact info to post
+        post.contact = user.contactInfo;
+        post.image = media;
+
+        const timestamp = new Date(post.updatedAt);
+        const formattedTimestamp = moment(timestamp).format('MMMM Do YYYY, h:mm:ss a'); // format timestamp as readable string
+        const duration = moment(timestamp).fromNow(); // calculate duration since timestamp
+        post.time = duration;
       setPost(post);}
      catch (error) {
       console.log(error);
