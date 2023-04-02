@@ -1,5 +1,7 @@
-import { View, Text, TouchableOpacity, Image, StyleSheet, AppState } from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet, AppState, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { BlurView } from 'expo-blur'; 
+
 import React, { useEffect, useState } from "react";
 import { AuthService } from "../services/auth.service";
 import { UserService } from "../services/user.service";
@@ -9,8 +11,7 @@ import { MediaService } from "../services/media.service";
 
 
 
-const Postcard = ({ image, price, title, location, onPress }) => {
-  
+const Postcard = ({ image, price, title, location, onPress, }) => {
   return (
     <TouchableOpacity style={styles.postcard} onPress={onPress}>
       <View style={styles.imageContainer}>
@@ -67,23 +68,19 @@ const ProfileContainer = () => {
             });
             setName(user.data.name);
             setUsername(user.data.username);
-           const newProfilePic = await MediaService.getMediaByUserId(userId).then((res) => {
-                return res.data[0].url;
-            });
 
             const posts = await PostService.getPostsByUserId(userId).then(async (res) => {
-                res.data.forEach(async (post) => {
-                    const media = await MediaService.getMediaByPostId(post._id).then((res) => {
-                        return res.data[0].url;
-                    });
-                    post.media = media;
-                });
                 return res.data;
             });
-            console.log(posts);
+            for (let i = 0; i < posts.length; i++) {
+                const media = await MediaService.getMediaByPostId(posts[i]._id).then((res) => {
+                return res.data[0].url;
+            });
+            posts[i].media = media;
+        }
             setPosts(posts);
 
-        setProfilePic(newProfilePic);
+        // setProfilePic(newProfilePic);
         } catch (error) { 
             console.log(error);
         }
@@ -119,28 +116,16 @@ const ProfileContainer = () => {
         <Text style={{textAlign: 'center', fontSize: 30}}>Posts</Text>
 
         <View style={styles.container}>
-        {posted.map((post) => {
-            return (
-          <Postcard
-          key={post.id}
-          image={post.image}
-          price={post.price}
+        {posts.map(post => (
+        <Postcard
+          key={post._id}
+          image={post.media}
+          price={post.compensation}
           title={post.title}
-          location={post.location}
-          onPress={() => navigation.navigate('Post Page | Misplaced')}
-         />
-
-
-                // <View key={post._id}>
-                    
-                //     <Text>{post.title}</Text>
-                //     <Text>{post.description}</Text>
-                //     <Text>{post.media}</Text>
-                //     <Text>{post.compensation}</Text>
-                //     onPress={() => navigation.navigate('PostPage | Misplaced')}
-                //     </View>
-            );
-        })}
+            location={post.location}
+          onPress={() => navigation.navigate('Post Page | Misplaced',{ key: post._id })}
+        />
+      ))}
     </View>    
     </View>
   );
@@ -174,12 +159,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomWidth: 1,
     borderColor: 'gray',
+    overflow: 'hidden'
   },
   image: {
     width: '100%',
     height: '100%',
-    aspectRatio: 1,
     resizeMode: 'contain',
+    aspectRatio: 1,
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    objectFit: 'cover',
+  objectPosition: 'center',
+  zIndex: 2,
   },
   title: {
     margin: 8,

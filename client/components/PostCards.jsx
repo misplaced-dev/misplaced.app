@@ -4,7 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 import { BlurView } from 'expo-blur'; 
 import { PostService } from '../services/post.service';
 import { MediaService } from '../services/media.service';
-import {HERE_API_KEY} from "@env"
 import axios from 'axios';
 
 const Postcard = ({ image, price, title, location, onPress,  }) => {

@@ -40,8 +40,7 @@ const PostForm = () => {
       title: Title,
       location: Location,
       description: Description,
-      contact: Contact,
-      author: Author
+      contact: Contact
     }];
   
   
@@ -52,9 +51,8 @@ const [Title, setTitle] = useState('');
 const [Location, setLocation] = useState('');
 const [Description, setDescription] = useState('');
 const [Contact, setContact] = useState('');
-const [Author, setAuthor] = useState('');
 const [numberOfLines, setNumberOfLines] = useState(1);
-
+const [ error, setError ] = useState('');
 useEffect(() => {
   
   
@@ -173,26 +171,37 @@ const scroll = useState(handlePress);
 const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
 
 const handleSubmit = async () => {
-  
+
+    if (Price === '' || Title === '' || Location === '' || Description === '' || Contact === '') {
+        setError('Please fill out all fields');
+        return;
+    }
   const storedUserId = await AuthService.getToken('userId').then((res) => {
     return res;
     });
-    if (storedUserId !== null) {
-    setAuthor(storedUserId);
+    if (storedUserId === null) {
+        setError('Please login to post');
+        return;
+    }
+    try {
+        const post = 
+        {
+          media: selectedImage.uri,
+          compensation: Price,
+          title: Title,
+          location: Location,
+          description: Description,
+          contactInfo: Contact,
+          author: storedUserId
+        }
+        console.log(post)
+       PostService.createPost(post).then((res) => {
+        console.log(res);
+       });
+    } catch (error) {
+        setError(error.message)
     }
 
-    const post = 
-    {
-      media: selectedImage.uri,
-      compensation: Price,
-      title: Title,
-      location: Location,
-      description: Description,
-      contact: Contact,
-      author: Author
-    }
-
-   PostService.createPost(post);
   
   navigation.navigate('Home | Misplaced', );
  if(!isMobile) {window.location.reload();}
@@ -312,6 +321,7 @@ alignContent: 'center',
     <TouchableOpacity onPress = {handleSubmit} style={{textAlign: 'center', fontSize: 17, borderWidth: 2, borderColor: '#ffbd03', paddingLeft: 2, paddingRight: 2, paddingBottom: 1, paddingTop: 11, marginBottom: 40, marginTop: 10, marginRight: '30%', marginLeft: '30%', borderRadius: 20,}}>
       <Text style={styles.texts}>Create Post</Text>
       </TouchableOpacity>
+      <Text>{error}</Text>
       </KeyboardAvoidingView>
       </ScrollView>
     </SafeAreaView>
