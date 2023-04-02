@@ -20,15 +20,14 @@ export class PostController {
                 res.status(400).json({ message: 'Contact info is required' });
                 return;
             }
-            User.updateOne({ _id: req.body.author }, { $set: { contactInfo: contactInfo } }, (err, user) => {
-                if (err) {
-                    res.status(500).json({ message: err.message });
-                    return;
-                } else if (!user) {
-                    res.status(404).json({ message: 'User not found' });
-                    return;
-                }
-            });
+            const updatedUser = await  User.findOne({ _id: req.body.author });
+            updatedUser.contactInfo = contactInfo;
+            const result = await updatedUser.save();
+            if (!updatedUser) {
+                res.status(400).json({ message: 'User not found' });
+                return;
+            }
+            
             const post = new Post({
                 title: req.body.title,
                 description: req.body.description,
@@ -40,11 +39,22 @@ export class PostController {
             post.save()
                 .then((post) => {
                     const mediaList = req.body.media;
-                    mediaList.forEach((media) => {
-                        media.post = post._id;
-                    });
-                    Media.insertMany(mediaList);
-                    res.status(201).json(post);
+                    if (typeof mediaList === 'string') {
+                        const media = new Media({
+                            url: mediaList,
+                            post: post._id
+                        });
+                        media.save();
+                        res.status(201).json(post);
+                        return;
+                    }
+
+                    // ----------------- This is for future use -----------------
+                    // mediaList.forEach((media) => {
+                    //     media.post = post._id;
+                    // });
+                    // Media.insertMany(mediaList);
+                    // res.status(201).json(post);
                 })
                 .catch((err) => {
                     res.status(400).json({ message: err.message });
@@ -122,7 +132,6 @@ export class PostController {
         try {
             const posts = await Post.find({ author: req.params.id })
                 .populate('author')
-                .populate('location')
                 .exec();
             if (!posts) {
                 res.status(404).json({ message: 'Posts not found' });
