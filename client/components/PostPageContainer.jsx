@@ -62,63 +62,78 @@ const Post = ({ price, title, location, description, contact, time, id}) => {
           heading: 90,}}
           
       >
-    <Marker coordinate={{latitude: 39.3939, longitude: -76.6095,  }} image={require('../assets/TU.png')}calloutVisible={true}  >
-      <Callout>
-        <Text>Towson Univeristy</Text>
-      </Callout>
-    </Marker>
-
-    <Marker coordinate={{latitude: 39.39384068536044, longitude: -76.6180108724627,  }} calloutVisible={true}  >
+       <Marker coordinate={{latitude: 39.394006363770224,  longitude: -76.61792552291213,  }}   >
       <Callout>
         <Text>West Vilage Commons</Text>
       </Callout>
     </Marker>
     
-    <Marker coordinate={{latitude: 39.39227482925432, longitude:  -76.60999425402817,  }} calloutVisible={true}  >
+    <Marker coordinate={{latitude: 39.39227482925432, longitude:  -76.60999425402817,  }}   >
       <Callout>
         <Text>Glen Complex</Text>
       </Callout>
     </Marker>
-    <Marker coordinate={{latitude: 39.3939, longitude: -76.6095,  }} calloutVisible={true}  >
+    <Marker coordinate={{latitude: 39.39500482273198,  longitude: -76.6091585180939,  }}   >
       <Callout>
-        <Text>Newell/TowsonTown</Text>
+        <Text>Liberal Arts</Text>
       </Callout>
     </Marker>
-    <Marker coordinate={{latitude: 39.39417207241408, longitude: -76.60577376207497,  }} calloutVisible={true}  >
+    <Marker coordinate={{latitude: 39.39417207241408, longitude: -76.60577376207497,  }}   >
       <Callout>
-        <Text></Text>
+        <Text>Newell Hall</Text>
       </Callout>
     </Marker>
-    <Marker coordinate={{latitude: 39.393523281066486 , longitude: -76.61111404007521,  }} calloutVisible={true}  >
+    <Marker coordinate={{latitude: 39.393523281066486 , longitude: -76.61111404007521,  }}   >
       <Callout>
         <Text>University Union</Text>
       </Callout>
     </Marker>
-    <Marker coordinate={{latitude: 39.39514136913082, longitude: -76.61242323031405,  }} calloutVisible={true}  >
+    <Marker coordinate={{latitude: 39.39514136913082, longitude: -76.61242323031405,  }}   >
       <Callout>
         <Text>Burdick Hall</Text>
       </Callout>
     </Marker>
-    <Marker coordinate={{latitude: 39.393563888113746 , longitude: -76.60648121999584,  }} calloutVisible={true}  >
+    <Marker coordinate={{latitude: 39.393563888113746 , longitude: -76.60648121999584,  }}   >
       <Callout>
         <Text>Cook Library</Text>
       </Callout>
     </Marker>
-    <Marker coordinate={{latitude: 39.394086919969965, longitude: -76.60876187241544,  }} calloutVisible={true}  >
+    <Marker coordinate={{latitude: 39.394086919969965, longitude: -76.60876187241544,  }}   >
       <Callout>
         <Text>Freedom Square</Text>
       </Callout>
     </Marker>
-    <Marker coordinate={{latitude: 39.390954317600546, longitude: -76.60589526146042,  }} calloutVisible={true}  >
+    <Marker coordinate={{latitude: 39.390954317600546, longitude: -76.60589526146042,  }}   >
       <Callout>
         <Text>Math And Science Complex</Text>
       </Callout>
     </Marker>
-    <Marker coordinate={{latitude: 39.39505854227851, longitude: -76.60425911396142,  }} calloutVisible={true}  >
+    <Marker coordinate={{latitude: 39.39505854227851, longitude: -76.60425911396142,  }}   >
       <Callout>
         <Text>Scarborough and Prettyman Hall</Text>
       </Callout>
     </Marker>
+    <Marker coordinate={{latitude: 39.392615167340715, longitude: -76.60652985200736 ,  }}   >
+      <Callout>
+        <Text>Stephens and Van Bokklen Hall</Text>
+      </Callout>
+    </Marker>
+    <Marker coordinate={{latitude: 39.39619114786663,  longitude: -76.60761304216905,  }}   >
+      <Callout>
+        <Text>Residence Tower</Text>
+      </Callout>
+    </Marker>
+    <Marker coordinate={{latitude: 39.39171187928499,  longitude: -76.61254068133128,  }}   >
+      <Callout>
+        <Text>Center for Arts</Text>
+      </Callout>
+    </Marker>
+    <Marker coordinate={{latitude: 39.39388310687501,   longitude: -76.6160284729678  }}   >
+      <Callout>
+        <Text>Millennium Hall</Text>
+      </Callout>
+    </Marker>
+</MapView>
 </MapView>
       )}
 
