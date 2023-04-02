@@ -134,10 +134,9 @@ const Post = ({ price, title, location, description, contact, time, id}) => {
       </Callout>
     </Marker>
 </MapView>
-</MapView>
       )}
 
-      </View   >
+      </View>
   );
 };
  
