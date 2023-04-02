@@ -210,8 +210,8 @@ const handleSubmit = async () => {
 
   return (
    
-    <SafeAreaView style={ {backgroundColor: '#FFFEFB',}}> 
-    <ScrollView style={{backgroundColor:'#FFFEFB'}}>    
+    <View style={ {height: 750, backgroundColor: '#f2f2f2',}}> 
+    <ScrollView style={{backgroundColor:'#f2f2f2'}}>    
   <KeyboardAvoidingView  >
 <TextInput
   onPress={handlePress}
@@ -324,7 +324,7 @@ alignContent: 'center',
       <Text>{error}</Text>
       </KeyboardAvoidingView>
       </ScrollView>
-    </SafeAreaView>
+    </View>
    
    
   );
@@ -339,7 +339,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFFEFB',
+    backgroundColor: '#f2f2f2',
     padding: 10,
     marginTop: 0,
   },
@@ -350,12 +350,12 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 8,
     margin: 10,
-    backgroundColor: '#FFFEFB',
+    backgroundColor: '#f2f2f2',
     overflow: 'auto',
   },
   imageContainer: {
     flex: 1,
-    backgroundColor: '#FFFEFB',
+    backgroundColor: '#f2f2f2',
     width: '130%',
     alignItems: 'center',
     borderBottomWidth: 1,
@@ -407,7 +407,7 @@ const styles = StyleSheet.create({
     color: '#000',
     marginBottom: 10,
     top: 0,
-    backgroundColor: '#FFFEFB',
+    backgroundColor: '#f2f2f2',
   },
     upload: {
       fontSize: 15,
@@ -423,7 +423,7 @@ texttitle:{
     marginTop: 10,
     marginBottom: 10,
     top: 0,
-    backgroundColor: '#FFFEFB',
+    backgroundColor: '#f2f2f2',
 },
 input:{
   textAlign: 'center', fontSize: 12, borderWidth: 1, borderColor: 'black', paddingLeft: 2, paddingRight: 2, paddingBottom: 10, paddingTop: 10, marginBottom: 10, marginTop: 5, marginRight: '15%', marginLeft: '15%', borderRadius: 20,

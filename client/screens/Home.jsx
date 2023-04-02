@@ -21,7 +21,7 @@ import PostButton from "../components/PostButton.jsx";
     }, []);
   
     return (
-      <View style={{backgroundColor: '#FFFEFB',}}>
+      <View style={{backgroundColor: '#f2f2f2',}}>
         <StatusBar barStyle="dark-content" />
       <ScrollView>
             <HomeHeader />

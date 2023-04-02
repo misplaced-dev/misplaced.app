@@ -1,8 +1,8 @@
-import { SafeAreaView ,  ScrollView, StatusBar} from "react-native";
+import { View ,  ScrollView, StatusBar} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import PostPageContainer from "../components/PostPageContainer";
-import Header from "../components/Header";
+import HomeHeader from "../components/HomeHeader";
 
 
 
@@ -14,13 +14,13 @@ const PostPage = ({route}) => {
     const navigation = useNavigation();
 
     return (
-        <SafeAreaView style={{backgroundColor:'#FFFEFB'}}>
+        <View style={{backgroundColor:'#f2f2f2'}}>
              <StatusBar barStyle="dark-content" />
             <ScrollView keyboardDismissMode = 'interactive'>   
-                <Header/>
+                <HomeHeader/>
                 <PostPageContainer postid={route.params.key}/>
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
     }
 
