@@ -115,15 +115,15 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     margin: 5,
     backgroundColor: '#f2f2f2',
-    overflow: 'auto',
+    overflow: 'hidden',
   },
   imageContainer: {
     flex: 1,
     backgroundColor: '#f2f2f2',
     justifyContent: 'center',
     alignItems: 'center',
-    borderBottomWidth: 1,
-    borderColor: 'gray',
+    borderBottomWidth: 0,
+    borderColor: 'black',
     overflow: 'hidden',
   },
   image: {

@@ -210,7 +210,7 @@ const handleSubmit = async () => {
 
   return (
    
-    <View style={ {height: 750, backgroundColor: '#f2f2f2',}}> 
+    <View style={ { backgroundColor: '#f2f2f2',}}> 
     <ScrollView style={{backgroundColor:'#f2f2f2'}}>    
   <KeyboardAvoidingView  >
 <TextInput
