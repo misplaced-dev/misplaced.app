@@ -44,30 +44,24 @@ const navigation = useNavigation();
 useEffect(() => {
   setLoading(true);
   fetchPosts();
-  setLoading(false);
+
 }, []);
   
 const fetchPosts = async () => {
   try {
       // get all posts
-      const posts = await PostService.getPostsInDistance(2000).then((res) => {
-        console.log(res)
-          return res.data;
-      });
+      const posts = await PostService.getPostsInDistance(2000);
       // for each post, get the image url from media service
       for (let i = 0; i < posts.length; i++) {
       //  console.log(posts[i]);  
-        const media = await MediaService.getMediaByPostId(posts[i]._id).then((res) => {
-    //    console.log(res);
-              return res.data[0].url;
-          });
+        const media = await MediaService.getMediaByPostId(posts[i]._id)
           posts[i].image = media;
       }
-  
-    //  console.log(posts);
         setPosts(posts);
+        setLoading(false);
   } catch (error) {
       console.log(error);
+      setLoading(false);
   }
 };
 
@@ -76,7 +70,7 @@ const fetchPosts = async () => {
     <View >
     {loading ? (
       <View>
-       <Image source={require('../assets/buffer.gif')} style={{ width: 280, height: 51 }} />
+       <Image source={require('../assets/buffer.gif')} style={{ bottom:'50%', left:'50%', width: 80, height: 80 }} />
       </View>
     ) : (
     <View style={styles.container}>
