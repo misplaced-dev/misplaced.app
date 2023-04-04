@@ -2,11 +2,11 @@ import React, {useState,useEffect} from 'react';
 import { ScrollView, KeyboardAvoidingView, ImageBackground, SafeAreaView, View, Image, Text, TouchableOpacity, StyleSheet, Button, FlatList, TextInput, Platform, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { BlurView } from 'expo-blur'; 
-import ImagePicker from 'react-native-image-picker';
 import { PostService } from '../services/post.service';
 import axios from 'axios';
 import { MediaService } from '../services/media.service';
 import { AuthService } from '../services/auth.service';
+import * as ImagePicker from 'expo-image-picker';
 
 const Postcard = ({ image, price, title, location, onPress, description, contact, }) => {
  
@@ -124,36 +124,42 @@ if(Platform.OS === 'web'){
     input.click();
   }
     else{
-      const options = {
-        quality: 0.5,
-        mediaType: 'photo',
-        storageOptions: {
-          skipBackup: true,
-          path: 'images',
-        },
-      };
-      ImagePicker.launchImageLibrary(options, (response) => {
-        if (response.didCancel) {
-          console.log('User cancelled image picker');
-        } else if (response.error) {
-          console.log('ImagePicker Error: ', response.error);
-        } else {
-          const path = response.uri;
-          const fileName = path.split('/').pop();
-          const extension = fileName.split('.').pop();
-          const newPath = `${RNFS.TemporaryDirectoryPath}${Date.now()}.${extension}`;
-          RNFS.copyFile(path, newPath)
-            .then(() => {
-              RNFS.readFile(newPath, 'base64')
-                .then((data) => {
-                  const uri = `data:image/${extension};base64,${data}`;
-                  console.log(uri);
-                })
-                .catch((err) => console.log(err));
-            })
-            .catch((err) => console.log(err));
-        }
+    
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!');
+        return;
+      }
+  
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 1,
       });
+  
+      if (!result.cancelled) {
+        const image = result.uri;
+        const uploadCloudinary = async (image) => {
+          const formData = new FormData();
+          formData.append("file", {
+            uri: image,
+            type: 'image/jpeg',
+            name: 'image.jpg'
+          });
+          formData.append("upload_preset", "vweauohf");
+          const response = await axios.post(
+            "https://api.cloudinary.com/v1_1/dxihhuhvk/image/upload",
+            formData
+          );
+          return response.data.secure_url;
+        };
+        
+        const imgUrl = await uploadCloudinary(image);
+        
+        setSelectedImage({ uri: imgUrl });
+      }
+
     };
     }
   

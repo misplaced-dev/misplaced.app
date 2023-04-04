@@ -44,18 +44,21 @@ const navigation = useNavigation();
 useEffect(() => {
   setLoading(true);
   fetchPosts();
-
+  
 }, []);
   
 const fetchPosts = async () => {
   try {
-      // get all posts
-      const posts = await PostService.getPostsInDistance(2000);
-      // for each post, get the image url from media service
+    const posts = await PostService.getPostsInDistance(2000).then((res) => {
+      console.log(res)
+        return res.data;
+    });
       for (let i = 0; i < posts.length; i++) {
-      //  console.log(posts[i]);  
-        const media = await MediaService.getMediaByPostId(posts[i]._id)
-          posts[i].image = media;
+        const media = await MediaService.getMediaByPostId(posts[i]._id).then((res) => {
+              console.log(res);
+                    return res.data[0].url;
+                });
+                posts[i].image = media;
       }
         setPosts(posts);
         setLoading(false);
@@ -70,10 +73,10 @@ const fetchPosts = async () => {
     <View >
     {loading ? (
       <View>
-       <Image source={require('../assets/buffer.gif')} style={{ bottom:'50%', left:'50%', width: 80, height: 80 }} />
+       <Image source={require('../assets/buffer.gif')} style={{ alignSelf:'center', marginTop: '40%', width: 280, height: 280 }} />
       </View>
     ) : (
-    <View style={styles.container}>
+      <View style={styles.container}>
       {posts.map(post => (
         <Postcard
           key={post._id}
