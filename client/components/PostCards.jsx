@@ -44,30 +44,27 @@ const navigation = useNavigation();
 useEffect(() => {
   setLoading(true);
   fetchPosts();
-  setLoading(false);
+  
 }, []);
   
 const fetchPosts = async () => {
   try {
-      // get all posts
-      const posts = await PostService.getPostsInDistance(2000).then((res) => {
-        console.log(res)
-          return res.data;
-      });
-      // for each post, get the image url from media service
+    const posts = await PostService.getPostsInDistance(2000).then((res) => {
+      console.log(res)
+        return res.data;
+    });
       for (let i = 0; i < posts.length; i++) {
-      //  console.log(posts[i]);  
         const media = await MediaService.getMediaByPostId(posts[i]._id).then((res) => {
-    //    console.log(res);
-              return res.data[0].url;
-          });
-          posts[i].image = media;
+              console.log(res);
+                    return res.data[0].url;
+                });
+                posts[i].image = media;
       }
-  
-    //  console.log(posts);
         setPosts(posts);
+        setLoading(false);
   } catch (error) {
       console.log(error);
+      setLoading(false);
   }
 };
 
@@ -76,10 +73,10 @@ const fetchPosts = async () => {
     <View >
     {loading ? (
       <View>
-       <Image source={require('../assets/buffer.gif')} style={{ width: 280, height: 51 }} />
+       <Image source={require('../assets/buffer.gif')} style={{ alignSelf:'center', marginTop: '40%', width: 280, height: 280 }} />
       </View>
     ) : (
-    <View style={styles.container}>
+      <View style={styles.container}>
       {posts.map(post => (
         <Postcard
           key={post._id}
@@ -103,7 +100,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFFEFB',
+    backgroundColor: '#f2f2f2',
     padding: 10,
     marginTop: 100,
   },
@@ -114,16 +111,16 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 8,
     margin: 5,
-    backgroundColor: '#FFFEFB',
-    overflow: 'auto',
+    backgroundColor: '#f2f2f2',
+    overflow: 'hidden',
   },
   imageContainer: {
     flex: 1,
-    backgroundColor: '#FFFEFB',
+    backgroundColor: '#f2f2f2',
     justifyContent: 'center',
     alignItems: 'center',
-    borderBottomWidth: 1,
-    borderColor: 'gray',
+    borderBottomWidth: 0,
+    borderColor: 'black',
     overflow: 'hidden',
   },
   image: {

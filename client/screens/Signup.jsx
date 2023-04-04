@@ -8,7 +8,7 @@ const Signup = () => {
     const navigation = useNavigation();
 
     return(
-        <SafeAreaView style={{backgroundColor:'#FFFEFB'}}>
+        <SafeAreaView style={{backgroundColor: '#f2f2f2',}}>
              <StatusBar barStyle="dark-content" />
             <ScrollView keyboardDismissMode = 'interactive'>
                 <Header/>

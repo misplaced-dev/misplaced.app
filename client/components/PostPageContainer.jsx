@@ -134,6 +134,7 @@ const Post = ({ price, title, location, description, contact, time, id}) => {
       </Callout>
     </Marker>
 </MapView>
+
       )}
 
       </View>
@@ -205,7 +206,7 @@ const PostPageContainer = ({postid}) => {
 
  
   return (
-    <View style={ {backgroundColor: '#FFFEFB',}}>
+    <View style={ {backgroundColor: '#f2f2f2',}}>
      
    <View style={styles.container}>
     {images.map(image => (
@@ -235,7 +236,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFFEFB',
+    backgroundColor: '#f2f2f2',
     padding: 10,
     width: '100%',
   },
@@ -247,22 +248,22 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     top: 0,
     marginTop: 0,
-    backgroundColor: '#FFFEFB',
+    backgroundColor: '#f2f2f2',
  },
   Post: {
     width: bigScreen ? 385 : 280,
     height: bigScreen ? 385 : 280,
     borderWidth: 1,
-    borderColor: '#FFFEFB',
+    borderColor: '#f2f2f2',
     borderRadius: 8,
     margin: bigScreen ? 70 : 20,
     marginTop: bigScreen ? 50 : 10,
-    backgroundColor: '#FFFEFB',
+    backgroundColor: '#f2f2f2',
     overflow: 'hidden',
   },
   box: {
     flex: 1,
-    backgroundColor: '#FFFEFB',
+    backgroundColor: '#f2f2f2',
     justifyContent: 'left',
     alignItems: 'left',
   },
@@ -272,7 +273,7 @@ const styles = StyleSheet.create({
     height: '100%',
     aspectRatio: 1,
     resizeMode: 'contain',
-    backgroundColor: '#FFFEFB',
+    backgroundColor: '#f2f2f2',
     zIndex: 2,
   },
   title: {

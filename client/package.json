@@ -18,6 +18,7 @@
     "expo": "~46.0.16",
     "expo-blur": "^12.2.2",
     "expo-doctor": "^1.0.2",
+    "expo-image-picker": "^14.1.1",
     "expo-updates": "~0.14.6",
     "moment": "^2.29.4",
     "native": "^0.3.3",
@@ -29,7 +30,6 @@
     "react-native-document-picker": "^8.2.0",
     "react-native-dotenv": "^3.4.8",
     "react-native-fs": "^2.20.0",
-    "react-native-image-picker": "^5.3.1",
     "react-native-maps": "^0.31.1",
     "react-native-web": "^0.18.12"
   },

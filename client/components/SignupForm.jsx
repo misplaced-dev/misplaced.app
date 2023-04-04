@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, Text, TextInput, TouchableOpacity, AppState } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {AuthService} from '../services/auth.service';
+
 
 const SignUpForm = () => {
     const [name, setName] = useState('');
@@ -61,8 +62,8 @@ const SignUpForm = () => {
 
     
     return (
-      <ScrollView>
-        <Text style={{textAlign: 'center', fontSize: 17, marginTop: 70,}}>Name</Text>
+      <View>
+        <Text style={{textAlign: 'center', fontSize: 17, marginTop: 30,}}>Name</Text>
         <TextInput
           value={name}
           onChangeText={setName}
@@ -92,14 +93,14 @@ const SignUpForm = () => {
 
         />
         <Text style={{textAlign: 'center', fontSize: 17, color: 'red'}}>{error}</Text>
-        <TouchableOpacity onPress={handleSubmit} style={{backgroundColor: '#FFFEFB', padding: 10, paddingBottom: 12, borderWidth: 2, borderColor: '#ffbd03',  marginTop: 15, marginRight: '20%', marginLeft: '20%', borderRadius: 20, marginBottom: 10,}}>
+        <TouchableOpacity onPress={handleSubmit} style={{backgroundColor: '#f2f2f2', padding: 10, paddingBottom: 12, borderWidth: 2, borderColor: '#ffbd03',  marginTop: 15, marginRight: '20%', marginLeft: '20%', borderRadius: 20, marginBottom: 10,}}>
         <Text style={{textAlign: 'center', fontSize: 20, color: 'black'}}>Signup</Text>
         </TouchableOpacity>
         <Text style={{textAlign: 'center', fontSize: 17, fontStyle: 'italic', marginTop: 10}}>Already have an account?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Login | Misplaced')} style={{backgroundColor: '#FFFEFB', paddingTop: 8, paddingBottom: 9, paddingLeft: 8, paddingRight: 8, borderWidth: 2, borderColor: '#ffbd03',  marginTop: 15, marginRight: 99, marginLeft: 99, borderRadius: 20, marginBottom: 10, width: 100, alignItems: 'center', alignContent:'center', alignSelf:'center',}}>
+        <TouchableOpacity onPress={() => navigation.navigate('Login | Misplaced')} style={{backgroundColor: '#f2f2f2', paddingTop: 8, paddingBottom: 9, paddingLeft: 8, paddingRight: 8, borderWidth: 2, borderColor: '#ffbd03',  marginTop: 15, marginRight: 99, marginLeft: 99, borderRadius: 20, marginBottom: 10, width: 100, alignItems: 'center', alignContent:'center', alignSelf:'center',}}>
         <Text style={{textAlign: 'center', fontSize: 17, color: 'black'}}>Login</Text>
         </TouchableOpacity>
-        </ScrollView>
+        </View>
     );
 };
 

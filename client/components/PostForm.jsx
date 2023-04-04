@@ -2,11 +2,11 @@ import React, {useState,useEffect} from 'react';
 import { ScrollView, KeyboardAvoidingView, ImageBackground, SafeAreaView, View, Image, Text, TouchableOpacity, StyleSheet, Button, FlatList, TextInput, Platform, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { BlurView } from 'expo-blur'; 
-import ImagePicker from 'react-native-image-picker';
 import { PostService } from '../services/post.service';
 import axios from 'axios';
 import { MediaService } from '../services/media.service';
 import { AuthService } from '../services/auth.service';
+import * as ImagePicker from 'expo-image-picker';
 
 const Postcard = ({ image, price, title, location, onPress, description, contact, }) => {
  
@@ -124,36 +124,42 @@ if(Platform.OS === 'web'){
     input.click();
   }
     else{
-      const options = {
-        quality: 0.5,
-        mediaType: 'photo',
-        storageOptions: {
-          skipBackup: true,
-          path: 'images',
-        },
-      };
-      ImagePicker.launchImageLibrary(options, (response) => {
-        if (response.didCancel) {
-          console.log('User cancelled image picker');
-        } else if (response.error) {
-          console.log('ImagePicker Error: ', response.error);
-        } else {
-          const path = response.uri;
-          const fileName = path.split('/').pop();
-          const extension = fileName.split('.').pop();
-          const newPath = `${RNFS.TemporaryDirectoryPath}${Date.now()}.${extension}`;
-          RNFS.copyFile(path, newPath)
-            .then(() => {
-              RNFS.readFile(newPath, 'base64')
-                .then((data) => {
-                  const uri = `data:image/${extension};base64,${data}`;
-                  console.log(uri);
-                })
-                .catch((err) => console.log(err));
-            })
-            .catch((err) => console.log(err));
-        }
+    
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!');
+        return;
+      }
+  
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 1,
       });
+  
+      if (!result.cancelled) {
+        const image = result.uri;
+        const uploadCloudinary = async (image) => {
+          const formData = new FormData();
+          formData.append("file", {
+            uri: image,
+            type: 'image/jpeg',
+            name: 'image.jpg'
+          });
+          formData.append("upload_preset", "vweauohf");
+          const response = await axios.post(
+            "https://api.cloudinary.com/v1_1/dxihhuhvk/image/upload",
+            formData
+          );
+          return response.data.secure_url;
+        };
+        
+        const imgUrl = await uploadCloudinary(image);
+        
+        setSelectedImage({ uri: imgUrl });
+      }
+
     };
     }
   
@@ -210,8 +216,8 @@ const handleSubmit = async () => {
 
   return (
    
-    <SafeAreaView style={ {backgroundColor: '#FFFEFB',}}> 
-    <ScrollView style={{backgroundColor:'#FFFEFB'}}>    
+    <View style={ { backgroundColor: '#f2f2f2',}}> 
+    <ScrollView style={{backgroundColor:'#f2f2f2'}}>    
   <KeyboardAvoidingView  >
 <TextInput
   onPress={handlePress}
@@ -324,7 +330,7 @@ alignContent: 'center',
       <Text>{error}</Text>
       </KeyboardAvoidingView>
       </ScrollView>
-    </SafeAreaView>
+    </View>
    
    
   );
@@ -339,7 +345,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFFEFB',
+    backgroundColor: '#f2f2f2',
     padding: 10,
     marginTop: 0,
   },
@@ -350,12 +356,12 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 8,
     margin: 10,
-    backgroundColor: '#FFFEFB',
+    backgroundColor: '#f2f2f2',
     overflow: 'auto',
   },
   imageContainer: {
     flex: 1,
-    backgroundColor: '#FFFEFB',
+    backgroundColor: '#f2f2f2',
     width: '130%',
     alignItems: 'center',
     borderBottomWidth: 1,
@@ -407,7 +413,7 @@ const styles = StyleSheet.create({
     color: '#000',
     marginBottom: 10,
     top: 0,
-    backgroundColor: '#FFFEFB',
+    backgroundColor: '#f2f2f2',
   },
     upload: {
       fontSize: 15,
@@ -423,7 +429,7 @@ texttitle:{
     marginTop: 10,
     marginBottom: 10,
     top: 0,
-    backgroundColor: '#FFFEFB',
+    backgroundColor: '#f2f2f2',
 },
 input:{
   textAlign: 'center', fontSize: 12, borderWidth: 1, borderColor: 'black', paddingLeft: 2, paddingRight: 2, paddingBottom: 10, paddingTop: 10, marginBottom: 10, marginTop: 5, marginRight: '15%', marginLeft: '15%', borderRadius: 20,
