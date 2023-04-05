@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Dimensions} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {AuthService} from '../services/auth.service';
 
@@ -60,6 +60,8 @@ const SignUpForm = () => {
         }).catch((err) => {console.log(error); setError('Error: Try different username or email')});
     };
 
+    const bigScreen = Dimensions.get('window').width > 660;
+
     
     return (
       <View>
@@ -67,21 +69,47 @@ const SignUpForm = () => {
         <TextInput
           value={name}
           onChangeText={setName}
-          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 10, marginRight: '10%', marginLeft: '10%', borderRadius: 20,}}
+          style={{textAlign: 'center', 
+          fontSize: 17, 
+          borderWidth: 1, 
+          borderColor: 'black', 
+          padding: 10, 
+          marginBottom: 10, 
+          marginTop: 10, 
+          marginRight: bigScreen ? '25%' : '10%', 
+          marginLeft: bigScreen ? '25%' : '10%', 
+          borderRadius: 10,}}
 
         />
         <Text style={{textAlign: 'center', fontSize: 17}}>Email</Text>
         <TextInput
           value={email}
           onChangeText={setEmail}
-          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 10, marginRight: '10%', marginLeft: '10%', borderRadius: 20,}}
+          style={{textAlign: 'center', 
+          fontSize: 17, 
+          borderWidth: 1, 
+          borderColor: 'black', 
+          padding: 10, 
+          marginBottom: 10, 
+          marginTop: 10, 
+          marginRight: bigScreen ? '25%' : '10%', 
+          marginLeft: bigScreen ? '25%' : '10%', 
+          borderRadius: 10,}}
 
         />
         <Text style={{textAlign: 'center', fontSize: 17}}>Username</Text>
         <TextInput
           value={username}
           onChangeText={setUsername}
-          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 10, marginRight: '10%', marginLeft: '10%', borderRadius: 20,}}
+          style={{textAlign: 'center', 
+          fontSize: 17, borderWidth: 1, 
+          borderColor: 'black', 
+          padding: 10, 
+          marginBottom: 10, 
+          marginTop: 10, 
+          marginRight: bigScreen ? '25%' : '10%',
+          marginLeft: bigScreen ? '25%' : '10%', 
+          borderRadius: 10,}}
 
         />
         <Text  style={{textAlign: 'center', fontSize: 17}}>Password</Text>
@@ -89,15 +117,50 @@ const SignUpForm = () => {
           value={password}
           onChangeText={setPassword}
           secureTextEntry={true}
-          style={{textAlign: 'center', fontSize: 17, borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 10, marginTop: 10, marginRight: '10%', marginLeft: '10%', borderRadius: 20,}}
+          style={{textAlign: 'center', 
+          fontSize: 17, 
+          borderWidth: 1, 
+          borderColor: 'black', 
+          padding: 10, 
+          marginBottom: 10, 
+          marginTop: 10, 
+          marginRight: bigScreen ? '25%' : '10%', 
+          marginLeft: bigScreen ? '25%' : '10%', 
+          borderRadius: 10,}}
 
         />
         <Text style={{textAlign: 'center', fontSize: 17, color: 'red'}}>{error}</Text>
-        <TouchableOpacity onPress={handleSubmit} style={{backgroundColor: '#f2f2f2', padding: 10, paddingBottom: 12, borderWidth: 2, borderColor: '#ffbd03',  marginTop: 15, marginRight: '20%', marginLeft: '20%', borderRadius: 20, marginBottom: 10,}}>
+        <TouchableOpacity onPress={handleSubmit} style={{backgroundColor: '#f2f2f2',
+        padding: 10, 
+        paddingBottom: 12, 
+        borderWidth: 2, 
+        borderColor: '#ffbd03',  
+        marginTop: 15, 
+        width: 200, 
+        borderRadius: 20, 
+        marginBottom: 10, 
+        alignItems: 'center', 
+        alignContent:'center', 
+        alignSelf:'center',}}>
         <Text style={{textAlign: 'center', fontSize: 20, color: 'black'}}>Signup</Text>
         </TouchableOpacity>
         <Text style={{textAlign: 'center', fontSize: 17, fontStyle: 'italic', marginTop: 10}}>Already have an account?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Login | Misplaced')} style={{backgroundColor: '#f2f2f2', paddingTop: 8, paddingBottom: 9, paddingLeft: 8, paddingRight: 8, borderWidth: 2, borderColor: '#ffbd03',  marginTop: 15, marginRight: 99, marginLeft: 99, borderRadius: 20, marginBottom: 10, width: 100, alignItems: 'center', alignContent:'center', alignSelf:'center',}}>
+        <TouchableOpacity onPress={() => navigation.navigate('Login | Misplaced')} style={{backgroundColor: '#f2f2f2', 
+        paddingTop: 8, 
+        paddingBottom: 9, 
+        paddingLeft: 8, 
+        paddingRight: 8, 
+        borderWidth: 2, 
+        borderColor: '#ffbd03',  
+        marginTop: 15, 
+        marginRight: 99, 
+        marginLeft: 99, 
+        borderRadius: 20, 
+        marginBottom: 10, 
+        width: 100, 
+        alignItems: 'center', 
+        alignContent:'center', 
+        alignSelf:'center',}}>
         <Text style={{textAlign: 'center', fontSize: 17, color: 'black'}}>Login</Text>
         </TouchableOpacity>
         </View>

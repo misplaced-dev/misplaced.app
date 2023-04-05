@@ -177,21 +177,19 @@ const PostPageContainer = ({postid}) => {
         return res.data;
       });
       const media = await MediaService.getMediaByPostId(postid).then((res) => {
-        //    console.log(res);
-                  return res.data[0].url;
+         return res.data[0].url;
     });
-    // get contact info from user id
+
     const user = await UserService.getUser(post.author._id).then((res) => {
         console.log(res);
         return res.data;
         });
-        // assign contact info to post
         post.contact = user.contactInfo;
         post.image = media;
 
         const timestamp = new Date(post.updatedAt);
-        const formattedTimestamp = moment(timestamp).format('MMMM Do YYYY, h:mm:ss a'); // format timestamp as readable string
-        const duration = moment(timestamp).fromNow(); // calculate duration since timestamp
+        const formattedTimestamp = moment(timestamp).format('MMMM Do YYYY, h:mm:ss a'); 
+        const duration = moment(timestamp).fromNow(); 
         post.time = duration;
       setPost(post);}
      catch (error) {
