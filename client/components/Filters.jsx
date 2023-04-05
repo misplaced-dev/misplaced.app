@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, Text, View, Animated, Platform } from 'react-native';
+import { TouchableOpacity, Text, View, Platform } from 'react-native';
 
 
 function FiltersMenu() {
-  const menuOptions = [    { text: 'Within 1 mile', value: 'Within1mile' },    { text: 'Within 3 miles', value: 'Within3miles' },    { text: 'Off Campus', value: 'OffCampus' },  ];
+  const menuOptions = [{ text: 'Within 1 mile', value: 'Within1mile' }, { text: 'Within 3 miles', value: 'Within3miles' }, { text: 'Off Campus', value: 'OffCampus' }];
 
   const handleSelectOption = (value) => {
     console.log('Selected option:', value); // Replace with sorted data

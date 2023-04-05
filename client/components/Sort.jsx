@@ -4,7 +4,7 @@ import { TouchableOpacity, Text, View, Animated, Platform } from 'react-native';
 
 
 function SortMenu() {
-  const menuOptions = [    { text: 'Nearest', value: 'nearest' },    { text: 'Recent', value: 'recent' },    { text: '$ Low to High', value: 'lowToHigh' },  ];
+  const menuOptions = [{ text: 'Nearest', value: 'nearest' }, { text: 'Recent', value: 'recent' }, { text: '$ Low to High', value: 'lowToHigh' }];
 
   const handleSelectOption = (value) => {
     console.log('Selected option:', value); // Replace with sorted data

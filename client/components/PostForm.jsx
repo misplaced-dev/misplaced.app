@@ -1,5 +1,15 @@
 import React, {useState,useEffect} from 'react';
-import { ScrollView, KeyboardAvoidingView, ImageBackground, SafeAreaView, View, Image, Text, TouchableOpacity, StyleSheet, Button, FlatList, TextInput, Platform, Dimensions } from 'react-native';
+import { ScrollView, 
+KeyboardAvoidingView, 
+ImageBackground, 
+View, 
+Image, 
+Text, 
+TouchableOpacity, 
+StyleSheet,
+TextInput, 
+Platform, 
+Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { BlurView } from 'expo-blur'; 
 import { PostService } from '../services/post.service';
@@ -7,6 +17,7 @@ import axios from 'axios';
 import { MediaService } from '../services/media.service';
 import { AuthService } from '../services/auth.service';
 import * as ImagePicker from 'expo-image-picker';
+
 
 const Postcard = ({ image, price, title, location, onPress, description, contact, }) => {
  
@@ -45,7 +56,7 @@ const PostForm = () => {
   
   
 
-const [selectedImage, setSelectedImage] = useState(false);
+const [selectedImage, setSelectedImage] = useState(null);
 const [Price, setPrice] = useState('');
 const [Title, setTitle] = useState('');
 const [Location, setLocation] = useState('');
@@ -124,41 +135,30 @@ if(Platform.OS === 'web'){
     input.click();
   }
     else{
-    
-      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== 'granted') {
-        alert('Sorry, we need camera roll permissions to make this work!');
-        return;
-      }
-  
-      const result = await ImagePicker.launchImageLibraryAsync({
+
+      const uploadCloudinary =  (image) => {
+   
+
+        const data = new FormData(); 
+        data.append('file',image);  
+        data.append('upload_preset','image'); 
+        data.append('cloud_name','vweauohf'); 
+        fetch("https://api.cloudinary.com/v1_1/dxihhuhvk/image/upload",{  method:'post',body:data})
+          .then(res=>res.json())
+          .then(data=>{ setSelectedImage(data.url); });
+      };
+
+      let data = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        aspect: [1, 1],
+       aspect: [1, 1],
         quality: 1,
       });
   
-      if (!result.cancelled) {
-        const image = result.uri;
-        const uploadCloudinary = async (image) => {
-          const formData = new FormData();
-          formData.append("file", {
-            uri: image,
-            type: 'image/jpeg',
-            name: 'image.jpg'
-          });
-          formData.append("upload_preset", "vweauohf");
-          const response = await axios.post(
-            "https://api.cloudinary.com/v1_1/dxihhuhvk/image/upload",
-            formData
-          );
-          return response.data.secure_url;
-        };
-        
-        const imgUrl = await uploadCloudinary(image);
-        
-        setSelectedImage({ uri: imgUrl });
-      }
+      if (!data.canceled){
+        let newFile = { uri:data.uri};
+          uploadCloudinary(newFile);
+          setSelectedImage({ uri: data.uri });
+    }
 
     };
     }
@@ -283,12 +283,12 @@ const handleSubmit = async () => {
  alignItems: 'center',
  width: selectedImage ? 300 : 120,
  height: selectedImage ? 200 : 70,
-fontSize: 12, 
-borderWidth: 1, 
-borderColor: 'black', 
+ fontSize: 12, 
+ borderWidth: 1, 
+ borderColor: 'black', 
  marginTop: 10, 
-alignContent: 'center',
-  justifyContent: 'center',
+ alignContent: 'center',
+ justifyContent: 'center',
  borderRadius: 20,
  zIndex:0,
  paddingTop: selectedImage ? 0 : 10,
@@ -324,10 +324,10 @@ alignContent: 'center',
 />
       ))}
     </View>
-    <TouchableOpacity onPress = {handleSubmit} style={{textAlign: 'center', fontSize: 17, borderWidth: 2, borderColor: '#ffbd03', paddingLeft: 2, paddingRight: 2, paddingBottom: 1, paddingTop: 11, marginBottom: 40, marginTop: 10, marginRight: '30%', marginLeft: '30%', borderRadius: 20,}}>
+    <TouchableOpacity onPress={handleSubmit} style={styles.create}>
       <Text style={styles.texts}>Create Post</Text>
       </TouchableOpacity>
-      <Text>{error}</Text>
+      <Text style={{textAlign:'center'}}>{error}</Text>
       </KeyboardAvoidingView>
       </ScrollView>
     </View>
@@ -432,10 +432,35 @@ texttitle:{
     backgroundColor: '#f2f2f2',
 },
 input:{
-  textAlign: 'center', fontSize: 12, borderWidth: 1, borderColor: 'black', paddingLeft: 2, paddingRight: 2, paddingBottom: 10, paddingTop: 10, marginBottom: 10, marginTop: 5, marginRight: '15%', marginLeft: '15%', borderRadius: 20,
-
+  textAlign: 'center', 
+  fontSize: 12, 
+  borderWidth: 1, 
+  borderColor: 'black', 
+  paddingLeft: 2, 
+  paddingRight: 2, 
+  paddingBottom: 10, 
+  paddingTop: 10, 
+  marginBottom: 10, 
+  marginTop: 5, 
+  marginRight: '15%', 
+  marginLeft: '15%', 
+  borderRadius: 10,
 },
-  
+create:{
+  textAlign: 'center', 
+  fontSize: 17, 
+  borderWidth: 2, 
+  borderColor: '#ffbd03',  
+  paddingLeft: 2, 
+  paddingRight: 2, 
+  paddingBottom: 1, 
+  paddingTop: 11, 
+  marginBottom: 40, 
+  marginTop: 10, 
+  marginRight: '30%', 
+  marginLeft: '30%', 
+  borderRadius: 20,
+}  
 });
 
 export default PostForm;

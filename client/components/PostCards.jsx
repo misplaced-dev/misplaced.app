@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react';
-import { ImageBackground, View, Image, Text, TouchableOpacity, StyleSheet, Button, FlatList, TextInput, Platform, Dimensions } from 'react-native';
+import { ImageBackground, View, Image, Text, TouchableOpacity, StyleSheet, } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { BlurView } from 'expo-blur'; 
 import { PostService } from '../services/post.service';
@@ -7,9 +7,6 @@ import { MediaService } from '../services/media.service';
 import axios from 'axios';
 
 const Postcard = ({ image, price, title, location, onPress,  }) => {
-  const [imageWidth, setImageWidth] = React.useState(0);
-
-  
 
   return (
 
@@ -27,9 +24,11 @@ const Postcard = ({ image, price, title, location, onPress,  }) => {
           <Image source={{ uri: image }} style={styles.image}/>
              </ImageBackground>
       </View>
+      <View style={{borderTopColor: 'grey', borderTopWidth: 1,}}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.price}>{price}</Text>
       <Text style={styles.location}>{location}</Text>
+      </View>
     </TouchableOpacity>
   
   );
@@ -50,12 +49,12 @@ useEffect(() => {
 const fetchPosts = async () => {
   try {
     const posts = await PostService.getPostsInDistance(2000).then((res) => {
-      console.log(res)
+   
         return res.data;
     });
       for (let i = 0; i < posts.length; i++) {
         const media = await MediaService.getMediaByPostId(posts[i]._id).then((res) => {
-              console.log(res);
+            
                     return res.data[0].url;
                 });
                 posts[i].image = media;
@@ -73,7 +72,14 @@ const fetchPosts = async () => {
     <View >
     {loading ? (
       <View>
-       <Image source={require('../assets/buffer.gif')} style={{ alignSelf:'center', marginTop: '40%', width: 280, height: 280 }} />
+       <Image source={require('../assets/buffer.gif')} 
+       style={{ borderWidth: 1, 
+       borderRadius: 20, 
+       alignSelf:'center', 
+       marginTop: 130, 
+       marginBottom: 230, 
+       width: 280, 
+       height: 280 }} />
       </View>
     ) : (
       <View style={styles.container}>
@@ -83,7 +89,7 @@ const fetchPosts = async () => {
           image={post.image}
           price={post.compensation}
           title={post.title}
-     location={post.location}
+          location={post.location}
           onPress={() => navigation.navigate('Post Page | Misplaced',{ key: post._id })}
         />
       ))}
@@ -122,6 +128,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
     borderColor: 'black',
     overflow: 'hidden',
+    
   },
   image: {
     width: '100%',
