@@ -130,10 +130,10 @@ const SignUpForm = () => {
 
         />
         <Text style={{textAlign: 'center', fontSize: 17, color: 'red'}}>{error}</Text>
-        <TouchableOpacity onPress={handleSubmit} style={{backgroundColor: '#f2f2f2',
+        <TouchableOpacity onPress={handleSubmit} style={{backgroundColor: '#ffda70',
         padding: 10, 
         paddingBottom: 12, 
-        borderWidth: 2, 
+        borderWidth: 1, 
         borderColor: '#ffbd03',  
         marginTop: 15, 
         width: 200, 
@@ -142,15 +142,15 @@ const SignUpForm = () => {
         alignItems: 'center', 
         alignContent:'center', 
         alignSelf:'center',}}>
-        <Text style={{textAlign: 'center', fontSize: 20, color: 'black'}}>Signup</Text>
+        <Text style={{textAlign: 'center', fontSize: 20, color: 'black', fontWeight:'300'}}>Signup</Text>
         </TouchableOpacity>
         <Text style={{textAlign: 'center', fontSize: 17, fontStyle: 'italic', marginTop: 10}}>Already have an account?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Login | Misplaced')} style={{backgroundColor: '#f2f2f2', 
+        <TouchableOpacity onPress={() => navigation.navigate('Login | Misplaced')} style={{backgroundColor: '#ffda70', 
         paddingTop: 8, 
         paddingBottom: 9, 
         paddingLeft: 8, 
         paddingRight: 8, 
-        borderWidth: 2, 
+        borderWidth: 1, 
         borderColor: '#ffbd03',  
         marginTop: 15, 
         marginRight: 99, 
@@ -161,7 +161,7 @@ const SignUpForm = () => {
         alignItems: 'center', 
         alignContent:'center', 
         alignSelf:'center',}}>
-        <Text style={{textAlign: 'center', fontSize: 17, color: 'black'}}>Login</Text>
+        <Text style={{textAlign: 'center', fontSize: 17, color: 'black', fontWeight:'300'}}>Login</Text>
         </TouchableOpacity>
         </View>
     );

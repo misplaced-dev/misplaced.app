@@ -83,10 +83,10 @@ const LoginForm = () => {
          marginLeft: bigScreen ? '25%' : '10%',}}
       />
       <Text style={{textAlign: 'center', fontSize: 20, color: 'red'}}>{error}</Text>
-      <TouchableOpacity onPress={handleSubmit} style={{backgroundColor: '#f2f2f2', 
+      <TouchableOpacity onPress={handleSubmit} style={{backgroundColor: '#ffda70', 
       padding: 10, 
       paddingBottom: 12, 
-      borderWidth: 2,
+      borderWidth: 1,
       borderColor: '#ffbd03',  
       marginTop: 15, 
       alignItems: 'center', 
@@ -95,15 +95,15 @@ const LoginForm = () => {
       width: 200, 
       borderRadius: 20, 
       marginBottom: 10,}}>
-        <Text style={{textAlign: 'center', fontSize: 20, color: 'black'}}>Login</Text>
+        <Text style={{alignSelf: 'center', fontSize: 20, color: 'black', fontWeight:'300'}}>Login</Text>
       </TouchableOpacity>
-      <Text style={{textAlign: 'center', fontSize: 20, fontStyle: 'italic', marginTop: 10}}>Don't have an account?</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('Signup | Misplaced')} style={{backgroundColor: '#f2f2f2', 
+      <Text style={{alignSelf: 'center', fontSize: 20, fontStyle: 'italic', marginTop: 10}}>Don't have an account?</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Signup | Misplaced')} style={{backgroundColor: '#ffda70', 
       paddingTop: 8, 
       paddingBottom: 9, 
       paddingLeft: 8, 
       paddingRight: 8, 
-      borderWidth: 2, 
+      borderWidth: 1, 
       borderColor: '#ffbd03',  
       marginTop: 15, 
       marginRight: 99, 
@@ -114,7 +114,7 @@ const LoginForm = () => {
       alignItems: 'center', 
       alignContent:'center', 
       alignSelf:'center',}}>
-        <Text style={{textAlign: 'center', fontSize: 17, color: 'black'}}>Signup</Text>
+        <Text style={{alignSelf: 'center', fontSize: 17, color: 'black', fontWeight:'300'}}>Signup</Text>
       </TouchableOpacity>
 
       </View>
