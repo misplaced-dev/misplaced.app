@@ -106,39 +106,33 @@ if (width > containerWidth * 0.9) {
 
 
 const handleImageUpload = async () => {
-if(Platform.OS === 'web'){
+  if(Platform.OS === 'web'){
     const input = document.createElement('input');
     input.setAttribute('type', 'file');
     input.setAttribute('accept', 'image/*');
     input.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      const reader = new FileReader();
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
       reader.onload = async () => {
         const image = reader.result;
-        const uploadCloudinary = async (image) => {
-          const formData = new FormData();
-          formData.append("file", image);
-          formData.append("upload_preset", "vweauohf");
-          const response = await axios.post(
-              "https://api.cloudinary.com/v1_1/dxihhuhvk/image/upload",
-              formData
-          );
-          return response.data.secure_url;
-        };
-        
+
+          const uploadCloudinary = async (image) => {
+            const formData = new FormData();
+            formData.append("file", image);
+            formData.append("upload_preset", "vweauohf");
+            const response = await axios.post("https://api.cloudinary.com/v1_1/dxihhuhvk/image/upload",formData);
+              return response.data.secure_url;
+          };
+          
         const imgUrl = await uploadCloudinary(image);
-        
         setSelectedImage({ uri: imgUrl});
       };
       reader.readAsDataURL(file);
     });
     input.click();
-  }
-    else{
-
+  } else {
       const uploadCloudinary =  (image) => {
-   
-
         const data = new FormData(); 
         data.append('file',image);  
         data.append('upload_preset','image'); 
@@ -150,7 +144,7 @@ if(Platform.OS === 'web'){
 
       let data = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
-       aspect: [1, 1],
+        aspect: [1, 1],
         quality: 1,
       });
   
@@ -158,8 +152,7 @@ if(Platform.OS === 'web'){
         let newFile = { uri:data.uri};
           uploadCloudinary(newFile);
           setSelectedImage({ uri: data.uri });
-    }
-
+      }
     };
     }
   
