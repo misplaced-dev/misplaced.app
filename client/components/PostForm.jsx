@@ -18,20 +18,21 @@ import { MediaService } from '../services/media.service';
 import { AuthService } from '../services/auth.service';
 import * as ImagePicker from 'expo-image-picker';
 
+const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
 
-const Postcard = ({ image, price, title, location, onPress, description, contact, }) => {
+const Postcard = ({ image, price, title, location, description, contact, }) => {
  
   return (
     <View>
-     <View style={styles.postcard} onPress={onPress} >
+     <View style={styles.postcard}>
   
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.price}>{price}</Text>
       <Text style={styles.location}>{location}</Text>
     </View>
-    <View>
-    <Text style={styles.texts}>Description: {description}</Text>
-    <Text style={styles.texts}>Contact: {contact}</Text>
+    <View style={styles.info}>
+    <Text style={[styles.texts, {alignSelf:'center', textAlign:'center', }]}>Description: {description}</Text>
+    <Text style={[styles.texts, {paddingBottom: 20, alignSelf:'center', textAlign:'center',}]}>Contact: {contact}</Text>
     </View>
     </View>
   );
@@ -167,7 +168,7 @@ const handlePress = () => {
   setIsPressed(true);
 };
 const scroll = useState(handlePress);
-const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
+
 
 const handleSubmit = async () => {
 
@@ -196,14 +197,15 @@ const handleSubmit = async () => {
         console.log(post)
        PostService.createPost(post).then((res) => {
         console.log(res);
+        navigation.navigate('Home | Misplaced', );
+        if(!isMobile) {window.location.reload();}
        });
     } catch (error) {
         setError(error.message)
     }
 
   
-  navigation.navigate('Home | Misplaced', );
- if(!isMobile) {window.location.reload();}
+ 
 }
 
 
@@ -215,7 +217,7 @@ const handleSubmit = async () => {
 <TextInput
   onPress={handlePress}
   style={styles.input}
-  multiline={true}
+  multiline={false}
   numberOfLines={numberOfLines}
   placeholder="Enter a title"
   onChangeText={setTitle}
@@ -224,24 +226,24 @@ const handleSubmit = async () => {
   scrollEnabled={false}
 />
 <TextInput
-  onPress={handlePress}
-  style={styles.input}
-  multiline={true}
-  numberOfLines={numberOfLines}
-  placeholder="Enter a price"
-  onChangeText={(text) => {
-    let numericText = text.replace(/[^0-9]/g, '');
-    setPrice('$' + numericText);
-  }}
-  value={Price}
-  onContentSizeChange={handleContentSizeChange}
-  keyboardType="numeric"
-  scrollEnabled={false}
+ onPress={handlePress}
+ style={styles.input}
+ multiline={true}
+ numberOfLines={numberOfLines}
+ placeholder="Enter a price"
+ onChangeText={(text) => {
+   let numericText = text.replace(/[^0-9]/g, '');
+   setPrice('$' + numericText);
+ }}
+ value={Price}
+ onContentSizeChange={handleContentSizeChange}
+ keyboardType="numeric"
+ scrollEnabled={false}
 />
 <TextInput
   onPress={handlePress}
   style={styles.input}
-  multiline={true}
+  multiline={false}
   numberOfLines={numberOfLines}
   placeholder="Enter a location"
   onChangeText={setLocation}
@@ -320,7 +322,7 @@ const handleSubmit = async () => {
     <TouchableOpacity onPress={handleSubmit} style={styles.create}>
       <Text style={[styles.texts, { backgroundColor: '#ffda70', fontSize: 19, fontWeight:'300', width:'98%', alignSelf:'center'}]}>Create Post</Text>
       </TouchableOpacity>
-      <Text style={{textAlign:'center'}}>{error}</Text>
+      <Text style={{textAlign:'center', paddingBottom:20}}>{error}</Text>
       </KeyboardAvoidingView>
       </ScrollView>
     </View>
@@ -335,7 +337,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    flexWrap: 'wrap',
+    
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f2f2f2',
@@ -351,6 +353,15 @@ const styles = StyleSheet.create({
     margin: 10,
     backgroundColor: '#f2f2f2',
     overflow: 'auto',
+  },
+  info:{
+    width: isMobile ? '75%' : 250,
+    textAlign: 'center',
+    margin: 10,
+    alignSelf: 'center',
+    height: 'auto',
+    flexWrap: 'wrap',
+    marginBottom: 0,
   },
   imageContainer: {
     flex: 1,
