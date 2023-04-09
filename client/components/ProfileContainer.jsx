@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, StyleSheet, AppState, ImageBackground } from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet, AppState, ImageBackground, Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { BlurView } from 'expo-blur'; 
 
@@ -92,7 +92,7 @@ const ProfileContainer = () => {
         console.log('logging out');
         await AuthService.signout("userId");
         navigation.navigate('Home | Misplaced');
-        window.location.reload();
+        if(Platform.OS === 'web'){ window.location.reload();}
      
      
     }
@@ -120,7 +120,7 @@ const ProfileContainer = () => {
         marginLeft: 30, 
         borderRadius: 20, 
         marginBottom: 30,}}>
-            <Text style={{textAlign: 'center', fontSize: 17, color: 'black'}}>Logout</Text>
+            <Text style={{textAlign: 'center', fontSize: 17, color: 'black', fontWeight:'300'}}>Logout</Text>
         </TouchableOpacity>
 
         <Text style={{textAlign: 'center', fontSize: 30}}>Posts</Text>

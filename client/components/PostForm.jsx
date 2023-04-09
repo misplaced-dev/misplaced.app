@@ -318,7 +318,7 @@ const handleSubmit = async () => {
       ))}
     </View>
     <TouchableOpacity onPress={handleSubmit} style={styles.create}>
-      <Text style={styles.texts}>Create Post</Text>
+      <Text style={[styles.texts, { backgroundColor: '#ffda70', fontSize: 19, fontWeight:'300', width:'98%', alignSelf:'center'}]}>Create Post</Text>
       </TouchableOpacity>
       <Text style={{textAlign:'center'}}>{error}</Text>
       </KeyboardAvoidingView>
@@ -442,10 +442,11 @@ input:{
 create:{
   textAlign: 'center', 
   fontSize: 17, 
-  borderWidth: 2, 
+  borderWidth: 1,
+  backgroundColor: '#ffda70', 
   borderColor: '#ffbd03',  
-  paddingLeft: 2, 
-  paddingRight: 2, 
+  paddingLeft: 1, 
+  paddingRight: 1, 
   paddingBottom: 1, 
   paddingTop: 11, 
   marginBottom: 40, 
@@ -453,6 +454,7 @@ create:{
   marginRight: '30%', 
   marginLeft: '30%', 
   borderRadius: 20,
+  
 }  
 });
 
