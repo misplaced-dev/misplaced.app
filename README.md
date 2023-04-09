@@ -3,17 +3,23 @@ Click below to access the website (In Progress), link to download in app stores 
 
 [linktr.ee/misplacedapp](https://linktr.ee/misplacedapp)
 
-
-
-
-
-https://user-images.githubusercontent.com/106638403/230749498-99c02eee-4066-472d-a948-9758c4269755.mov
+Scroll down to check out the demo for the website, the app, and making a post!
 
 
 
 
 
-https://user-images.githubusercontent.com/106638403/230749500-c9f89afa-dd52-4146-b5b3-328b0962f61f.mp4
+https://user-images.githubusercontent.com/106638403/230789654-ae6849f5-0816-42da-ac26-ce1d9dd37412.mp4
+
+
+
+
+https://user-images.githubusercontent.com/106638403/230789660-c6a54958-7c3c-4a6f-adfd-4e5db5a2acf6.mp4
+
+
+
+
+https://user-images.githubusercontent.com/106638403/230789862-b60121f7-126b-4090-9c51-5d61f992d61a.mov
 
 
 
