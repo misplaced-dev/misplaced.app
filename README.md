@@ -23,4 +23,5 @@ https://user-images.githubusercontent.com/106638403/230789862-b60121f7-126b-4090
 
 
 
-![image](https://user-images.githubusercontent.com/106638403/230746757-e3270db4-ed20-4a90-bf02-c84f61b643f3.png)
+
+![Excutive Summary](https://user-images.githubusercontent.com/106638403/231019997-6073ed07-415f-42a3-a32b-9a4b2669e5a8.svg)
