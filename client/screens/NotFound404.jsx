@@ -1,4 +1,5 @@
-import { Image, SafeAreaView, ScrollView, StatusBar} from "react-native";
+import { Image, ScrollView, StatusBar} from "react-native";
+import SafeAreaView from 'react-native-safe-area-view';
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import Header from "../components/Header";

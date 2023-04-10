@@ -1,4 +1,5 @@
-import { View ,  SafeAreaView, ScrollView, StatusBar} from "react-native";
+import { View , ScrollView, StatusBar} from "react-native";
+import SafeAreaView from 'react-native-safe-area-view';
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import PostForm from "../components/PostForm";
