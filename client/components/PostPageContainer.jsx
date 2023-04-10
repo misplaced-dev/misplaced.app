@@ -1,6 +1,5 @@
 import React, {useRef,useEffect, useState} from 'react';
 import { StyleSheet, View, Image, Text , Dimensions, Platform, ImageBackground} from 'react-native';
-import {GOOGLE_MAPS_API_KEY} from "@env";
 import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
 import { BlurView } from 'expo-blur';
 import { PostService } from '../services/post.service';
