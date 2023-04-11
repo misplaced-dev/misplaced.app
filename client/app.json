@@ -4,7 +4,7 @@
     "slug": "Misplaced",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/m.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/buffer.gif",
