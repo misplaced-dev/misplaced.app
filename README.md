@@ -25,3 +25,5 @@ https://user-images.githubusercontent.com/106638403/230789862-b60121f7-126b-4090
 
 
 ![Excutive Summary](https://user-images.githubusercontent.com/106638403/231019997-6073ed07-415f-42a3-a32b-9a4b2669e5a8.svg)
+
+https://www.figma.com/file/NQi9NwvBI3Zkf6fMFQm2cR/Executive-Summary?node-id=77-4&t=ENIp6XfiBMOQyv8g-0
