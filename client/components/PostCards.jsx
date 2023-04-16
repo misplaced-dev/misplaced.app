@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 8,
     margin: 5,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: 'white',
     overflow: 'hidden',
   },
   imageContainer: {
