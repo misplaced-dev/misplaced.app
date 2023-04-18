@@ -1,5 +1,5 @@
 # MISPLACED
-Click below to access the website https://misplaced.app/ (Beta), link to download in app stores (In Progress), and social media pages
+Click below to access the website https://misplaced.app (Beta), link to download in app stores (In Progress), and social media pages
 
 [linktr.ee/misplacedapp](https://linktr.ee/misplacedapp)
 
