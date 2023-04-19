@@ -31,8 +31,8 @@ const Postcard = ({ image, price, title, location, description, contact, }) => {
       <Text style={styles.location}>{location}</Text>
     </View>
     <View style={styles.info}>
-    <Text style={[styles.texts, {alignSelf:'center', textAlign:'center', }]}>Description: {description}</Text>
-    <Text style={[styles.texts, {paddingBottom: 20, alignSelf:'center', textAlign:'center',}]}>Contact: {contact}</Text>
+    <Text style={[styles.texts, {alignSelf:'left', textAlign:'left', }]}>Description: {description}</Text>
+    <Text style={[styles.texts, {paddingBottom: 2, alignSelf:'left', textAlign:'left',}]}>Contact: {contact}</Text>
     </View>
     </View>
   );
@@ -213,7 +213,52 @@ const handleSubmit = async () => {
    
     <View style={ { backgroundColor: '#f2f2f2',}}> 
     <ScrollView style={{backgroundColor:'#f2f2f2'}}>    
-  <KeyboardAvoidingView  >
+  <KeyboardAvoidingView>
+  <View style={{alignItems: 'center', justifyContent: 'center'}}>
+<TouchableOpacity onPress={selectedImage ? handleImageDelete : handleImageUpload} style={{
+ alignItems: 'center',
+ width: selectedImage ? 300 : 120,
+ height: selectedImage ? 200 : 70,
+ fontSize: 12, 
+ borderWidth: 1, 
+ borderColor: 'black', 
+ marginTop: 10, 
+ alignContent: 'center',
+ justifyContent: 'center',
+ borderRadius: 20,
+ zIndex:0,
+ paddingTop: selectedImage ? 0 : 10,
+ overflow: 'hidden',}}>
+    {selectedImage ? (
+       <View style={styles.imageContainer}>
+       <ImageBackground
+       source={{ uri: selectedImage.uri }}
+     
+       style={{ width: '100%', height: '100%' , zIndex: 0, overflow: 'hidden', }}
+       imageStyle={{ resizeMode: 'cover', transform: [{ scale: 1.75 }] }}
+     >
+       <View style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
+         <BlurView style={{ flex: 1 }} intensity={200} />
+       </View>
+       <Image source={{ uri: selectedImage.uri }} style={styles.image}/>
+          </ImageBackground>
+   </View>
+    ) : (
+      <Text style={styles.upload}>Upload Image</Text>
+    )}
+  </TouchableOpacity>
+  </View>
+  <View style={styles.container}>
+      {posts.map(post => (
+      <Postcard
+  price={Price}
+  title={Title}
+  location={Location}
+  description={Description}
+  contact={Contact}
+/>
+      ))}
+    </View>
 <TextInput
   onPress={handlePress}
   style={styles.input}
@@ -273,56 +318,13 @@ const handleSubmit = async () => {
   onContentSizeChange={handleContentSizeChange}
   scrollEnabled={false}
 />
-<View style={{alignItems: 'center', justifyContent: 'center'}}>
-<TouchableOpacity onPress={selectedImage ? handleImageDelete : handleImageUpload} style={{
- alignItems: 'center',
- width: selectedImage ? 300 : 120,
- height: selectedImage ? 200 : 70,
- fontSize: 12, 
- borderWidth: 1, 
- borderColor: 'black', 
- marginTop: 10, 
- alignContent: 'center',
- justifyContent: 'center',
- borderRadius: 20,
- zIndex:0,
- paddingTop: selectedImage ? 0 : 10,
- overflow: 'hidden',}}>
-    {selectedImage ? (
-       <View style={styles.imageContainer}>
-       <ImageBackground
-       source={{ uri: selectedImage.uri }}
-     
-       style={{ width: '100%', height: '100%' , zIndex: 0, overflow: 'hidden', }}
-       imageStyle={{ resizeMode: 'cover', transform: [{ scale: 1.75 }] }}
-     >
-       <View style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
-         <BlurView style={{ flex: 1 }} intensity={200} />
-       </View>
-       <Image source={{ uri: selectedImage.uri }} style={styles.image}/>
-          </ImageBackground>
-   </View>
-    ) : (
-      <Text style={styles.upload}>Upload Image</Text>
-    )}
-  </TouchableOpacity>
-  </View>
 
-    <View style={styles.container}>
-      {posts.map(post => (
-      <Postcard
-  price={Price}
-  title={Title}
-  location={Location}
-  description={Description}
-  contact={Contact}
-/>
-      ))}
-    </View>
+
+   
     <TouchableOpacity onPress={handleSubmit} style={styles.create}>
-      <Text style={[styles.texts, { backgroundColor: '#ffda70', fontSize: 19, fontWeight:'300', width:'98%', alignSelf:'center'}]}>Create Post</Text>
+      <Text style={[styles.texts, { backgroundColor: '#ffda70', fontSize: 19, fontWeight:'300', width:'98%', alignSelf:'center', fontFamily: isMobile ? undefined : 'Inter'}]}>Create Post</Text>
       </TouchableOpacity>
-      <Text style={{textAlign:'center', paddingBottom:20}}>{error}</Text>
+      <Text style={{textAlign:'center', paddingBottom:20, fontFamily: isMobile ? undefined : 'Inter'}}>{error}</Text>
       </KeyboardAvoidingView>
       </ScrollView>
     </View>
@@ -336,8 +338,7 @@ const handleSubmit = async () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
-    
+    flexDirection: 'row', 
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f2f2f2',
@@ -351,7 +352,7 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 8,
     margin: 10,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: 'white',
     overflow: 'auto',
   },
   info:{
@@ -362,6 +363,7 @@ const styles = StyleSheet.create({
     height: 'auto',
     flexWrap: 'wrap',
     marginBottom: 0,
+    fontFamily: isMobile ? undefined : 'Inter'
   },
   imageContainer: {
     flex: 1,
@@ -383,24 +385,28 @@ const styles = StyleSheet.create({
     objectFit: 'cover',
   objectPosition: 'center',
   zIndex: 2,
+  fontFamily: isMobile ? undefined : 'Inter'
   },
   title: {
     margin: 8,
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: '700',
     textAlign: 'left',
+    fontFamily: isMobile ? undefined : 'Inter'
   },
   price: {
     marginHorizontal: 8,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '600',
     textAlign: 'left',
+    fontFamily: isMobile ? undefined : 'Inter'
   },
   location: {
     margin: 8,
     fontSize: 14,
     color: 'gray',
     textAlign: 'left',
+    fontFamily: isMobile ? undefined : 'Inter'
   },
     header: {
     fontSize: 25,
@@ -418,6 +424,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     top: 0,
     backgroundColor: '#f2f2f2',
+    fontFamily: isMobile ? undefined : 'Inter'
   },
     upload: {
       fontSize: 15,
@@ -425,6 +432,7 @@ const styles = StyleSheet.create({
       color: '#000',
       marginBottom: 10,
       top: 0,
+      fontFamily: isMobile ? undefined : 'Inter'
  },
 texttitle:{
   fontSize: 15,
@@ -434,6 +442,7 @@ texttitle:{
     marginBottom: 10,
     top: 0,
     backgroundColor: '#f2f2f2',
+    fontFamily: isMobile ? undefined : 'Inter'
 },
 input:{
   textAlign: 'center', 
@@ -449,6 +458,7 @@ input:{
   marginRight: '15%', 
   marginLeft: '15%', 
   borderRadius: 10,
+  fontFamily: isMobile ? undefined : 'Inter'
 },
 create:{
   textAlign: 'center', 
@@ -460,12 +470,12 @@ create:{
   paddingRight: 1, 
   paddingBottom: 1, 
   paddingTop: 11, 
-  marginBottom: 40, 
-  marginTop: 10, 
+  marginBottom: 10, 
+  marginTop: 15, 
   marginRight: '30%', 
   marginLeft: '30%', 
   borderRadius: 20,
-  
+  fontFamily: isMobile ? undefined : 'Inter'
 }  
 });
 

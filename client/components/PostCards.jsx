@@ -1,10 +1,9 @@
 import React, {useState,useEffect} from 'react';
-import { ImageBackground, View, Image, Text, TouchableOpacity, StyleSheet, } from 'react-native';
+import { ImageBackground, View, Image, Text, TouchableOpacity, StyleSheet, Platform} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { BlurView } from 'expo-blur'; 
 import { PostService } from '../services/post.service';
 import { MediaService } from '../services/media.service';
-import axios from 'axios';
 
 const Postcard = ({ image, price, title, location, onPress,  }) => {
 
@@ -36,7 +35,7 @@ const Postcard = ({ image, price, title, location, onPress,  }) => {
 
 const Postcards = () => {
   const [posts, setPosts] = useState([]);
-  const [loading , setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
 const navigation = useNavigation();
 
@@ -49,15 +48,13 @@ useEffect(() => {
 const fetchPosts = async () => {
   try {
     const posts = await PostService.getPostsInDistance(2000).then((res) => {
-   
-        return res.data;
+      return res.data;
     });
       for (let i = 0; i < posts.length; i++) {
         const media = await MediaService.getMediaByPostId(posts[i]._id).then((res) => {
-            
-                    return res.data[0].url;
-                });
-                posts[i].image = media;
+        return res.data[0].url;
+      });
+        posts[i].image = media;
       }
         setPosts(posts);
         setLoading(false);
@@ -90,7 +87,7 @@ const fetchPosts = async () => {
           price={post.compensation}
           title={post.title}
           location={post.location}
-          onPress={() => navigation.navigate('Post Page | Misplaced',{ key: post._id })}
+          onPress={() => navigation.navigate('Post Page | Misplaced', { key: post._id })}
         />
       ))}
     </View>
@@ -98,6 +95,8 @@ const fetchPosts = async () => {
     </View>
   );
 };
+
+const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
 
 const styles = StyleSheet.create({
   container: {
@@ -109,6 +108,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
     padding: 10,
     marginTop: 100,
+    fontFamily: isMobile ? undefined : 'Inter'
   },
   postcard: {
     width: 330,
@@ -145,20 +145,23 @@ const styles = StyleSheet.create({
   title: {
     margin: 8,
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: '700',
     textAlign: 'left',
+    fontFamily: isMobile ? undefined : 'Inter'
   },
   price: {
     marginHorizontal: 8,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight:"600",
     textAlign: 'left',
+    fontFamily: isMobile ? undefined : 'Inter'
   },
   location: {
     margin: 8,
     fontSize: 14,
     color: 'gray',
     textAlign: 'left',
+    fontFamily: isMobile ? undefined : 'Inter'
   },
 });
 

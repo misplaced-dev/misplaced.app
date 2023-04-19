@@ -276,20 +276,23 @@ const styles = StyleSheet.create({
   title: {
     margin: 8,
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: '700',
     textAlign: 'left',
+    fontFamily: isMobile ? undefined : 'Inter'
   },
   price: {
     marginHorizontal: 8,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '600',
     textAlign: 'left',
+    fontFamily: isMobile ? undefined : 'Inter'
   },
   location: {
     margin: 8,
     fontSize: 14,
     color: 'gray',
     textAlign: 'left',
+    fontFamily: isMobile ? undefined : 'Inter'
   },
   description: {
     margin: 8,
@@ -298,18 +301,21 @@ const styles = StyleSheet.create({
   textAlign: 'left',
   overflowWrap: 'break-word',
   maxWidth: '100%',
+  fontFamily: isMobile ? undefined : 'Inter'
   },
   contact: {
     margin: 8,
     fontSize: 14,
     color: 'gray',
     textAlign: 'left',
+    fontFamily: isMobile ? undefined : 'Inter'
   },
   time: {
     margin: 8,
     fontSize: 10,
     color: 'gray',
     textAlign: 'left',
+    fontFamily: isMobile ? undefined : 'Inter'
   },
 });
 
