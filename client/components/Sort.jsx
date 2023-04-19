@@ -1,7 +1,7 @@
 import React, { useState  } from 'react';
-import { TouchableOpacity, Text, View, Animated, Platform } from 'react-native';
+import { TouchableOpacity, Text, View,  Platform } from 'react-native';
 
-
+const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
 
 function SortMenu() {
   const menuOptions = [{ text: 'Nearest', value: 'nearest' }, { text: 'Recent', value: 'recent' }, { text: '$ Low to High', value: 'lowToHigh' }];
@@ -49,7 +49,6 @@ function Sort(props) {
   };
 
 
-  const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
 
 
   const buttonStyle = {
@@ -90,7 +89,7 @@ function Sort(props) {
       }}
     >
       <TouchableOpacity onPress={handlePress} style={buttonStyle}>
-        <Text style={{ color: isPressed ? 'white' : 'black' }}>Sort By</Text>
+        <Text style={{ color: isPressed ? 'white' : 'black', fontFamily: isMobile ? undefined : 'Inter'}}>Sort By</Text>
       </TouchableOpacity>
       {showMenu && (
           <SortMenu />

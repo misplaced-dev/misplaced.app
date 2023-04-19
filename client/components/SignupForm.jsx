@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Dimensions} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Dimensions, Platform} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {AuthService} from '../services/auth.service';
 
@@ -61,11 +61,12 @@ const SignUpForm = () => {
     };
 
     const bigScreen = Dimensions.get('window').width > 660;
+    const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
 
     
     return (
       <View>
-        <Text style={{textAlign: 'center', fontSize: 17, marginTop: 30,}}>Name</Text>
+        <Text style={{textAlign: 'center', fontSize: 17, marginTop: 30, fontFamily: isMobile ? undefined : 'Inter'}}>Name</Text>
         <TextInput
           value={name}
           onChangeText={setName}
@@ -78,10 +79,11 @@ const SignUpForm = () => {
           marginTop: 10, 
           marginRight: bigScreen ? '25%' : '10%', 
           marginLeft: bigScreen ? '25%' : '10%', 
-          borderRadius: 10,}}
+          borderRadius: 10,
+          fontFamily: isMobile ? undefined : 'Inter'}}
 
         />
-        <Text style={{textAlign: 'center', fontSize: 17}}>Email</Text>
+        <Text style={{textAlign: 'center', fontSize: 17, fontFamily: isMobile ? undefined : 'Inter'}}>Email</Text>
         <TextInput
           value={email}
           onChangeText={setEmail}
@@ -94,10 +96,11 @@ const SignUpForm = () => {
           marginTop: 10, 
           marginRight: bigScreen ? '25%' : '10%', 
           marginLeft: bigScreen ? '25%' : '10%', 
-          borderRadius: 10,}}
+          borderRadius: 10,
+          fontFamily: isMobile ? undefined : 'Inter'}}
 
         />
-        <Text style={{textAlign: 'center', fontSize: 17}}>Username</Text>
+        <Text style={{textAlign: 'center', fontSize: 17, fontFamily: isMobile ? undefined : 'Inter'}}>Username</Text>
         <TextInput
           value={username}
           onChangeText={setUsername}
@@ -109,10 +112,11 @@ const SignUpForm = () => {
           marginTop: 10, 
           marginRight: bigScreen ? '25%' : '10%',
           marginLeft: bigScreen ? '25%' : '10%', 
-          borderRadius: 10,}}
+          borderRadius: 10,
+          fontFamily: isMobile ? undefined : 'Inter'}}
 
         />
-        <Text  style={{textAlign: 'center', fontSize: 17}}>Password</Text>
+        <Text  style={{textAlign: 'center', fontSize: 17, fontFamily: isMobile ? undefined : 'Inter'}}>Password</Text>
         <TextInput
           value={password}
           onChangeText={setPassword}
@@ -126,10 +130,11 @@ const SignUpForm = () => {
           marginTop: 10, 
           marginRight: bigScreen ? '25%' : '10%', 
           marginLeft: bigScreen ? '25%' : '10%', 
-          borderRadius: 10,}}
+          borderRadius: 10,
+          fontFamily: isMobile ? undefined : 'Inter'}}
 
         />
-        <Text style={{textAlign: 'center', fontSize: 17, color: 'red'}}>{error}</Text>
+        <Text style={{textAlign: 'center', fontSize: 17, color: 'red', fontFamily: isMobile ? undefined : 'Inter'}}>{error}</Text>
         <TouchableOpacity onPress={handleSubmit} style={{backgroundColor: '#ffda70',
         padding: 10, 
         paddingBottom: 12, 
@@ -142,9 +147,9 @@ const SignUpForm = () => {
         alignItems: 'center', 
         alignContent:'center', 
         alignSelf:'center',}}>
-        <Text style={{textAlign: 'center', fontSize: 20, color: 'black', fontWeight:'300'}}>Signup</Text>
+        <Text style={{textAlign: 'center', fontSize: 20, color: 'black', fontWeight:'300', fontFamily: isMobile ? undefined : 'Inter'}}>Signup</Text>
         </TouchableOpacity>
-        <Text style={{textAlign: 'center', fontSize: 17, fontStyle: 'italic', marginTop: 10}}>Already have an account?</Text>
+        <Text style={{textAlign: 'center', fontSize: 17, fontStyle: 'italic', marginTop: 10, fontFamily: isMobile ? undefined : 'Inter'}}>Already have an account?</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Login | Misplaced')} style={{backgroundColor: '#ffda70', 
         paddingTop: 8, 
         paddingBottom: 9, 
@@ -161,7 +166,7 @@ const SignUpForm = () => {
         alignItems: 'center', 
         alignContent:'center', 
         alignSelf:'center',}}>
-        <Text style={{textAlign: 'center', fontSize: 17, color: 'black', fontWeight:'300'}}>Login</Text>
+        <Text style={{textAlign: 'center', fontSize: 17, color: 'black', fontWeight:'300', fontFamily: isMobile ? undefined : 'Inter'}}>Login</Text>
         </TouchableOpacity>
         </View>
     );

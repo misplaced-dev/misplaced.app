@@ -1,7 +1,6 @@
-import { View, Text, TouchableOpacity, Image, StyleSheet, AppState, ImageBackground, Platform } from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet, ImageBackground, Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { BlurView } from 'expo-blur'; 
-
 import React, { useEffect, useState } from "react";
 import { AuthService } from "../services/auth.service";
 import { UserService } from "../services/user.service";
@@ -9,7 +8,7 @@ import { PostService } from "../services/post.service";
 import { MediaService } from "../services/media.service";
 
 
-
+const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
 
 const Postcard = ({ image, price, title, location, onPress, }) => {
   return (
@@ -97,17 +96,13 @@ const ProfileContainer = () => {
      
     }
 
-    const posted = [
-      { id: 1, image: 'https://hmp.me/d29u', price: '$5', title: 'Towson Hat', location: 'Millennium Hall' },
-    ];
-
        
 
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center',  backgroundColor: '#f2f2f2',}}>
        <Image source={require('../assets/profile.png') }style={{ alignSelf: 'center', width: 100, height: 100, marginTop: 30, }}/>
-       <Text style={{textAlign: 'center', fontSize: 25, paddingTop: 15,}}>Welcome Back {name}!</Text>
-        <Text style={{textAlign: 'center', fontSize: 20, color:'grey', padding: 10,}}>{username}</Text>
+       <Text style={{textAlign: 'center', fontSize: 25, paddingTop: 15, fontFamily: isMobile ? undefined : 'Inter'}}>Welcome Back {name}!</Text>
+        <Text style={{textAlign: 'center', fontSize: 20, color:'grey', padding: 10, fontFamily: isMobile ? undefined : 'Inter'}}>{username}</Text>
         
         <TouchableOpacity onPress={handleLogout} style={{textAlign: 'center', 
         fontSize: 20, 
@@ -120,10 +115,10 @@ const ProfileContainer = () => {
         marginLeft: 30, 
         borderRadius: 20, 
         marginBottom: 30,}}>
-            <Text style={{textAlign: 'center', fontSize: 17, color: 'black', fontWeight:'300'}}>Logout</Text>
+            <Text style={{textAlign: 'center', fontSize: 17, color: 'black', fontWeight:'300', fontFamily: isMobile ? undefined : 'Inter'}}>Logout</Text>
         </TouchableOpacity>
 
-        <Text style={{textAlign: 'center', fontSize: 30}}>Posts</Text>
+        <Text style={{textAlign: 'center', fontSize: 30, fontFamily: isMobile ? undefined : 'Inter'}}>Posts</Text>
 
         <View style={styles.container}>
         {posts.map(post => (
@@ -186,20 +181,23 @@ const styles = StyleSheet.create({
   title: {
     margin: 8,
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: '700',
     textAlign: 'left',
+    fontFamily: isMobile ? undefined : 'Inter'
   },
   price: {
     marginHorizontal: 8,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '600',
     textAlign: 'left',
+    fontFamily: isMobile ? undefined : 'Inter'
   },
   location: {
     margin: 8,
     fontSize: 14,
     color: 'gray',
     textAlign: 'left',
+    fontFamily: isMobile ? undefined : 'Inter'
   },
 });
 

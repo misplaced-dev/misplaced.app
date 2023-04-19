@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { TouchableOpacity, Text, View, Platform } from 'react-native';
 
+const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
 
 function FiltersMenu() {
-  const menuOptions = [{ text: 'Within 1 mile', value: 'Within1mile' }, { text: 'Within 3 miles', value: 'Within3miles' }, { text: 'Off Campus', value: 'OffCampus' }];
+  const menuOptions = [{ text: 'Within 1 mile', value: 'Within1mile', fontFamily: isMobile ? undefined : 'Inter' }, 
+  { text: 'Within 3 miles', value: 'Within3miles', fontFamily: isMobile ? undefined : 'Inter'}, 
+  { text: 'Off Campus', value: 'OffCampus', fontFamily: isMobile ? undefined : 'Inter'}];
 
   const handleSelectOption = (value) => {
     console.log('Selected option:', value); // Replace with sorted data
@@ -46,7 +49,7 @@ function Filters(props) {
    
   };
 
-  const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
+ 
 
   const buttonStyle = {
     flex: 1,
@@ -63,33 +66,26 @@ function Filters(props) {
     borderTopWidth:  1 ,
     borderRightWidth: 0,
     borderRadius: 0,
-    
   };
 
 
   return (
-    <View
-      style={{
+    <View style={{
         position: 'absolute',
         backgroundColor: '#f2f2f2',
         height: showMenu ? 185 : 50,
         width:  '50%',
         top: isMobile ? 210 : 180,
-        right:  0,
-       
+        right: 0,    
         borderColor: '#171717',
-       
         marginBottom: showMenu ? 150 : 0,
         zIndex: (isMobile && isPressed) || !isMobile ? 2 : 1,
-      }}
-    >
+      }}>
       <TouchableOpacity onPress={handlePress} style={buttonStyle}>
-        <Text style={{ color: isPressed ? 'white' : 'black' }}>Filters</Text>
+        <Text style={{ color: isPressed ? 'white' : 'black', fontFamily: isMobile ? undefined : 'Inter', }}>Filters</Text>
       </TouchableOpacity>
       {showMenu && (
-
           <FiltersMenu />
-       
       )}
     </View>
   );
