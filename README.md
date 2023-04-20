@@ -1,5 +1,5 @@
 # MISPLACED
-Click below to access the website https://misplaced.app/ (Beta), link to download in app stores (In Progress), and social media pages.
+Click below to access the website https://misplaced.app (Beta), link to download in app stores (In Progress), and social media pages
 
 [linktr.ee/misplacedapp](https://linktr.ee/misplacedapp)
 
@@ -23,4 +23,9 @@ https://user-images.githubusercontent.com/106638403/230789862-b60121f7-126b-4090
 
 
 
-![image](https://user-images.githubusercontent.com/106638403/230746757-e3270db4-ed20-4a90-bf02-c84f61b643f3.png)
+
+![Excutive Summary](https://user-images.githubusercontent.com/106638403/231019997-6073ed07-415f-42a3-a32b-9a4b2669e5a8.svg)
+
+https://www.figma.com/file/NQi9NwvBI3Zkf6fMFQm2cR/Executive-Summary?node-id=77-4&t=ENIp6XfiBMOQyv8g-0
+
+https://www.figma.com/file/NQi9NwvBI3Zkf6fMFQm2cR/Executive-Summary?node-id=173%3A6&t=F7bQ0AShgigga5FC-1
