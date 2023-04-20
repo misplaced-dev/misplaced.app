@@ -51,7 +51,7 @@ const LoginForm = () => {
 
     return (
         <View>
-      <Text style={{textAlign: 'center', fontSize: 20, marginTop: 100, fontFamily: isMobile ? 'System' : 'Inter'}}>Email</Text>
+      <Text style={{textAlign: 'center', fontSize: 20, marginTop: 100, fontFamily: 'Inter, Helvetica Neue'}}>Email</Text>
       <TextInput
         value={email}
         onChangeText={setEmail}
@@ -66,9 +66,9 @@ const LoginForm = () => {
         marginRight: 
         bigScreen ? '25%' : '10%', 
         marginLeft: bigScreen ? '25%' : '10%',
-        fontFamily: isMobile ? 'System' : 'Inter'}}
+        fontFamily: 'Inter, Helvetica Neue'}}
       />
-      <Text style={{textAlign: 'center', fontSize: 20, fontFamily: isMobile ? 'System' : 'Inter'}}>Password</Text>
+      <Text style={{textAlign: 'center', fontSize: 20, fontFamily: 'Inter, Helvetica Neue'}}>Password</Text>
       <TextInput
         value={password}
         onChangeText={setPassword}
@@ -83,9 +83,9 @@ const LoginForm = () => {
         marginBottom: 10, 
         marginRight: bigScreen ? '25%' : '10%',
          marginLeft: bigScreen ? '25%' : '10%',
-         fontFamily: isMobile ? 'System' : 'Inter'}}
+         fontFamily: 'Inter, Helvetica Neue'}}
       />
-      <Text style={{textAlign: 'center', fontSize: 20, color: 'red', fontFamily: isMobile ? 'System' : 'Inter'}}>{error}</Text>
+      <Text style={{textAlign: 'center', fontSize: 20, color: 'red', fontFamily: 'Inter, Helvetica Neue'}}>{error}</Text>
       <TouchableOpacity onPress={handleSubmit} style={{backgroundColor: '#ffda70', 
       padding: 10, 
       paddingBottom: 10, 
@@ -98,9 +98,9 @@ const LoginForm = () => {
       width: 200, 
       borderRadius: 20, 
       marginBottom: 10,}}>
-        <Text style={{alignSelf: 'center', fontSize: 20, color: 'black', fontWeight:'300', fontFamily: isMobile ? 'System' : 'Inter'}}>Login</Text>
+        <Text style={{alignSelf: 'center', fontSize: 20, color: 'black', fontWeight:'300', fontFamily: 'Inter, Helvetica Neue'}}>Login</Text>
       </TouchableOpacity>
-      <Text style={{alignSelf: 'center', fontSize: 20, fontStyle: 'italic', marginTop: 10, fontFamily: isMobile ? 'System' : 'Inter'}}>Don't have an account?</Text>
+      <Text style={{alignSelf: 'center', fontSize: 20, fontStyle: 'italic', marginTop: 10, fontFamily: 'Inter, Helvetica Neue'}}>Don't have an account?</Text>
       <TouchableOpacity onPress={() => navigation.navigate('Signup | Misplaced')} style={{backgroundColor: '#ffda70', 
       paddingTop: 8, 
       paddingBottom: 9, 
@@ -117,7 +117,7 @@ const LoginForm = () => {
       alignItems: 'center', 
       alignContent:'center', 
       alignSelf:'center',}}>
-        <Text style={{alignSelf: 'center', fontSize: 17, color: 'black', fontWeight:'300', fontFamily: isMobile ? 'System' : 'Inter'}}>Signup</Text>
+        <Text style={{alignSelf: 'center', fontSize: 17, color: 'black', fontWeight:'300', fontFamily: 'Inter, Helvetica Neue'}}>Signup</Text>
       </TouchableOpacity>
 
       </View>

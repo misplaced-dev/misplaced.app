@@ -66,7 +66,7 @@ const SignUpForm = () => {
     
     return (
       <View>
-        <Text style={{textAlign: 'center', fontSize: 17, marginTop: 30, fontFamily: isMobile ? 'System' : 'Inter'}}>Name</Text>
+        <Text style={{textAlign: 'center', fontSize: 17, marginTop: 30, fontFamily: 'Inter, Helvetica Neue'}}>Name</Text>
         <TextInput
           value={name}
           onChangeText={setName}
@@ -80,10 +80,10 @@ const SignUpForm = () => {
           marginRight: bigScreen ? '25%' : '10%', 
           marginLeft: bigScreen ? '25%' : '10%', 
           borderRadius: 10,
-          fontFamily: isMobile ? 'System' : 'Inter'}}
+          fontFamily: 'Inter, Helvetica Neue'}}
 
         />
-        <Text style={{textAlign: 'center', fontSize: 17, fontFamily: isMobile ? 'System' : 'Inter'}}>Email</Text>
+        <Text style={{textAlign: 'center', fontSize: 17, fontFamily: 'Inter, Helvetica Neue'}}>Email</Text>
         <TextInput
           value={email}
           onChangeText={setEmail}
@@ -97,10 +97,10 @@ const SignUpForm = () => {
           marginRight: bigScreen ? '25%' : '10%', 
           marginLeft: bigScreen ? '25%' : '10%', 
           borderRadius: 10,
-          fontFamily: isMobile ? 'System' : 'Inter'}}
+          fontFamily: 'Inter, Helvetica Neue'}}
 
         />
-        <Text style={{textAlign: 'center', fontSize: 17, fontFamily: isMobile ? 'System' : 'Inter'}}>Username</Text>
+        <Text style={{textAlign: 'center', fontSize: 17, fontFamily: 'Inter, Helvetica Neue'}}>Username</Text>
         <TextInput
           value={username}
           onChangeText={setUsername}
@@ -113,10 +113,10 @@ const SignUpForm = () => {
           marginRight: bigScreen ? '25%' : '10%',
           marginLeft: bigScreen ? '25%' : '10%', 
           borderRadius: 10,
-          fontFamily: isMobile ? 'System' : 'Inter'}}
+          fontFamily: 'Inter, Helvetica Neue'}}
 
         />
-        <Text  style={{textAlign: 'center', fontSize: 17, fontFamily: isMobile ? 'System' : 'Inter'}}>Password</Text>
+        <Text  style={{textAlign: 'center', fontSize: 17, fontFamily: 'Inter, Helvetica Neue'}}>Password</Text>
         <TextInput
           value={password}
           onChangeText={setPassword}
@@ -131,10 +131,10 @@ const SignUpForm = () => {
           marginRight: bigScreen ? '25%' : '10%', 
           marginLeft: bigScreen ? '25%' : '10%', 
           borderRadius: 10,
-          fontFamily: isMobile ? 'System' : 'Inter'}}
+          fontFamily: 'Inter, Helvetica Neue'}}
 
         />
-        <Text style={{textAlign: 'center', fontSize: 17, color: 'red', fontFamily: isMobile ? 'System' : 'Inter'}}>{error}</Text>
+        <Text style={{textAlign: 'center', fontSize: 17, color: 'red', fontFamily: 'Inter, Helvetica Neue'}}>{error}</Text>
         <TouchableOpacity onPress={handleSubmit} style={{backgroundColor: '#ffda70',
         padding: 10, 
         paddingBottom: 12, 
@@ -147,9 +147,9 @@ const SignUpForm = () => {
         alignItems: 'center', 
         alignContent:'center', 
         alignSelf:'center',}}>
-        <Text style={{textAlign: 'center', fontSize: 20, color: 'black', fontWeight:'300', fontFamily: isMobile ? 'System' : 'Inter'}}>Signup</Text>
+        <Text style={{textAlign: 'center', fontSize: 20, color: 'black', fontWeight:'300', fontFamily: 'Inter, Helvetica Neue'}}>Signup</Text>
         </TouchableOpacity>
-        <Text style={{textAlign: 'center', fontSize: 17, fontStyle: 'italic', marginTop: 10, fontFamily: isMobile ? 'System' : 'Inter'}}>Already have an account?</Text>
+        <Text style={{textAlign: 'center', fontSize: 17, fontStyle: 'italic', marginTop: 10, fontFamily: 'Inter, Helvetica Neue'}}>Already have an account?</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Login | Misplaced')} style={{backgroundColor: '#ffda70', 
         paddingTop: 8, 
         paddingBottom: 9, 
@@ -166,7 +166,7 @@ const SignUpForm = () => {
         alignItems: 'center', 
         alignContent:'center', 
         alignSelf:'center',}}>
-        <Text style={{textAlign: 'center', fontSize: 17, color: 'black', fontWeight:'300', fontFamily: isMobile ? 'System' : 'Inter'}}>Login</Text>
+        <Text style={{textAlign: 'center', fontSize: 17, color: 'black', fontWeight:'300', fontFamily: 'Inter, Helvetica Neue'}}>Login</Text>
         </TouchableOpacity>
         </View>
     );
