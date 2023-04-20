@@ -89,7 +89,7 @@ function Sort(props) {
       }}
     >
       <TouchableOpacity onPress={handlePress} style={buttonStyle}>
-        <Text style={{ color: isPressed ? 'white' : 'black', fontFamily: isMobile ? null : 'Inter'}}>Sort By</Text>
+        <Text style={{ color: isPressed ? 'white' : 'black', fontFamily: isMobile ? 'System' : 'Inter'}}>Sort By</Text>
       </TouchableOpacity>
       {showMenu && (
           <SortMenu />
