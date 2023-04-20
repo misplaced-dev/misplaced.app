@@ -57,7 +57,7 @@ const checkLoginStatus = async () => {
 
   const textStyle = {
     color: isPressed ? 'white' : 'black',
-    fontFamily: isMobile ? undefined : 'Inter',
+    fontFamily: isMobile ? null : 'Inter',
   };
 
   return (

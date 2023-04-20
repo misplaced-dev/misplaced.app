@@ -322,9 +322,9 @@ const handleSubmit = async () => {
 
    
     <TouchableOpacity onPress={handleSubmit} style={styles.create}>
-      <Text style={[styles.texts, { backgroundColor: '#ffda70', fontSize: 19, fontWeight:'300', width:'98%', alignSelf:'center', fontFamily: isMobile ? undefined : 'Inter'}]}>Create Post</Text>
+      <Text style={[styles.texts, { backgroundColor: '#ffda70', fontSize: 19, fontWeight:'300', width:'98%', alignSelf:'center', fontFamily: isMobile ? null : 'Inter'}]}>Create Post</Text>
       </TouchableOpacity>
-      <Text style={{textAlign:'center', paddingBottom:20, fontFamily: isMobile ? undefined : 'Inter'}}>{error}</Text>
+      <Text style={{textAlign:'center', paddingBottom:20, fontFamily: isMobile ? null : 'Inter'}}>{error}</Text>
       </KeyboardAvoidingView>
       </ScrollView>
     </View>
@@ -363,7 +363,7 @@ const styles = StyleSheet.create({
     height: 'auto',
     flexWrap: 'wrap',
     marginBottom: 0,
-    fontFamily: isMobile ? undefined : 'Inter'
+    fontFamily: isMobile ? null : 'Inter'
   },
   imageContainer: {
     flex: 1,
@@ -385,28 +385,28 @@ const styles = StyleSheet.create({
     objectFit: 'cover',
   objectPosition: 'center',
   zIndex: 2,
-  fontFamily: isMobile ? undefined : 'Inter'
+  fontFamily: isMobile ? null : 'Inter'
   },
   title: {
     margin: 8,
     fontSize: 18,
     fontWeight: '700',
     textAlign: 'left',
-    fontFamily: isMobile ? undefined : 'Inter'
+    fontFamily: isMobile ? null : 'Inter'
   },
   price: {
     marginHorizontal: 8,
     fontSize: 16,
     fontWeight: '600',
     textAlign: 'left',
-    fontFamily: isMobile ? undefined : 'Inter'
+    fontFamily: isMobile ? null : 'Inter'
   },
   location: {
     margin: 8,
     fontSize: 14,
     color: 'gray',
     textAlign: 'left',
-    fontFamily: isMobile ? undefined : 'Inter'
+    fontFamily: isMobile ? null : 'Inter'
   },
     header: {
     fontSize: 25,
@@ -424,7 +424,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     top: 0,
     backgroundColor: '#f2f2f2',
-    fontFamily: isMobile ? undefined : 'Inter'
+    fontFamily: isMobile ? null : 'Inter'
   },
     upload: {
       fontSize: 15,
@@ -432,7 +432,7 @@ const styles = StyleSheet.create({
       color: '#000',
       marginBottom: 10,
       top: 0,
-      fontFamily: isMobile ? undefined : 'Inter'
+      fontFamily: isMobile ? null : 'Inter'
  },
 texttitle:{
   fontSize: 15,
@@ -442,7 +442,7 @@ texttitle:{
     marginBottom: 10,
     top: 0,
     backgroundColor: '#f2f2f2',
-    fontFamily: isMobile ? undefined : 'Inter'
+    fontFamily: isMobile ? null : 'Inter'
 },
 input:{
   textAlign: 'center', 
@@ -458,7 +458,7 @@ input:{
   marginRight: '15%', 
   marginLeft: '15%', 
   borderRadius: 10,
-  fontFamily: isMobile ? undefined : 'Inter'
+  fontFamily: isMobile ? null : 'Inter'
 },
 create:{
   textAlign: 'center', 
@@ -475,7 +475,7 @@ create:{
   marginRight: '30%', 
   marginLeft: '30%', 
   borderRadius: 20,
-  fontFamily: isMobile ? undefined : 'Inter'
+  fontFamily: isMobile ? null : 'Inter'
 }  
 });
 
