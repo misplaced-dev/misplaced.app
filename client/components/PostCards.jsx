@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
     padding: 10,
     marginTop: 100,
-    fontFamily: isMobile ? 'System' : 'Inter'
+    fontFamily: 'Inter, Helvetica Neue'
   },
   postcard: {
     width: 330,
@@ -147,21 +147,21 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     textAlign: 'left',
-    fontFamily: isMobile ? 'System' : 'Inter'
+    fontFamily: 'Inter, Helvetica Neue'
   },
   price: {
     marginHorizontal: 8,
     fontSize: 16,
     fontWeight:"600",
     textAlign: 'left',
-    fontFamily: isMobile ? 'System' : 'Inter'
+    fontFamily: 'Inter, Helvetica Neue'
   },
   location: {
     margin: 8,
     fontSize: 14,
     color: 'gray',
     textAlign: 'left',
-    fontFamily: isMobile ? 'System' : 'Inter'
+    fontFamily: 'Inter, Helvetica Neue'
   },
 });
 

@@ -278,21 +278,21 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     textAlign: 'left',
-    fontFamily: isMobile ? 'System' : 'Inter'
+    fontFamily: 'Inter, Helvetica Neue'
   },
   price: {
     marginHorizontal: 8,
     fontSize: 16,
     fontWeight: '600',
     textAlign: 'left',
-    fontFamily: isMobile ? 'System' : 'Inter'
+    fontFamily: 'Inter, Helvetica Neue'
   },
   location: {
     margin: 8,
     fontSize: 14,
     color: 'gray',
     textAlign: 'left',
-    fontFamily: isMobile ? 'System' : 'Inter'
+    fontFamily: 'Inter, Helvetica Neue'
   },
   description: {
     margin: 8,
@@ -301,21 +301,21 @@ const styles = StyleSheet.create({
   textAlign: 'left',
   overflowWrap: 'break-word',
   maxWidth: '100%',
-  fontFamily: isMobile ? 'System' : 'Inter'
+  fontFamily: 'Inter, Helvetica Neue'
   },
   contact: {
     margin: 8,
     fontSize: 14,
     color: 'gray',
     textAlign: 'left',
-    fontFamily: isMobile ? 'System' : 'Inter'
+    fontFamily: 'Inter, Helvetica Neue'
   },
   time: {
     margin: 8,
     fontSize: 10,
     color: 'gray',
     textAlign: 'left',
-    fontFamily: isMobile ? 'System' : 'Inter'
+    fontFamily: 'Inter, Helvetica Neue'
   },
 });
 

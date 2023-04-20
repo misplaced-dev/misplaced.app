@@ -101,8 +101,8 @@ const ProfileContainer = () => {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center',  backgroundColor: '#f2f2f2',}}>
        <Image source={require('../assets/profile.png') }style={{ alignSelf: 'center', width: 100, height: 100, marginTop: 30, }}/>
-       <Text style={{textAlign: 'center', fontSize: 25, paddingTop: 15, fontFamily: isMobile ? 'System' : 'Inter'}}>Welcome Back {name}!</Text>
-        <Text style={{textAlign: 'center', fontSize: 20, color:'grey', padding: 10, fontFamily: isMobile ? 'System' : 'Inter'}}>{username}</Text>
+       <Text style={{textAlign: 'center', fontSize: 25, paddingTop: 15, fontFamily: 'Inter, Helvetica Neue'}}>Welcome Back {name}!</Text>
+        <Text style={{textAlign: 'center', fontSize: 20, color:'grey', padding: 10, fontFamily: 'Inter, Helvetica Neue'}}>{username}</Text>
         
         <TouchableOpacity onPress={handleLogout} style={{textAlign: 'center', 
         fontSize: 20, 
@@ -115,10 +115,10 @@ const ProfileContainer = () => {
         marginLeft: 30, 
         borderRadius: 20, 
         marginBottom: 30,}}>
-            <Text style={{textAlign: 'center', fontSize: 17, color: 'black', fontWeight:'300', fontFamily: isMobile ? 'System' : 'Inter'}}>Logout</Text>
+            <Text style={{textAlign: 'center', fontSize: 17, color: 'black', fontWeight:'300', fontFamily: 'Inter, Helvetica Neue'}}>Logout</Text>
         </TouchableOpacity>
 
-        <Text style={{textAlign: 'center', fontSize: 30, fontFamily: isMobile ? 'System' : 'Inter'}}>Posts</Text>
+        <Text style={{textAlign: 'center', fontSize: 30, fontFamily: 'Inter, Helvetica Neue'}}>Posts</Text>
 
         <View style={styles.container}>
         {posts.map(post => (
@@ -183,21 +183,21 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     textAlign: 'left',
-    fontFamily: isMobile ? 'System' : 'Inter'
+    fontFamily: 'Inter, Helvetica Neue'
   },
   price: {
     marginHorizontal: 8,
     fontSize: 16,
     fontWeight: '600',
     textAlign: 'left',
-    fontFamily: isMobile ? 'System' : 'Inter'
+    fontFamily: 'Inter, Helvetica Neue'
   },
   location: {
     margin: 8,
     fontSize: 14,
     color: 'gray',
     textAlign: 'left',
-    fontFamily: isMobile ? 'System' : 'Inter'
+    fontFamily: 'Inter, Helvetica Neue'
   },
 });
 
