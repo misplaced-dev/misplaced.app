@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Misplaced",
-    "slug": "Misplaced",
+    "slug": "misplaced",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/m.png",
@@ -16,7 +16,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "bundleIdentifier": "com.misplaced.misplaced"
     },
     "android": {
       "adaptiveIcon": {
@@ -26,6 +27,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7898fe5e-3fd4-436f-af84-d23d739ef32d"
+      }
+    },
+    "owner": "misplaced"
   }
 }
