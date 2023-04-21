@@ -33,6 +33,22 @@
         "projectId": "7898fe5e-3fd4-436f-af84-d23d739ef32d"
       }
     },
-    "owner": "misplaced"
+    "owner": "misplaced",
+    "plugins": [
+        [
+          "expo-build-properties",
+          {
+            "android": {
+              "compileSdkVersion": 31,
+              "targetSdkVersion": 31,
+              "buildToolsVersion": "31.0.0"
+            },
+            "ios": {
+              "deploymentTarget": "13.0",
+              "bitcode": false
+            }
+          }
+        ]
+      ]
   }
 }
