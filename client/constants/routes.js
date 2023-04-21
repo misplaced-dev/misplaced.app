@@ -1,4 +1,4 @@
-import {API_URL} from "@env"
+const API_URL = 'https://misplacedapi.onrender.com/api';
 
 export const USER_ROUTES = {
     REGISTER_USER() {
