@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/buffer.gif",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.misplaced.misplaced"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -35,20 +36,21 @@
     },
     "owner": "misplaced",
     "plugins": [
-        [
-          "expo-build-properties",
-          {
-            "android": {
-              "compileSdkVersion": 31,
-              "targetSdkVersion": 31,
-              "buildToolsVersion": "31.0.0"
-            },
-            "ios": {
-              "deploymentTarget": "13.0",
-              "bitcode": false
-            }
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 31,
+            "targetSdkVersion": 31,
+            "buildToolsVersion": "31.0.0"
+          },
+          "ios": {
+            "deploymentTarget": "13.0",
+            "bitcode": false,
+            "buildNumber": "2"
           }
-        ]
+        }
       ]
+    ]
   }
 }
