@@ -4,9 +4,9 @@ import { TouchableOpacity, Text, View, Platform } from 'react-native';
 const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
 
 function FiltersMenu() {
-  const menuOptions = [{ text: 'Within 1 mile', value: 'Within1mile', fontFamily: 'Inter, Helvetica Neue' }, 
-  { text: 'Within 3 miles', value: 'Within3miles', fontFamily: 'Inter, Helvetica Neue'}, 
-  { text: 'Off Campus', value: 'OffCampus', fontFamily: 'Inter, Helvetica Neue'}];
+  const menuOptions = [{ text: 'Within 1 mile', value: 'Within1mile',   }, 
+  { text: 'Within 3 miles', value: 'Within3miles',  }, 
+  { text: 'Off Campus', value: 'OffCampus',  }];
 
   const handleSelectOption = (value) => {
     console.log('Selected option:', value); // Replace with sorted data
@@ -82,7 +82,7 @@ function Filters(props) {
         zIndex: (isMobile && isPressed) || !isMobile ? 2 : 1,
       }}>
       <TouchableOpacity onPress={handlePress} style={buttonStyle}>
-        <Text style={{ color: isPressed ? 'white' : 'black', fontFamily: 'Inter, Helvetica Neue', }}>Filters</Text>
+        <Text style={{ color: isPressed ? 'white' : 'black',   }}>Filters</Text>
       </TouchableOpacity>
       {showMenu && (
           <FiltersMenu />
