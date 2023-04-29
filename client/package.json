@@ -34,7 +34,6 @@
     "react-native-maps": "^0.31.1",
     "react-native-safe-area-view": "^1.1.1",
     "react-native-web": "^0.18.12",
-    "expo-splash-screen": "~0.16.2",
     "expo-status-bar": "~1.4.0"
   },
   "engines": {
