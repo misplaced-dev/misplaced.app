@@ -7,6 +7,7 @@ import PostCards from "../components/PostCards.jsx";
 import Filters from "../components/Filters.jsx";
 import Sort from "../components/Sort.jsx";
 import PostButton from "../components/PostButton.jsx";
+import Footer from "../components/Footer.jsx";
 
  
 const isMobile = Platform.OS === 'ios' || Platform.OS === 'android';
@@ -29,6 +30,7 @@ const isMobile = Platform.OS === 'ios' || Platform.OS === 'android';
             <Sort />
             <Filters />
             <PostCards />
+            <Footer />
         </ScrollView>
         { isMobile ? null  : <PostButton style={{position:'absolute'}}/> }
        { isMobile ? <PostButton /> : null }

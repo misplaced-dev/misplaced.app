@@ -7,6 +7,7 @@ import PostPage from "./screens/PostPage";
 import Profile from "./screens/Profile";
 import NotFound404 from "./screens/NotFound404";
 import NewPost from "./screens/NewPost";
+import Class from "./screens/Class";
 
 
 const Stack = createNativeStackNavigator();
@@ -23,6 +24,7 @@ export default function App() {
           <Stack.Screen name="New Post | Misplaced" component={NewPost} />
           <Stack.Screen name="Profile | Misplaced" component={Profile} />
           <Stack.Screen name="Not Found | Misplaced" component={NotFound404} />
+          <Stack.Screen name="Class | Misplaced" component={Class} />
         </Stack.Navigator>
       </NavigationContainer>
 
