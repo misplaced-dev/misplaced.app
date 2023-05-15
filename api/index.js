@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios/dist/node/axios.cjs';
 
 export const getPlacesData = async (bl_lat, bl_lng, tr_lat, tr_lng, type) => {
   try {
