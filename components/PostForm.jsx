@@ -13,7 +13,7 @@ Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { BlurView } from 'expo-blur'; 
 import { PostService } from '../services/post.service';
-import axios from 'axios/dist/node/axios.cjs';
+import axios from '/var/task/node_modules/axios/dist/node/axios.cjs';
 import { MediaService } from '../services/media.service';
 import { AuthService } from '../services/auth.service';
 import * as ImagePicker from 'expo-image-picker';
