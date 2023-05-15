@@ -1,4 +1,4 @@
-const API_URL = 'https://misplacedapi.onrender.com/api';
+const API_URL = 'https://misplaced.vercel.app/api';
 
 export const USER_ROUTES = {
     REGISTER_USER() {
