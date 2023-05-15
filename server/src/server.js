@@ -24,7 +24,7 @@ export class Server {
 
   // set port
   static setPort() {
-    this.app.set("port", process.env.PORT || 3001);
+    this.app.set("port", process.env.PORT || 4000);
   }
 
   // set routes

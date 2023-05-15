@@ -1,8 +1,8 @@
 import { View ,  ScrollView, StatusBar} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import PostPageContainer from "../client/components/PostPageContainer";
-import HomeHeader from "../client/components/HomeHeader";
+import PostPageContainer from "../components/PostPageContainer";
+import HomeHeader from "../components/HomeHeader";
 
 
 
