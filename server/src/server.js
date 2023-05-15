@@ -38,11 +38,14 @@ export class Server {
   // set middleware
   static middleware() {
     this.app.use(express.json());
-    // enable CORS for all domains
-    this.app.use(cors());
-
-    // enable CORS for specific domains
-    this.app.use(cors({ origin: "*" }));
+    this.app.use(
+      cors({
+        origin: "*",
+        methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+        preflightContinue: false,
+        optionsSuccessStatus: 204,
+      })
+    );
   }
 
   // listen
