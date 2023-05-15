@@ -1,4 +1,4 @@
-import axios from '../var/task/node_modules/axios/dist/node/axios.cjs';
+import * as axios from 'axios';;
 
 export const getPlacesData = async (bl_lat, bl_lng, tr_lat, tr_lng, type) => {
   try {

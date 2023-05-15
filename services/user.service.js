@@ -1,4 +1,4 @@
-import axios from '../var/task/node_modules/axios/dist/node/axios.cjs';
+import * as axios from 'axios';;
 import { USER_ROUTES } from '../constants/routes.js';
 
 export class UserService {
