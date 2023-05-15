@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Text, TouchableOpacity, TextInput, View, StyleSheet, Platform } from 'react-native';
+import { Text, TouchableOpacity, TextInput, View, StyleSheet } from 'react-native';
 
 
 
@@ -70,7 +70,6 @@ const Footer = () => {
   );
 };
 
-const isMobile = Platform.OS === 'ios' || Platform.OS === 'android';
 
 const styles = StyleSheet.create({
   container: {
