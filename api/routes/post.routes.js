@@ -30,14 +30,14 @@ PostRoutes.get('/user/:id', PostController.getPostsByUserId);
 /**
  * @route PATCH api/post/:postId/:userId
  * @desc Update a post
- */
-PostRoutes.patch('/:postId/:userId', PostController.updatePost);
+*/
+// PostRoutes.patch('/:postId/:userId', PostController.updatePost);
 
 /**
  * @route DELETE api/post/:postId/:userId
  * @desc Delete a post
  */
-PostRoutes.delete('/:postId/:userId', PostController.deletePost);
+// PostRoutes.delete('/:postId/:userId', PostController.deletePost);
 
 
 export default PostRoutes;
