@@ -50,7 +50,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   class: {
-    display: 'flex',
+
+    display: 'flex',    
+
   },
   github: {
   display: 'flex',
