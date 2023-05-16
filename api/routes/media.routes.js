@@ -23,7 +23,7 @@ MediaRoutes.get('/post/:id', MediaController.getMediaByPostId);
 
 /**
  * @route GET api/media/:id
- * @desc Get  a media
+ * @desc Get a media by media id
  */
 MediaRoutes.get('/:id', MediaController.getMediaById);
 

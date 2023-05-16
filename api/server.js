@@ -4,7 +4,6 @@ import cors from "cors";
 import UserRoutes from "./routes/user.routes.js";
 import PostRoutes from "./routes/post.routes.js";
 import MediaRoutes from "./routes/media.routes.js";
-import LocationRoutes from "./routes/location.routes.js";
 
 export class Server {
   app;
@@ -32,7 +31,6 @@ export class Server {
     this.app.use("/api/user", UserRoutes);
     this.app.use("/api/post", PostRoutes);
     this.app.use("/api/media", MediaRoutes);
-    this.app.use("/api/location", LocationRoutes);
   }
 
   // set middleware

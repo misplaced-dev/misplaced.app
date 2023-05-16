@@ -7,8 +7,7 @@
     "start": "nodemon src/app.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Dawit Alemu",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
