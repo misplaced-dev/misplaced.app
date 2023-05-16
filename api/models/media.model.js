@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+
 
 /**
  * Media Schema for MongoDB
