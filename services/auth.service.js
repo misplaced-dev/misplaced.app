@@ -1,4 +1,4 @@
-import axios from '../node_modules/axios/dist/node/axios.cjs';
+import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { USER_ROUTES } from "../constants/routes.js";
 
