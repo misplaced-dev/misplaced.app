@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+
 import { identicon } from 'minidenticons';
 import User from '../models/user.model.js';
 import Media from '../models/media.model.js';
