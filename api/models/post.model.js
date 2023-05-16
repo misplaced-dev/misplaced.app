@@ -1,4 +1,4 @@
-
+import * as mongoose from "mongoose";
 
 /**
  * Post Schema for MongoDB

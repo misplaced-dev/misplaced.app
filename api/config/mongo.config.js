@@ -1,4 +1,4 @@
-
+import * as mongoose from "mongoose";
 import * as dotenv from "dotenv";
 
 export class MongoDB {

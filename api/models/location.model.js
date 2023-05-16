@@ -1,4 +1,4 @@
-
+import * as mongoose from "mongoose";
 
 /**
  * Location Schema for MongoDB

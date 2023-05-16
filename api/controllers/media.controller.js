@@ -1,4 +1,4 @@
-
+import * as mongoose from "mongoose";
 import Media from '../models/media.model.js';
 
 export class MediaController {

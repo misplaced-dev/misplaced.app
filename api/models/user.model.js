@@ -1,4 +1,4 @@
-
+import * as mongoose from "mongoose";
 
 /**
  * User Schema for MongoDB
