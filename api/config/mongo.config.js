@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 const mongoose = require('mongoose');
 import * as dotenv from "dotenv";
 
