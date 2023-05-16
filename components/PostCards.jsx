@@ -47,7 +47,7 @@ useEffect(() => {
   
 const fetchPosts = async () => {
   try {
-    const posts = await PostService.getPostsInDistance(2000).then((res) => {
+    const posts = await PostService.getAllPosts().then((res) => {
       return res.data;
     });
       for (let i = 0; i < posts.length; i++) {

@@ -12,15 +12,14 @@ export class PostService {
         return axios.post(POST_ROUTES.CREATE_POST(), post);
     }
 
-    /**
-     * Gets a post within a distance
-     * 
-     * @param {Number} distance the distance to search for posts
-     * @returns {Promise} the response from the server
-     */
-    static getPostsInDistance(distance) {
-        return axios.get(POST_ROUTES.GET_POST_IN_DISTANCE(distance));
-    }
+   /**
+ * Gets all posts
+ * 
+ * @returns {Promise} The response from the server
+ */
+static getAllPosts() {
+    return axios.get(POST_ROUTES.GET_ALL_POSTS);
+}
 
     /**
      * Gets a post by user id

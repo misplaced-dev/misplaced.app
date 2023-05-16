@@ -10,14 +10,14 @@ const PostRoutes = Router();
 PostRoutes.post('/create', PostController.createPost);
 
 /**
- * @route GET api/post/posts/in/:distance
- * @desc Get all posts within a distance
+ * @route GET all posts
+ * @desc Get all posts 
  */
-PostRoutes.get('/posts/in/:distance', PostController.getPostsInDistance);
+PostRoutes.get('/posts', PostController.getAllPosts);
 
 /**
  * @route GET api/post/:id
- * @desc Get a post
+ * @desc Get a post by post id
  */
 PostRoutes.get('/:id', PostController.getPostById);
 

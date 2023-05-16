@@ -66,34 +66,29 @@ export class PostController {
     }
 
     /**
-     * A function to get posts within a radius of a location
-     * 
-     * @param {Request} req request object
-     * @param {Response} res response object
-     * @returns {Post[]} post object
-     * @returns {Error} error object
-     */
-    static async getPostsInDistance(req, res) {
-
-    try {   
-        // get all posts model
-        const posts = await Post.find({})
-            .populate('author')
-            .exec();
-        if (!posts) {
-        
-            res.status(404).json({ message: 'Posts not found' });
-            
-            return;
-        }
-        else{
-            res.status(200).json(posts);
-        }
+ * A function to get all posts
+ * 
+ * @param {Response} res response object
+ * @returns {Post[]} post object
+ * @returns {Error} error object
+ */
+static async getAllPosts(res) {
+    try {
+      // Get all posts from the model
+      const posts = await Post.find({})
+        .populate('author')
+        .exec();
+  
+      if (!posts) {
+        res.status(404).json({ message: 'Posts not found' });
+        return;
+      } else {
+        res.status(200).json(posts);
+      }
+    } catch (err) {
+      res.status(500).json({ message: err.message });
     }
-    catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-    }
+  }
 
 
     /**
