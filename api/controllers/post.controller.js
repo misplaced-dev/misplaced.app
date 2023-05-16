@@ -139,71 +139,71 @@ static async getAllPosts(res) {
         }
     }
 
-    /**
-     * A function to update a post
-     * 
-     * @param {Request} req request object
-     * @param {Response} res response object
-     * @returns {Post} post object
-     * @returns {Error} error object
-     */
-    static async updatePost(req, res) {
-        try {
-            const post = await Post.findOne({ _id: req.params.postId, author: req.params.userId });
-            if (!post) {
-                res.status(404).json({ message: 'Post not found' });
-                return;
-            }
-            if (req.body.title) {
-                post.title = req.body.title;
-            }
-            if (req.body.description) {
-                post.description = req.body.description;
-            }
-            if (req.body.author) {
-                post.author = req.body.author;
-            }
-            if (req.body.compensation) {
-                post.compensation = req.body.compensation;
-            }
-            post.save()
-                .then((post) => {
-                    res.status(200).json(post);
-                })
-                .catch((err) => {
-                    res.status(400).json({ message: err.message });
-                });
-        }
-        catch (err) {
-            res.status(500).json({ message: err.message });
-        }
-    }
+    // /**
+    //  * A function to update a post
+    //  * 
+    //  * @param {Request} req request object
+    //  * @param {Response} res response object
+    //  * @returns {Post} post object
+    //  * @returns {Error} error object
+    //  */
+    // static async updatePost(req, res) {
+    //     try {
+    //         const post = await Post.findOne({ _id: req.params.postId, author: req.params.userId });
+    //         if (!post) {
+    //             res.status(404).json({ message: 'Post not found' });
+    //             return;
+    //         }
+    //         if (req.body.title) {
+    //             post.title = req.body.title;
+    //         }
+    //         if (req.body.description) {
+    //             post.description = req.body.description;
+    //         }
+    //         if (req.body.author) {
+    //             post.author = req.body.author;
+    //         }
+    //         if (req.body.compensation) {
+    //             post.compensation = req.body.compensation;
+    //         }
+    //         post.save()
+    //             .then((post) => {
+    //                 res.status(200).json(post);
+    //             })
+    //             .catch((err) => {
+    //                 res.status(400).json({ message: err.message });
+    //             });
+    //     }
+    //     catch (err) {
+    //         res.status(500).json({ message: err.message });
+    //     }
+    // }
 
-    /**
-     * A function to delete a post
-     * 
-     * @param {Request} req request object
-     * @param {Response} res response object
-     * @returns {Post} post object
-     * @returns {Error} error object
-     */
-    static async deletePost(req, res) {
-        try {
-            const post = await Post.findOne({ _id: req.params.postId, author: req.params.userId });
-            if (!post) {
-                res.status(404).json({ message: 'Post not found' });
-                return;
-            }
-            post.remove()
-                .then((post) => {
-                    res.status(200).json(post);
-                })
-                .catch((err) => {
-                    res.status(400).json({ message: err.message });
-                });
-        }
-        catch (err) {
-            res.status(500).json({ message: err.message });
-        }
-    }
+    // /**
+    //  * A function to delete a post
+    //  * 
+    //  * @param {Request} req request object
+    //  * @param {Response} res response object
+    //  * @returns {Post} post object
+    //  * @returns {Error} error object
+    //  */
+    // static async deletePost(req, res) {
+    //     try {
+    //         const post = await Post.findOne({ _id: req.params.postId, author: req.params.userId });
+    //         if (!post) {
+    //             res.status(404).json({ message: 'Post not found' });
+    //             return;
+    //         }
+    //         post.remove()
+    //             .then((post) => {
+    //                 res.status(200).json(post);
+    //             })
+    //             .catch((err) => {
+    //                 res.status(400).json({ message: err.message });
+    //             });
+    //     }
+    //     catch (err) {
+    //         res.status(500).json({ message: err.message });
+    //     }
+    // }
 }

@@ -22,8 +22,8 @@ export const POST_ROUTES = {
     CREATE_POST() {
         return `${API_URL}/post/create`;
     },
-    GET_POST_IN_DISTANCE(distance) {
-        return `${API_URL}/post/posts/in/${distance}`;
+    GET_ALL_POSTS() {
+        return `${API_URL}/posts/`;
     },
     GET_POST(userId) {
         return `${API_URL}/post/user/${userId}`;

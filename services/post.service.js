@@ -18,7 +18,7 @@ export class PostService {
  * @returns {Promise} The response from the server
  */
 static getAllPosts() {
-    return axios.get(POST_ROUTES.GET_ALL_POSTS);
+    return axios.get(POST_ROUTES.GET_ALL_POSTS());
 }
 
     /**
