@@ -1,4 +1,4 @@
-import * as axios from 'axios';;
+import axios from '../node_modules/axios/dist/node/axios.cjs';
 import { LOCATION_ROUTES } from '../constants/routes';
 
 export class LocationService {

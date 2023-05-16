@@ -1,4 +1,4 @@
-import * as axios from 'axios';;
+import axios from '../node_modules/axios/dist/node/axios.cjs';
 import { POST_ROUTES } from '../constants/routes.js';
 
 export class PostService {
