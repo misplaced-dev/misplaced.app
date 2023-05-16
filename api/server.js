@@ -1,6 +1,5 @@
 import { MongoDB } from "./config/mongo.config.js";
 import express from "express";
-import cors from "cors";
 import UserRoutes from "./routes/user.routes.js";
 import PostRoutes from "./routes/post.routes.js";
 import MediaRoutes from "./routes/media.routes.js";
