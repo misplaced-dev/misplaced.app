@@ -1,4 +1,4 @@
-const { MongoDB } = require('../server/src/config/mongo.config.js');
+const MongoDB = require('../server/src/config/mongo.config.js');
 const express = require('express');
 const cors = require('cors');
 const UserRoutes = require('../server/src/routes/user.routes.js');
