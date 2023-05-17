@@ -1,4 +1,4 @@
-import { MongoDB } from "./config/mongo.config.js";
+import MongoDB from "./config/mongo.config.js";
 import express from "express";
 import cors from "cors";
 import UserRoutes from "./routes/user.routes.js";
@@ -6,7 +6,7 @@ import PostRoutes from "./routes/post.routes.js";
 import MediaRoutes from "./routes/media.routes.js";
 import LocationRoutes from "./routes/location.routes.js";
 
-export class Server {
+export default class Server {
   app;
  
   /**
@@ -42,7 +42,7 @@ export class Server {
     this.app.use(cors());
 
     // enable CORS for specific domains
-    this.app.use(cors({ origin: "https://misplaed.app" }));
+    this.app.use(cors({ origin: "https://misplaced.app" }));
   }
 
   // listen

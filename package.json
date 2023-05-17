@@ -7,7 +7,7 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "build": "npx expo export:web",
-    "server": "nodemon api/call.js"
+    "server": "nodemon api/call.mjs"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",

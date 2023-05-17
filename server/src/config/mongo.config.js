@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
-class MongoDB {
+export default class MongoDB {
   /**
    * Load environment variables and connect to the database
    */
@@ -23,5 +23,3 @@ class MongoDB {
     }
   }
 }
-
-module.exports = MongoDB;
