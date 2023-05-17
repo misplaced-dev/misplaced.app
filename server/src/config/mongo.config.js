@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
+import dotenv from 'dotenv'
 
 export class MongoDB {
     /**
@@ -14,7 +14,7 @@ export class MongoDB {
      * A function to connect to the database
      */
     static async connect() {
-        await mongoose.connect(process.env.MONGO_URI).then(() => {
+        await mongoose.connect("mongodb+srv://admin:fueaeOkvDiFpv836@misplacedcluster.557fujv.mongodb.net/misplaced?retryWrites=true&w=majority").then(() => {
             console.log("SUCCESSFULLY CONNECTED TO DATABASE");
         }).catch((err) => {
             console.log(`ERROR CONNECTING TO DATABASE: ${err}`);

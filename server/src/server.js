@@ -8,7 +8,7 @@ import LocationRoutes from "./routes/location.routes.js";
 
 export class Server {
   app;
-
+ 
   /**
    * A function to start the server
    */
@@ -24,7 +24,7 @@ export class Server {
 
   // set port
   static setPort() {
-    this.app.set("port", process.env.PORT || 3001);
+    this.app.set("port", 4000);
   }
 
   // set routes
@@ -38,7 +38,6 @@ export class Server {
   // set middleware
   static middleware() {
     this.app.use(express.json());
-    this.app.use(cors());
     // enable CORS for all domains
     this.app.use(cors());
 
