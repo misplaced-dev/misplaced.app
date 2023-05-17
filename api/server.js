@@ -6,9 +6,9 @@ const PostRoutes = require('../server/src/routes/post.routes.js');
 const MediaRoutes = require('../server/src/routes/media.routes.js');
 const LocationRoutes = require('../server/src/routes/location.routes.js');
 
-export class Server {
+class Server {
   app;
- 
+
   /**
    * A function to start the server
    */
@@ -46,12 +46,15 @@ export class Server {
   }
 
   // listen
-  static async listen() {
+  static listen() {
     // api init
     this.app.get("/", (req, res) => {
       res.json({ message: "WELCOME TO MISPLACED API." });
     });
-    this.app.listen(this.app.get("port"));
-    console.log("SERVER RUNNING ON PORT", this.app.get("port"));
+    this.app.listen(this.app.get("port"), () => {
+      console.log("SERVER RUNNING ON PORT", this.app.get("port"));
+    });
   }
 }
+
+Server.start();
