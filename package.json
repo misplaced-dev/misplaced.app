@@ -36,7 +36,15 @@
     "react-native-fs": "^2.20.0",
     "react-native-maps": "0.31.1",
     "react-native-safe-area-view": "^1.1.1",
-    "react-native-web": "~0.16.2"
+    "react-native-web": "~0.16.2",
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "minidenticons": "^2.0.0",
+    "mongodb": "^5.5.0",
+    "mongoose": "^7.1.0",
+    "node-fetch": "^3.3.1",
+    "request-ip": "^3.3.0"
   },
   "engines": {
     "node": ">=1.0.0 <16.18.2"

@@ -1,4 +1,4 @@
-import('../server/src/server.js').then(({ Server }) => {
+import('./server.js').then(({ Server }) => {
     Server.start();
   }).catch((error) => {
     // Handle any errors that occur during the import
