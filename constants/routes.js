@@ -1,4 +1,4 @@
-const API_URL = "https://misplaced.app"
+const API_URL = "https://misplaced.app/api"
 
 export const USER_ROUTES = {
     REGISTER_USER() {
