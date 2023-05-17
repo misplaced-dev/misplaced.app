@@ -7,51 +7,53 @@ import MediaRoutes from "./routes/media.routes.js";
 import LocationRoutes from "./routes/location.routes.js";
 
 export default class Server {
-  app;
- 
+  app = express(); 
+
   /**
    * A function to start the server
    */
-  static start() {
+  static async start() {
     // connect to db
-    MongoDB.init();
-    this.app = express();
-    this.middleware();
-    this.setPort();
-    this.routes();
-    this.listen();
+    await MongoDB.init();
+    
+    const server = new Server(); // Create an instance of the Server class
+    server.middleware();
+    server.setPort();
+    server.routes();
+    server.listen();
   }
 
   // set port
-  static setPort() {
-    this.app.set("port", 4000);
+  setPort() {
+    this.app.set('port', 4000);
   }
 
   // set routes
-  static routes() {
-    this.app.use("/api/user", UserRoutes);
-    this.app.use("/api/post", PostRoutes);
-    this.app.use("/api/media", MediaRoutes);
-    this.app.use("/api/location", LocationRoutes);
+  routes() {
+    this.app.use('/api/user', UserRoutes);
+    this.app.use('/api/post', PostRoutes);
+    this.app.use('/api/media', MediaRoutes);
+    this.app.use('/api/location', LocationRoutes);
   }
 
   // set middleware
-  static middleware() {
+  middleware() {
     this.app.use(express.json());
     // enable CORS for all domains
     this.app.use(cors());
 
     // enable CORS for specific domains
-    this.app.use(cors({ origin: "https://misplaced.app" }));
+    this.app.use(cors({ origin: 'https://misplaced.app' }));
   }
 
   // listen
-  static async listen() {
+  listen() {
     // api init
-    this.app.get("/", (req, res) => {
-      res.json({ message: "WELCOME TO MISPLACED API." });
+    this.app.get('/', (req, res) => {
+      res.json({ message: 'WELCOME TO MISPLACED API.' });
     });
-    this.app.listen(this.app.get("port"));
-    console.log("SERVER RUNNING ON PORT", this.app.get("port"));
+    this.app.listen(this.app.get('port'), () => {
+      console.log('SERVER RUNNING ON PORT', this.app.get('port'));
+    });
   }
 }

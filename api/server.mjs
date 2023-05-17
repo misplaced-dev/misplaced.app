@@ -7,28 +7,29 @@ import MediaRoutes from '../server/src/routes/media.routes.js';
 import LocationRoutes from '../server/src/routes/location.routes.js';
 
 export default class Server {
-  app;
- 
+  app = express(); 
+
   /**
    * A function to start the server
    */
   static async start() {
     // connect to db
     await MongoDB.init();
-    this.app = express();
-    this.middleware();
-    this.setPort();
-    this.routes();
-    this.listen();
+    
+    const server = new Server(); // Create an instance of the Server class
+    server.middleware();
+    server.setPort();
+    server.routes();
+    server.listen();
   }
 
   // set port
-  static setPort() {
+  setPort() {
     this.app.set('port', 4000);
   }
 
   // set routes
-  static routes() {
+  routes() {
     this.app.use('/api/user', UserRoutes);
     this.app.use('/api/post', PostRoutes);
     this.app.use('/api/media', MediaRoutes);
@@ -36,7 +37,7 @@ export default class Server {
   }
 
   // set middleware
-  static middleware() {
+  middleware() {
     this.app.use(express.json());
     // enable CORS for all domains
     this.app.use(cors());
@@ -46,12 +47,13 @@ export default class Server {
   }
 
   // listen
-  static async listen() {
+  listen() {
     // api init
     this.app.get('/', (req, res) => {
       res.json({ message: 'WELCOME TO MISPLACED API.' });
     });
-    this.app.listen(this.app.get('port'));
-    console.log('SERVER RUNNING ON PORT', this.app.get('port'));
+    this.app.listen(this.app.get('port'), () => {
+      console.log('SERVER RUNNING ON PORT', this.app.get('port'));
+    });
   }
 }
