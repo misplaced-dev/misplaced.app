@@ -1,7 +1,6 @@
 {
   "name": "misplaced",
   "version": "1.0.0",
-  "type": "module",
   "scripts": {
     "start": "expo start --dev-client",
     "android": "expo run:android",

@@ -1,10 +1,10 @@
-import { MongoDB } from "../server/src/config/mongo.config.js";
-import express from "express";
-import cors from "cors";
-import UserRoutes from "../server/src/routes/user.routes.js";
-import PostRoutes from "../server/src/routes/post.routes.js";
-import MediaRoutes from "../server/src/routes/media.routes.js";
-import LocationRoutes from "../server/src/routes/location.routes.js";
+const { MongoDB } = require('../server/src/config/mongo.config.js');
+const express = require('express');
+const cors = require('cors');
+const UserRoutes = require('../server/src/routes/user.routes.js');
+const PostRoutes = require('../server/src/routes/post.routes.js');
+const MediaRoutes = require('../server/src/routes/media.routes.js');
+const LocationRoutes = require('../server/src/routes/location.routes.js');
 
 export class Server {
   app;
