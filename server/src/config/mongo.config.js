@@ -1,12 +1,10 @@
 import mongoose from "mongoose";
-import dotenv from 'dotenv'
 
 export class MongoDB {
     /**
      * Load environment variables and connect to database
      */
     static async init() {
-        dotenv.config();
         await this.connect();
     }
 

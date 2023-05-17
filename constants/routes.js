@@ -1,7 +1,4 @@
-import dotenv from "dotenv";
-dotenv.config();
-const API_URL = process.env.API_URL;
-console.log(API_URL, "hello");
+const API_URL = "https://misplaced.app"
 
 export const USER_ROUTES = {
     REGISTER_USER() {
