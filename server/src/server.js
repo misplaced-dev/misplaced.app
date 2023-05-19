@@ -43,6 +43,7 @@ export default class Server {
     this.app.use(cors());
 
     // enable CORS for specific domains
+    this.app.use(cors({ origin: 'https://misplacedbackend.onrender.com' }));
     this.app.use(cors({ origin: 'https://misplaced.app' }));
   }
 
