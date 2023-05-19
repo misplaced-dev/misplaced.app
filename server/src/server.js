@@ -27,24 +27,28 @@ export class Server {
     this.app.set("port", process.env.PORT || 3001);
   }
 
-  // set routes
-  static routes() {
-    this.app.use("/api/user", UserRoutes);
-    this.app.use("/api/post", PostRoutes);
-    this.app.use("/api/media", MediaRoutes);
-    this.app.use("/api/location", LocationRoutes);
-  }
+    // set routes
+    static routes() {
+        this.app.use('/api/user', UserRoutes);
+        this.app.use('/api/post', PostRoutes);
+        this.app.use('/api/media', MediaRoutes);
+        this.app.use('/api/location', LocationRoutes);
+    }
 
-  // set middleware
-  static middleware() {
-    this.app.use(express.json());
-    this.app.use(cors());
-    // enable CORS for all domains
-    this.app.use(cors());
-
-    // enable CORS for specific domains
-    this.app.use(cors({ origin: "https://misplaed.app" }));
-  }
+    static middleware() {
+        this.app.use(express.json());
+        this.app.use(
+          cors({
+            origin: "*",
+            methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+            preflightContinue: false,
+            optionsSuccessStatus: 204,
+          })
+        );
+        this.app.use(cors({ origin: 'https://misplacedbackend.onrender.com' }));
+    this.app.use(cors({ origin: 'https://misplaced.app' }));
+    this.app.use(cors({ origin: '*' }));
+      }
 
   // listen
   static async listen() {

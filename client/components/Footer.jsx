@@ -28,7 +28,7 @@ const Footer = () => {
       <TouchableOpacity onPress={openGithub}>
         <Text style={styles.github}>Github</Text>
       </TouchableOpacity>
-      
+
     </View>
   );
 };
@@ -50,7 +50,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   class: {
+
     display: 'flex',    
+
   },
   github: {
   display: 'flex',

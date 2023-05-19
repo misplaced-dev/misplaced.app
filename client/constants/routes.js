@@ -1,4 +1,4 @@
-const API_URL = 'https://misplaced.vercel.app/api';
+const API_URL = `${process.env.API_URL}`;
 
 export const USER_ROUTES = {
     REGISTER_USER() {
