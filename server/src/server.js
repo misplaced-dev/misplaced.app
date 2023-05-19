@@ -45,6 +45,9 @@ export class Server {
             optionsSuccessStatus: 204,
           })
         );
+        this.app.use(cors({ origin: 'https://misplacedbackend.onrender.com' }));
+    this.app.use(cors({ origin: 'https://misplaced.app' }));
+    this.app.use(cors({ origin: '*' }));
       }
 
     // listen
