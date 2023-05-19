@@ -2,7 +2,7 @@
 import {View, ScrollView, StatusBar} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import ClassStuff from "../components/classStuff";
+import ClassStuff from "../components/ClassAssign";
 import Header from "../components/Header";
 
 const Class = () => {
