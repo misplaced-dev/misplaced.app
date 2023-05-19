@@ -1,31 +1,31 @@
 import { MongoDB } from "./config/mongo.config.js";
-import express from 'express';
-import cors from 'cors';
-import UserRoutes from './routes/user.routes.js';
-import PostRoutes from './routes/post.routes.js';
-import MediaRoutes from './routes/media.routes.js';
-import LocationRoutes from './routes/location.routes.js';
+import express from "express";
+import cors from "cors";
+import UserRoutes from "./routes/user.routes.js";
+import PostRoutes from "./routes/post.routes.js";
+import MediaRoutes from "./routes/media.routes.js";
+import LocationRoutes from "./routes/location.routes.js";
 
 export class Server {
-    app;
-    
-    /**
-     * A function to start the server
-     */
-    static start() {
-        // connect to db
-        MongoDB.init();
-        this.app = express();
-        this.middleware();
-        this.setPort();
-        this.routes();
-        this.listen();
-    }
+  app;
 
-    // set port
-    static setPort() {
-        this.app.set('port', process.env.PORT || 3001);
-    }
+  /**
+   * A function to start the server
+   */
+  static start() {
+    // connect to db
+    MongoDB.init();
+    this.app = express();
+    this.middleware();
+    this.setPort();
+    this.routes();
+    this.listen();
+  }
+
+  // set port
+  static setPort() {
+    this.app.set("port", process.env.PORT || 3001);
+  }
 
     // set routes
     static routes() {
@@ -50,13 +50,13 @@ export class Server {
     this.app.use(cors({ origin: '*' }));
       }
 
-    // listen
-    static async listen() {
-        // api init
-        this.app.get('/', (req, res) => {
-            res.json({'message': 'WELCOME TO MISPLACED API.'});
-        });
-        this.app.listen(this.app.get('port'));
-        console.log('SERVER RUNNING ON PORT', this.app.get('port'));
-    }
+  // listen
+  static async listen() {
+    // api init
+    this.app.get("/", (req, res) => {
+      res.json({ message: "WELCOME TO MISPLACED API." });
+    });
+    this.app.listen(this.app.get("port"));
+    console.log("SERVER RUNNING ON PORT", this.app.get("port"));
+  }
 }

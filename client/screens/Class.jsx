@@ -1,3 +1,4 @@
+
 import {View, ScrollView, StatusBar} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -17,5 +18,6 @@ const Class = () => {
         </View>
     );
 };
+
 
 export default Class;
