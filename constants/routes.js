@@ -1,4 +1,4 @@
-const API_URL = "https://misplaced.app/api"
+const API_URL = "https://misplacedbackend.onrender.com"
 
 export const USER_ROUTES = {
     REGISTER_USER() {
