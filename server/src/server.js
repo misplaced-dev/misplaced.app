@@ -25,7 +25,7 @@ export default class Server {
 
   // set port
   setPort() {
-    this.app.set('port', 4000);
+    this.app.set('port', 400);
   }
 
   // set routes
