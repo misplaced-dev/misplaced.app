@@ -49,7 +49,6 @@ const ClassStuff = () => {
         <Text style={styles.cell}>Get a good job at a big tech company and forget about this (jk)</Text>
       </View>
     </View>
-
       <Text style={{marginTop:100, marginBottom:5,}}>HTML Form</Text>
        <Text>Name:</Text>
       <TextInput style={{border: '3px solid #ccc', borderRadius: 5, padding:3}} value={name} onChangeText={setName} />
