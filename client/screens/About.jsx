@@ -2,10 +2,10 @@
 import {View, ScrollView, StatusBar} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import ClassStuff from "../components/ClassAssign";
+import AboutUs from "../components/AboutUs";
 import Header from "../components/Header";
 
-const Class = () => {
+const About = () => {
     const navigation = useNavigation();
 
     return(
@@ -13,11 +13,11 @@ const Class = () => {
              <StatusBar barStyle="dark-content" />
             <ScrollView>
                 <Header/>
-                <ClassStuff />
+                <AboutUs />
             </ScrollView>
         </View>
     );
 };
 
 
-export default Class;
+export default About;

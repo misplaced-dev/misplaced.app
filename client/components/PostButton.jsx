@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, TouchableOpacity, View, StyleSheet, } from 'react-native';
+import { Image, TouchableOpacity, View, StyleSheet, Dimensions} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -30,10 +30,9 @@ const PostButton = () => {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    bottom: 10,
-    right: 10,
+    bottom: 53,
+    right: 30,
     zindex: 10,
-
   },
   image: {
    width: 80,

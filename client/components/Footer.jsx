@@ -6,8 +6,8 @@ import { useNavigation } from '@react-navigation/native';
 const Footer = () => {
   const navigation = useNavigation();
 
-  const Class = () => {
-    navigation.navigate('Class | Misplaced');
+  const About = () => {
+    navigation.navigate('About | Misplaced');
   };
 
   const openGithub = () => {
@@ -19,8 +19,8 @@ const Footer = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={Class}>
-        <Text style={styles.class}>classStuff</Text>
+      <TouchableOpacity onPress={About}>
+        <Text style={styles.About}>About Us</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={openContact}>
         <Text style={styles.github}>Contact Us</Text>
@@ -48,8 +48,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#DEDEDE',
     border: '1px solid #171717',
     borderRadius: 5,
+    marginBottom: 10,
   },
-  class: {
+  About: {
 
     display: 'flex',    
 
