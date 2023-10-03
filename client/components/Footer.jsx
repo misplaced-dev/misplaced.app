@@ -1,20 +1,26 @@
-import React from 'react';
-import { Text, TouchableOpacity, View, StyleSheet, Platform, Linking } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-
+import React from "react";
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  StyleSheet,
+  Platform,
+  Linking,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const Footer = () => {
   const navigation = useNavigation();
 
   const About = () => {
-    navigation.navigate('About | Misplaced');
+    navigation.navigate("About | Misplaced");
   };
 
   const openGithub = () => {
-    Linking.openURL('https://github.com/misplaced-dev/misplaced');
+    Linking.openURL("https://github.com/misplaced-dev/misplaced");
   };
   const openContact = () => {
-    Linking.openURL('https://github.com/dawitalemu4');
+    Linking.openURL("https://github.com/dawitalemu4");
   };
 
   return (
@@ -28,36 +34,33 @@ const Footer = () => {
       <TouchableOpacity onPress={openGithub}>
         <Text style={styles.github}>Github</Text>
       </TouchableOpacity>
-
     </View>
   );
 };
 
-const isMobile = Platform.OS === 'ios' || Platform.OS === 'android';
+const isMobile = Platform.OS === "ios" || Platform.OS === "android";
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    position: 'absolute',
+    display: "flex",
+    position: "absolute",
     bottom: 0,
-    width: '80%',
-    marginHorizontal: isMobile ? '30%' : '10%', 
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    width: "80%",
+    marginHorizontal: isMobile ? "30%" : "10%",
+    flexDirection: "row",
+    justifyContent: "space-between",
     padding: 5,
-    backgroundColor: '#DEDEDE',
-    border: '1px solid #171717',
+    backgroundColor: "#DEDEDE",
+    border: "1px solid #171717",
     borderRadius: 5,
     marginBottom: 10,
   },
   About: {
-
-    display: 'flex',    
-
+    display: "flex",
   },
   github: {
-  display: 'flex',
-}
+    display: "flex",
+  },
 });
 
 export default Footer;

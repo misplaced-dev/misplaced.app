@@ -1,6 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import {  TouchableOpacity, View, StyleSheet, Animated, Platform } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState, useEffect } from "react";
+import {
+  TouchableOpacity,
+  View,
+  StyleSheet,
+  Animated,
+  Platform,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const HomeHeader = () => {
   const navigation = useNavigation();
@@ -13,39 +19,36 @@ const HomeHeader = () => {
       useNativeDriver: true,
     }).start();
   }, []);
-  
 
   const handlePress = () => {
-    navigation.navigate('Home | Misplaced');
+    navigation.navigate("Home | Misplaced");
   };
 
   let containerStyles = [styles.container];
-  
 
   return (
     <View style={containerStyles}>
       <TouchableOpacity onPress={handlePress}>
-      <Animated.Image
-        source={require('../assets/misplaced.png')}
-        style={[styles.image, { opacity: animation }]}
+        <Animated.Image
+          source={require("../assets/misplaced.png")}
+          style={[styles.image, { opacity: animation }]}
         />
       </TouchableOpacity>
     </View>
   );
 };
 
-
-const isMobile = Platform.OS === 'ios' || Platform.OS === 'android'; 
+const isMobile = Platform.OS === "ios" || Platform.OS === "android";
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: "100%",
     height: 100,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     paddingTop: isMobile ? 95 : 70,
     paddingBottom: 120,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: "#f2f2f2",
   },
   image: {
     width: 330,
