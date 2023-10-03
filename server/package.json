@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon src/app.js"
+    "start": "nodemon src/app.js",
+    "vercel-build": "echo Deployed Succesfully"
   },
   "keywords": [],
   "type": "module",
